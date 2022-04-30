@@ -1,28 +1,17 @@
-package com.data.company.reading.service;
+package com.data.company.companyData.service;
 
-import com.data.company.reading.model.CompanyData;
-import com.data.company.reading.repository.CompanyCommandRepository;
-import com.data.company.reading.repository.jpa.CompanyRepository;
-import com.data.company.reading.repository.entity.CompanyDataEntity;
-import com.data.company.shared.CellParser;
+import com.data.company.companyData.model.CompanyData;
+import com.data.company.companyData.repository.CompanyCommandRepository;
 import com.data.company.shared.CellReader;
 import com.data.company.shared.FileExtractor;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.util.IOUtils;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

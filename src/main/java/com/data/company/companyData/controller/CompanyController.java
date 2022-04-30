@@ -1,6 +1,6 @@
-package com.data.company.reading.controller;
+package com.data.company.companyData.controller;
 
-import com.data.company.reading.service.CompanyCommandService;
+import com.data.company.companyData.service.CompanyCommandService;
 import java.io.IOException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,9 +1,9 @@
-package com.data.company.reading.repository;
+package com.data.company.companyData.repository;
 
-import com.data.company.reading.model.CompanyData;
-import com.data.company.reading.repository.converter.CompanyDataConverter;
-import com.data.company.reading.repository.entity.CompanyDataEntity;
-import com.data.company.reading.repository.jpa.CompanyRepository;
+import com.data.company.companyData.model.CompanyData;
+import com.data.company.companyData.repository.converter.CompanyDataConverter;
+import com.data.company.companyData.repository.entity.CompanyDataEntity;
+import com.data.company.companyData.repository.jpa.CompanyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

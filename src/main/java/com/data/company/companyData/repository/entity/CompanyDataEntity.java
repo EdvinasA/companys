@@ -1,4 +1,4 @@
-package com.data.company.reading.repository.entity;
+package com.data.company.companyData.repository.entity;
 
 import java.time.LocalDate;
 import java.util.UUID;

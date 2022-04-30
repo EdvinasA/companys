@@ -1,7 +1,7 @@
-package com.data.company.reading.repository.converter;
+package com.data.company.companyData.repository.converter;
 
-import com.data.company.reading.model.CompanyData;
-import com.data.company.reading.repository.entity.CompanyDataEntity;
+import com.data.company.companyData.model.CompanyData;
+import com.data.company.companyData.repository.entity.CompanyDataEntity;
 
 public class CompanyDataConverter {
 
