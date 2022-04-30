@@ -2,7 +2,9 @@ package com.data.company.companyData.repository.converter;
 
 import com.data.company.companyData.model.CompanyData;
 import com.data.company.companyData.repository.entity.CompanyDataEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CompanyDataConverter {
 
   public CompanyDataEntity convertToEntity(CompanyData companyData) {
