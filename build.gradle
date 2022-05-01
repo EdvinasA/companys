@@ -21,9 +21,13 @@ repositories {
 dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3'
 	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.5.Final'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.3.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-aws-messaging:2.2.3.RELEASE'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
 

@@ -16,4 +16,8 @@ public class CompanyQueryService {
     return companyQueryRepository.findByCode(code);
   }
 
+  public List<CompanyData> findByName(String name) {
+    return companyQueryRepository.findByNameLike(name);
+  }
+
 }

@@ -11,4 +11,5 @@ public interface CompanyRepository extends JpaRepository<CompanyDataEntity, UUID
 
   List<CompanyDataEntity> findByCode(String id);
 
+  List<CompanyDataEntity> findByNameContains(String name);
 }

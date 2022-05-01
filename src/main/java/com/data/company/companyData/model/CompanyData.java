@@ -1,5 +1,6 @@
 package com.data.company.companyData.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Id;
@@ -21,14 +22,17 @@ public class CompanyData {
 
   private String address;
 
+  @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
 
   private String companyForm;
 
   private String statusName;
 
+  @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate statusSinceDate;
 
+  @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate formattedInformationDate;
 
 }

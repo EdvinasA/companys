@@ -11,4 +11,7 @@ spring:
   sql:
     init:
       platform: postgres
-
+cloud:
+  aws:
+    region:
+      auto: true

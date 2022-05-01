@@ -22,4 +22,11 @@ public class CompanyQueryRepository {
         .collect(Collectors.toList());
   }
 
+  public List<CompanyData> findByNameLike(String name) {
+    return companyRepository.findByNameContains(name)
+        .stream()
+        .map(companyDataConverter::convertFromEntity)
+        .collect(Collectors.toList());
+  }
+
 }
