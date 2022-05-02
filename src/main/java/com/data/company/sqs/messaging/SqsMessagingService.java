@@ -4,19 +4,23 @@ import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.data.company.utils.JsonUtils;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class SqsMessagingService implements MessagingService {
 
   private final AmazonSQS sqsClient;
 
   @Override
   public void sendMessage(String message) {
+    log.info("Sending: {}", message);
     SendMessageRequest messageRequest = new SendMessageRequest()
-        .withQueueUrl(sqsClient.getQueueUrl("local-sample-queue").getQueueUrl())
-        .withMessageBody(JsonUtils.toJson(message));
+        .withQueueUrl(sqsClient.getQueueUrl("sample-queue").getQueueUrl())
+        .withMessageBody(JsonUtils.toJson(message))
+        .withDelaySeconds(0);
 
     sqsClient.sendMessage(messageRequest);
   }

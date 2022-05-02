@@ -1,5 +1,7 @@
 package com.data.company.companyData.controller;
 
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.model.ListQueuesResult;
 import com.data.company.companyData.model.CompanyData;
 import com.data.company.companyData.service.CompanyCommandService;
 import com.data.company.companyData.service.CompanyQueryService;
@@ -34,7 +36,7 @@ public class CompanyController {
 
   @GetMapping("name/{name}")
   public List<CompanyData> getCompanyByName(@PathVariable String name) {
-    messagingService.sendMessage("Peace");
+    messagingService.sendMessage(name);
     return queryService.findByName(name);
   }
 

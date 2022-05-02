@@ -13,6 +13,7 @@ public class LocalSqsClientProvider {
         .standard()
         .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:9324", "elasticmq"))
         .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
+        .withRegion("eu-west-1")
         .build();
   }
 

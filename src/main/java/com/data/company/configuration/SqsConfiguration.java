@@ -21,8 +21,9 @@ public class SqsConfiguration {
   public AmazonSQSAsync localAmazonSQSAsync() {
     return AmazonSQSAsyncClientBuilder
         .standard()
-        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:9324", "elasticmq"))
-        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
+//        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://sqs.eu-west-1.amazonaws.com/875563562468/", "eu-west-1"))
+        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("AKIA4XW5HWXSMSW45TVM", "Sz0Xnh6YS9ohFR55YDU4Q69dS+M85x7e1+EbaOGy")))
+        .withRegion("eu-west-1")
         .build();
   }
 

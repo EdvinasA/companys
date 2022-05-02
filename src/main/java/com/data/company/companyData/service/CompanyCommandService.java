@@ -55,7 +55,6 @@ public class CompanyCommandService {
       data.setFormattedInformationDate(LocalDate.parse(formattedInformationDate));
       log.info("Saving data.");
       commandRepository.save(data);
-
     }
   }
 
