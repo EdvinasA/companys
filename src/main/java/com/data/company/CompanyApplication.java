@@ -2,12 +2,16 @@ package com.data.company;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.boot.autoconfigure.session.SessionAutoConfiguration;
 
 @SpringBootApplication(
 		exclude = {
 				org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration.class,
 				org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration.class,
-				org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration.class
+				org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration.class,
+				SessionAutoConfiguration.class,
+				UserDetailsServiceAutoConfiguration.class
 		}
 )
 public class CompanyApplication {
