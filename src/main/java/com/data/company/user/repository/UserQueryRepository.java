@@ -5,18 +5,21 @@ import com.data.company.user.repository.converter.UserConverter;
 import com.data.company.user.repository.entity.UserEntity;
 import com.data.company.user.repository.jpa.UserJpaRepository;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@AllArgsConstructor
 public class UserQueryRepository {
 
-  private UserJpaRepository userJpaRepository;
-  private UserConverter converter;
+  private final UserJpaRepository userJpaRepository;
+  private final UserConverter converter;
 
   public User getUserByEmail(String email) {
-    Optional<UserEntity> entity = userJpaRepository.findByEmail(email);
-    return entity.map(userEntity -> converter.convertFromEntity(userEntity)).orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+    Optional<UserEntity> optionalEntity = userJpaRepository.findByEmail(email);
+    UserEntity entity = optionalEntity.orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+    return converter.convertFromEntity(entity);
   }
 
 }

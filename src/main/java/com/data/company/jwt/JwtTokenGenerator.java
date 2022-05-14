@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class JwtTokenGenerator {
 
   private final TokenJpaRepository jpaRepository;
-  private static final long expirationDate = 900000000L;
+  private static final long expirationDate = 90000000L;
 
   public String generateToken(String email) {
     try {
@@ -43,8 +43,15 @@ public class JwtTokenGenerator {
     Optional<TokenEntity> tokenFromJpa = jpaRepository.findDistinctByToken(token);
     TokenEntity tokenEntity = tokenFromJpa
         .orElseThrow(TokenNotFoundException::new);
-    return buildToken(tokenEntity.getEmail(), Algorithm.HMAC256("Secret"), tokenEntity.getDate())
-        .equals(token);
+
+    if (tokenEntity.getDate().compareTo(Date.from(Instant.now())) > 0) {
+      return token.equals(tokenEntity.getToken());
+    }
+    return false;
+  }
+
+  public TokenEntity getTokenObject(String token) {
+    return jpaRepository.findDistinctByToken(token).orElse(new TokenEntity());
   }
 
   private String buildToken(String email, Algorithm algorithm, Date expiration) {
@@ -53,6 +60,5 @@ public class JwtTokenGenerator {
         .withIssuer(email)
         .withExpiresAt(expiration)
         .sign(algorithm);
-
   }
 }

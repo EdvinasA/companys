@@ -6,6 +6,8 @@ import com.data.company.companyData.repository.jpa.CompanyRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -22,11 +24,9 @@ public class CompanyQueryRepository {
         .collect(Collectors.toList());
   }
 
-  public List<CompanyData> findByNameLike(String name) {
-    return companyRepository.findByNameContains(name)
-        .stream()
-        .map(companyDataConverter::convertFromEntity)
-        .collect(Collectors.toList());
+  public Page<CompanyData> findByNameLike(String name, Pageable pageable) {
+    return companyRepository.findByNameContains(name, pageable)
+        .map(companyDataConverter::convertFromEntity);
   }
 
 }

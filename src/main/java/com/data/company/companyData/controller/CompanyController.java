@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,16 +32,19 @@ public class CompanyController {
     commandService.exportFromExcelCompanyData();
   }
 
+  @PostMapping("/login/{email}")
+  public String login(@PathVariable String email) throws IOException {
+    return jwtTokenGenerator.generateToken(email);
+  }
+
   @GetMapping("{code}")
   public List<CompanyData> getCompanyByCode(@PathVariable String code) {
     return queryService.getByCode(code);
   }
 
   @GetMapping("name/{name}")
-  public List<CompanyData> getCompanyByName(@PathVariable String name) {
-    String token = jwtTokenGenerator.generateToken(name);
-
-    return queryService.findByName(name);
+  public Page<CompanyData> getCompanyByName(@PathVariable String name, @PageableDefault Pageable pageable) {
+        return queryService.findByName(name, pageable);
   }
 
 }
