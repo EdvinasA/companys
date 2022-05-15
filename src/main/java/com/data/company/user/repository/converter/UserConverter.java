@@ -13,7 +13,7 @@ public class UserConverter {
     user.setEmail(entity.getEmail());
     user.setPassword(entity.getPassword());
     user.setRegisteredDate(entity.getRegisteredDate());
-    user.setName(entity.getName());
+    user.setFullName(entity.getFullName());
 
     return user;
   }
@@ -24,7 +24,7 @@ public class UserConverter {
     user.setEmail(entity.getEmail());
     user.setPassword(entity.getPassword());
     user.setRegisteredDate(entity.getRegisteredDate());
-    user.setName(entity.getName());
+    user.setFullName(entity.getFullName());
 
     return user;
   }

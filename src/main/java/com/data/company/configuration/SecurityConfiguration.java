@@ -4,6 +4,7 @@ import com.data.company.jwt.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,12 +28,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
-        .cors().disable();
+    .cors().disable();
 
     http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        .authorizeRequests().antMatchers("/company/login/**").permitAll()
-        .anyRequest().authenticated()
-        .and().httpBasic();
+        .authorizeRequests()
+        .antMatchers(HttpMethod.POST, "/user/**").permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .httpBasic();
 
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }

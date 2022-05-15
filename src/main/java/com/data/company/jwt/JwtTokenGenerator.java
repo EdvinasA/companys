@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.model.TokenEntity;
 import com.data.company.jwt.repository.TokenJpaRepository;
+import com.data.company.user.model.Token;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class JwtTokenGenerator {
   private final TokenJpaRepository jpaRepository;
   private static final long expirationDate = 90000000L;
 
-  public String generateToken(String email) {
+  public Token generateToken(String email) {
     try {
       Algorithm algorithm = Algorithm.HMAC256("Secret");
       Date expiration = Date.from(Instant.now().plusSeconds(expirationDate));
@@ -32,7 +33,7 @@ public class JwtTokenGenerator {
 
       jpaRepository.save(new TokenEntity(UUID.randomUUID(), token, email, expiration));
 
-      return token;
+      return new Token(token);
     } catch (Exception e) {
       log.error("Failed to generate token for email: {}", email);
       throw new RuntimeException(e);

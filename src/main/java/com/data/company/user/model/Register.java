@@ -1,20 +1,13 @@
 package com.data.company.user.model;
 
-import java.time.LocalDate;
-import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class User {
-
-  private UUID id;
+public class Register {
 
   private String email;
 
   private String fullName;
 
   private String password;
-
-  private LocalDate registeredDate;
-
 }

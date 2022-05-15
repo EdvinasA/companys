@@ -16,3 +16,6 @@ cloud:
     region:
       static: eu-west-1
       auto: false
+server:
+  servlet:
+    context-path: /api

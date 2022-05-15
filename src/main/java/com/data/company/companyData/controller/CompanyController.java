@@ -25,16 +25,10 @@ public class CompanyController {
 
   private final CompanyCommandService commandService;
   private final CompanyQueryService queryService;
-  private final JwtTokenGenerator jwtTokenGenerator;
 
   @PostMapping
   public void startIngestion() throws IOException {
     commandService.exportFromExcelCompanyData();
-  }
-
-  @PostMapping("/login/{email}")
-  public String login(@PathVariable String email) throws IOException {
-    return jwtTokenGenerator.generateToken(email);
   }
 
   @GetMapping("{code}")
