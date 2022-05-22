@@ -3,6 +3,7 @@ package com.data.company.user.service;
 import com.data.company.jwt.JwtTokenGenerator;
 import com.data.company.jwt.model.TokenEntity;
 import com.data.company.jwt.repository.TokenJpaRepository;
+import com.data.company.user.model.Token;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
 import com.data.company.user.model.User;
@@ -27,12 +28,12 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
 
   public User login(UserLoginInput userLoginInputBody, User user) {
-      User loginUser = new User();
-      loginUser.setEmail(userLoginInputBody.getEmail());
-      loginUser.setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
-      loginUser.setFullName(user.getFullName());
-      loginUser.setRegisteredDate(user.getRegisteredDate());
-      return loginUser;
+    User loginUser = new User();
+    loginUser.setEmail(userLoginInputBody.getEmail());
+    loginUser.setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
+    loginUser.setFullName(user.getFullName());
+    loginUser.setRegisteredDate(user.getRegisteredDate());
+    return loginUser;
   }
 
   public User register(UserRegisterInput userRegisterInputBody) {
@@ -54,8 +55,10 @@ public class UserService {
   public User validateToken(String token) throws NotFoundException {
     Optional<TokenEntity> entityOptional = tokenJpaRepository.findDistinctByToken(token);
     TokenEntity entity = entityOptional.orElseThrow(NotFoundException::new);
+    User user = queryRepository.getUserByEmail(entity.getEmail());
+    user.setToken(new Token(entity.getToken()));
 
-    return queryRepository.getUserByEmail(entity.getEmail());
+    return user;
   }
 
 }

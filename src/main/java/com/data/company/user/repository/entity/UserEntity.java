@@ -1,5 +1,6 @@
 package com.data.company.user.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ public class UserEntity {
   private String password;
 
   @Column(name = "registered_date")
+  @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
 
 }
