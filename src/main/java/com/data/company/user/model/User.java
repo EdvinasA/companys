@@ -15,6 +15,8 @@ public class User {
 
   private String password;
 
+  private Token token;
+
   private LocalDate registeredDate;
 
 }

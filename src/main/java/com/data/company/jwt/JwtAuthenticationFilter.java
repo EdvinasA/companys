@@ -4,6 +4,7 @@ import com.data.company.jwt.model.TokenEntity;
 import com.data.company.user.service.UserDetailsServiceImpl;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Objects;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +33,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
-    log.error(request.getHeader("token"));
     String jwt = getJwtFromRequest(request);
 
-    if (jwt != null && jwtProvider.validateToken(jwt)) {
+    if (jwt != null && !jwt.equals("") && jwtProvider.validateToken(jwt)) {
       TokenEntity entity = jwtProvider.getTokenObject(jwt);
       UserDetails userDetails = userDetailsService.loadUserByUsername(entity.getEmail());
       UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,

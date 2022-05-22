@@ -3,7 +3,7 @@ package com.data.company.user.model;
 import lombok.Data;
 
 @Data
-public class Register {
+public class UserRegisterInput {
 
   private String email;
 
