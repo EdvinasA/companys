@@ -1,28 +1,33 @@
 package com.data.company.user.repository.entity;
 
+import java.util.List;
+import java.util.UUID;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@Data
-//public class RolesEntity {
-//
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//  @Column(name = "id")
-//  private Long id;
-//
-//  @ManyToMany(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "users_id")
-//  private UserEntity user;
-//
-//  @Column(name = "role")
-//  private String role;
-//
-//}
+@Data
+@Entity(name = "roles")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class RolesEntity {
+
+  @Id
+  @Column(name = "id")
+  private UUID id;
+
+  @ManyToMany(mappedBy = "roles")
+  private List<UserEntity> user;
+
+  @Column(name = "role")
+  private String role;
+
+}

@@ -2,10 +2,16 @@ package com.data.company.user.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import lombok.Data;
 
 @Data
@@ -28,8 +34,14 @@ public class UserEntity {
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
 
-//  @ManyToMany(mappedBy = "userEntity", cascade = CascadeType.ALL,
-//      fetch = FetchType.LAZY)
-//  private List<RolesEntity> roles;
+  @ManyToMany(cascade = {
+      CascadeType.PERSIST,
+      CascadeType.MERGE
+  })
+  @JoinTable(name = "users_roles",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  private List<RolesEntity> roles = new ArrayList<>();
 
 }

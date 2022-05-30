@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Edvinas:2
+--changeset Edvinas:1
 CREATE TABLE users(
   id UUID PRIMARY KEY NOT NULL,
   name VARCHAR(255),
