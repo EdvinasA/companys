@@ -15,7 +15,7 @@ public class UserEntity {
   @Id
   private UUID id;
 
-  @Column(name = "email")
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
   @Column(name = "name")
@@ -27,5 +27,9 @@ public class UserEntity {
   @Column(name = "registered_date")
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
+
+//  @ManyToMany(mappedBy = "userEntity", cascade = CascadeType.ALL,
+//      fetch = FetchType.LAZY)
+//  private List<RolesEntity> roles;
 
 }

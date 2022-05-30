@@ -55,6 +55,7 @@ public class UserService {
   public User validateToken(String token) throws NotFoundException {
     Optional<TokenEntity> entityOptional = tokenJpaRepository.findDistinctByToken(token);
     TokenEntity entity = entityOptional.orElseThrow(NotFoundException::new);
+
     User user = queryRepository.getUserByEmail(entity.getEmail());
     user.setToken(new Token(entity.getToken()));
 

@@ -38,7 +38,7 @@ public class UserController {
 
       return ResponseEntity.ok(userService.login(userLoginInputBody, user));
     }
-    return ResponseEntity.ok(null);
+    return ResponseEntity.badRequest().body(null);
   }
 
   @PostMapping("/register")
@@ -48,7 +48,7 @@ public class UserController {
       return ResponseEntity.ok(userService.register(userRegisterInputBody));
     }
 
-    return ResponseEntity.ok(null);
+    return ResponseEntity.badRequest().body(null);
   }
 
   @GetMapping("{token}")

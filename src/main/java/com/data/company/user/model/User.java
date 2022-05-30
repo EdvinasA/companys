@@ -2,6 +2,7 @@ package com.data.company.user.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 import lombok.Data;
 
@@ -20,5 +21,7 @@ public class User {
 
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
+
+  private List<String> roles;
 
 }
