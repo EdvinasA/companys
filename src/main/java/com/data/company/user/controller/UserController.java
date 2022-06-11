@@ -6,6 +6,7 @@ import com.data.company.user.model.UserRegisterInput;
 import com.data.company.user.model.User;
 import com.data.company.user.repository.UserQueryRepository;
 import com.data.company.user.service.UserService;
+import javax.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -25,40 +26,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
-  private final UserQueryRepository queryRepository;
   private final JwtTokenGenerator tokenProvider;
-  private final PasswordEncoder passwordEncoder;
 
   @PostMapping("/login")
   public ResponseEntity<User> login(@RequestBody UserLoginInput userLoginInputBody) {
-    User user = queryRepository.getUserByEmail(userLoginInputBody.getEmail());
-
-    if (userLoginInputBody.getEmail().equals(user.getEmail()) && passwordEncoder
-        .matches(userLoginInputBody.getPassword(), user.getPassword())) {
-
-      return ResponseEntity.ok(userService.login(userLoginInputBody, user));
-    }
-    return ResponseEntity.badRequest().body(null);
+    log.info("Checking if user provided valid credentials for email {}", userLoginInputBody.getEmail());
+    return ResponseEntity.ok(userService.login(userLoginInputBody));
   }
 
   @PostMapping("/register")
   public ResponseEntity<User> register(@RequestBody UserRegisterInput userRegisterInputBody) {
-    if (queryRepository.getUserByEmail(userRegisterInputBody.getEmail()) == null) {
-
-      return ResponseEntity.ok(userService.register(userRegisterInputBody));
-    }
-
-    return ResponseEntity.badRequest().body(null);
+    log.info("Checking if user provided valid credentials for email {}", userRegisterInputBody.getEmail());
+    return ResponseEntity.ok(userService.register(userRegisterInputBody));
   }
 
   @GetMapping("{token}")
-  public ResponseEntity<User> getUserByToken(@PathVariable String token) throws NotFoundException {
-    if (tokenProvider.validateToken(token)) {
-
-      return ResponseEntity.ok(userService.validateToken(token));
-    }
-
-    return ResponseEntity.ok(null);
+  public ResponseEntity<User> getUserByToken(@PathVariable String token) {
+    return ResponseEntity.ok(userService.validateToken(token));
   }
 
 
