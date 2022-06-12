@@ -1,6 +1,8 @@
 package com.data.company.shop.products.model;
 
 import java.util.UUID;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,10 +18,14 @@ public class Product {
 
   private String picture;
 
+  @NotNull
+  @NotEmpty
   private String name;
 
+  @NotNull
   private int quantity;
 
+  @NotNull
   private double price;
 
   private String description;
