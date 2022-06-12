@@ -1,9 +1,15 @@
 package com.data.company.shop.products.model;
 
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
   private UUID id;
@@ -13,6 +19,8 @@ public class Product {
   private String name;
 
   private int quantity;
+
+  private double price;
 
   private String description;
 
