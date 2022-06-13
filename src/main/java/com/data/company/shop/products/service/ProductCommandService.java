@@ -16,6 +16,11 @@ public class ProductCommandService {
     product.setId(UUID.randomUUID());
     product.setQuantity(0);
     product.setHasDiscount(false);
+
     commandRepository.create(product);
+  }
+
+  public void deleteProduct(UUID productId) {
+    commandRepository.delete(productId);
   }
 }
