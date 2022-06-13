@@ -27,6 +27,9 @@ class ProductCommandServiceTest {
   @Captor
   ArgumentCaptor<Product> productCaptor;
 
+  @Captor
+  ArgumentCaptor<UUID> uuidArgumentCaptor;
+
   @Test
   void shouldPersistAndCreateProduct() {
     commandService.createNewProduct(buildProduct());
@@ -37,9 +40,20 @@ class ProductCommandServiceTest {
     assertNotNull(product);
   }
 
+  @Test
+  void shouldDeleteProduct() {
+    commandService.deleteProduct(UUID.fromString("715d1690-fbb9-4b0c-a5f7-9395b8276ed3"));
+
+    Mockito.verify(commandRepository).delete(uuidArgumentCaptor.capture());
+    UUID id = uuidArgumentCaptor.getValue();
+
+    assertEquals(UUID.fromString("715d1690-fbb9-4b0c-a5f7-9395b8276ed3"), id);
+  }
+
   private Product buildProduct() {
     Product product = new Product();
     product.setId(UUID.fromString("715d1690-fbb9-4b0c-a5f7-9395b8276ed3"));
     return product;
   }
+
 }
