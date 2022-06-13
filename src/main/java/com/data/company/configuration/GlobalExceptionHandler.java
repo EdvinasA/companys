@@ -2,6 +2,7 @@ package com.data.company.configuration;
 
 import com.data.company.error.GeneralErrorMessage;
 import com.data.company.exceptions.PasswordNotMatchingException;
+import com.data.company.exceptions.ProductNotFoundException;
 import com.data.company.exceptions.TokenNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<GeneralErrorMessage> handlePasswordNotMatchingException(PasswordNotMatchingException ex) {
     log.error("Password in database does not match the given.");
     GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
+
+    return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler(ProductNotFoundException.class)
+  public ResponseEntity<GeneralErrorMessage> handleProductNotFoundException(ProductNotFoundException ex) {
+    log.error("Product not found.");
+    GeneralErrorMessage message = new GeneralErrorMessage("Product not found.");
 
     return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
   }
