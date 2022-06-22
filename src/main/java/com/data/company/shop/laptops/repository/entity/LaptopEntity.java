@@ -5,6 +5,8 @@ import com.data.company.shop.shared.ComputerAndOfficeCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -104,8 +106,10 @@ public class LaptopEntity {
   private String keyboardLanguage;
 
   @Column(name = "category")
+  @Enumerated(EnumType.STRING)
   private Category category;
 
   @Column(name = "computer_and_office_category")
+  @Enumerated(EnumType.STRING)
   private ComputerAndOfficeCategory computerAndOfficeCategory;
 }
