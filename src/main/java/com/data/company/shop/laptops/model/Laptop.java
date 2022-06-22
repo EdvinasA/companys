@@ -1,5 +1,7 @@
 package com.data.company.shop.laptops.model;
 
+import com.data.company.shop.shared.Category;
+import com.data.company.shop.shared.ComputerAndOfficeCategory;
 import java.util.UUID;
 import lombok.Data;
 
@@ -35,5 +37,7 @@ public class Laptop {
   private Boolean videoCamera;
   private Boolean integratedMicrophone;
   private String keyboardLanguage;
+  private Category category;
+  private ComputerAndOfficeCategory computerAndOfficeCategory;
 
 }

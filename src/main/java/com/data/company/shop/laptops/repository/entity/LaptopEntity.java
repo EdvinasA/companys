@@ -1,5 +1,7 @@
 package com.data.company.shop.laptops.repository.entity;
 
+import com.data.company.shop.shared.Category;
+import com.data.company.shop.shared.ComputerAndOfficeCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -100,4 +102,10 @@ public class LaptopEntity {
 
   @Column(name = "keyboard_language")
   private String keyboardLanguage;
+
+  @Column(name = "category")
+  private Category category;
+
+  @Column(name = "computer_and_office_category")
+  private ComputerAndOfficeCategory computerAndOfficeCategory;
 }
