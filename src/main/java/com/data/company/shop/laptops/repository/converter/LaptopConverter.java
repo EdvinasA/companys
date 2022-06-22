@@ -38,6 +38,8 @@ public class LaptopConverter {
     entity.setVideoCamera(laptop.getVideoCamera());
     entity.setIntegratedMicrophone(laptop.getIntegratedMicrophone());
     entity.setKeyboardLanguage(laptop.getKeyboardLanguage());
+    entity.setCategory(laptop.getCategory());
+    entity.setComputerAndOfficeCategory(laptop.getComputerAndOfficeCategory());
     return entity;
   }
 
@@ -72,6 +74,8 @@ public class LaptopConverter {
     object.setVideoCamera(entity.getVideoCamera());
     object.setIntegratedMicrophone(entity.getIntegratedMicrophone());
     object.setKeyboardLanguage(entity.getKeyboardLanguage());
+    object.setCategory(entity.getCategory());
+    object.setComputerAndOfficeCategory(entity.getComputerAndOfficeCategory());
     return object;
   }
 }

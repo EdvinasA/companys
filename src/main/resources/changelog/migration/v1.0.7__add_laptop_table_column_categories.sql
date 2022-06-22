@@ -1,0 +1,5 @@
+--liquibase formatted sql
+
+--changeset Edvinas:6
+ALTER TABLE laptop ADD COLUMN category VARCHAR(255) DEFAULT 'COMPUTER_EQUIPMENT_OFFICE_SUPPLIES';
+ALTER TABLE laptop ADD COLUMN computer_and_office_category VARCHAR(255) DEFAULT 'LAPTOPS_AND_THEIR_ACCESSORIES';
