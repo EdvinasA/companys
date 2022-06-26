@@ -1,5 +1,7 @@
-package com.data.company.user.model;
+package com.data.company.jwt.model;
 
+import java.util.Date;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,5 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Token {
 
+  private UUID id;
+
   private String token;
+
+  private String email;
+
+  private Date date;
 }

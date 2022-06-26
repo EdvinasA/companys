@@ -3,10 +3,11 @@ package com.data.company.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.data.company.exceptions.TokenNotFoundException;
-import com.data.company.jwt.model.TokenEntity;
-import com.data.company.jwt.repository.TokenJpaRepository;
-import com.data.company.user.model.Token;
+import com.data.company.jwt.model.Token;
+import com.data.company.jwt.repository.TokenCommandRepository;
+import com.data.company.jwt.repository.TokenQueryRepository;
+import com.data.company.jwt.repository.entity.TokenEntity;
+import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
@@ -20,10 +21,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JwtTokenGenerator {
 
-  private final TokenJpaRepository jpaRepository;
-  private static final long expirationDate = 90000000L;
+  private final TokenCommandRepository commandRepository;
+  private final TokenQueryRepository queryRepository;
+  private static final long expirationDate = 9000000L;
 
-  public Token generateToken(String email) {
+  public String generateToken(String email) {
     try {
       Algorithm algorithm = Algorithm.HMAC256("Secret");
       Date expiration = Date.from(Instant.now().plusSeconds(expirationDate));
@@ -31,32 +33,26 @@ public class JwtTokenGenerator {
       String token = buildToken(email, algorithm, expiration);
       log.info("Generated token with expiration date: {}", expiration);
 
-      jpaRepository.save(new TokenEntity(UUID.randomUUID(), token, email, expiration));
+      commandRepository.create(new Token(UUID.randomUUID(), token, email, expiration));
 
-      return new Token(token);
+      return token;
     } catch (Exception e) {
       log.error("Failed to generate token for email: {}", email);
       throw new RuntimeException(e);
     }
   }
 
-  public boolean validateToken(String token) {
-    Optional<TokenEntity> tokenFromJpa = jpaRepository.findDistinctByToken(token);
+  public boolean validateToken(String tokenForValidation) {
+    Token token = queryRepository.findByToken(tokenForValidation);
 
-    if (tokenFromJpa.isEmpty()) {
-      return false;
-    }
-
-    TokenEntity tokenEntity = tokenFromJpa.get();
-
-    if (tokenEntity.getDate().compareTo(Date.from(Instant.now())) > 0) {
-      return token.equals(tokenEntity.getToken());
+    if (token.getDate().compareTo(Date.from(Instant.now())) > 0) {
+      return tokenForValidation.equals(token.getToken());
     }
     return false;
   }
 
-  public TokenEntity getTokenObject(String token) {
-    return jpaRepository.findDistinctByToken(token).orElse(new TokenEntity());
+  public Token getTokenObject(String token) {
+    return queryRepository.findByToken(token);
   }
 
   private String buildToken(String email, Algorithm algorithm, Date expiration) {

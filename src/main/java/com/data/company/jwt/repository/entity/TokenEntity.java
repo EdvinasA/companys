@@ -1,4 +1,4 @@
-package com.data.company.jwt.model;
+package com.data.company.jwt.repository.entity;
 
 import java.util.Date;
 import java.util.UUID;

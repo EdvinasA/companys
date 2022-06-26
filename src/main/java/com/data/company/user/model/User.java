@@ -19,7 +19,7 @@ public class User {
 
   private String password;
 
-  private Token token;
+  private String token;
 
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;

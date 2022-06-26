@@ -4,10 +4,9 @@ import com.data.company.exceptions.PasswordNotMatchingException;
 import com.data.company.exceptions.RegisteredEmailFoundException;
 import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.JwtTokenGenerator;
-import com.data.company.jwt.model.TokenEntity;
-import com.data.company.jwt.repository.TokenJpaRepository;
+import com.data.company.jwt.repository.entity.TokenEntity;
+import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import com.data.company.user.model.Authority;
-import com.data.company.user.model.Token;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
 import com.data.company.user.model.User;
@@ -71,7 +70,7 @@ public class UserService {
     }
 
     User user = queryRepository.getUserByEmail(entity.getEmail());
-    user.setToken(new Token(entity.getToken()));
+    user.setToken(entity.getToken());
 
     return user;
   }

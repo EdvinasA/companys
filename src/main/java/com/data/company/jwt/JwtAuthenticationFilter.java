@@ -1,10 +1,9 @@
 package com.data.company.jwt;
 
-import com.data.company.jwt.model.TokenEntity;
+import com.data.company.jwt.model.Token;
+import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.user.service.UserDetailsServiceImpl;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Objects;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     String jwt = getJwtFromRequest(request);
 
     if (jwt != null && !jwt.equals("") && jwtProvider.validateToken(jwt)) {
-      TokenEntity entity = jwtProvider.getTokenObject(jwt);
+      Token entity = jwtProvider.getTokenObject(jwt);
       UserDetails userDetails = userDetailsService.loadUserByUsername(entity.getEmail());
       UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
           entity, userDetails.getAuthorities());
