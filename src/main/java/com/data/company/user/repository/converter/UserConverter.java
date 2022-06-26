@@ -14,7 +14,7 @@ public class UserConverter {
     user.setPassword(entity.getPassword());
     user.setRegisteredDate(entity.getRegisteredDate());
     user.setFullName(entity.getFullName());
-
+    user.setRole(entity.getRole().getAuthority());
     return user;
   }
 

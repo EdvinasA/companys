@@ -1,13 +1,15 @@
 package com.data.company.user.repository.entity;
 
-import java.util.List;
+import com.data.company.user.model.Authority;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,10 +26,11 @@ public class RolesEntity {
   @Column(name = "id")
   private UUID id;
 
-  @ManyToMany(mappedBy = "roles")
-  private List<UserEntity> user;
+  @OneToOne(fetch = FetchType.LAZY)
+  private UserEntity user;
 
   @Column(name = "role")
-  private String role;
+  @Enumerated(value = EnumType.STRING)
+  private Authority authority;
 
 }

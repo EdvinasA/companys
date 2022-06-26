@@ -7,7 +7,11 @@ public class UserRegisterInput {
 
   private String email;
 
-  private String fullName;
+  private String name;
+
+  private String lastName;
 
   private String password;
+
+  private Authority authority;
 }

@@ -6,6 +6,7 @@ import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.JwtTokenGenerator;
 import com.data.company.jwt.model.TokenEntity;
 import com.data.company.jwt.repository.TokenJpaRepository;
+import com.data.company.user.model.Authority;
 import com.data.company.user.model.Token;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
@@ -46,12 +47,16 @@ public class UserService {
     User newUser = new User();
     newUser.setId(UUID.randomUUID());
     newUser.setEmail(email);
-    newUser.setFullName(userRegisterInputBody.getFullName());
+    newUser.setFullName(userRegisterInputBody.getName());
     newUser.setPassword(passwordEncoder.encode(userRegisterInputBody.getPassword()));
     newUser.setRegisteredDate(LocalDate.now());
-    newUser.setToken(tokenGenerator.generateToken(email));
+    newUser.setRole(Authority.USER);
 
-    commandRepository.create(newUser);
+    User createdUser = commandRepository.create(newUser);
+
+    if (createdUser != null) {
+      newUser.setToken(tokenGenerator.generateToken(email));
+    }
 
     return newUser;
   }
