@@ -45,7 +45,7 @@ public class JwtTokenGenerator {
   public boolean validateToken(String tokenForValidation) {
     Token token = queryRepository.findByToken(tokenForValidation);
 
-    if (token.getDate().compareTo(Date.from(Instant.now())) > 0) {
+    if (token.getDate() != null && token.getDate().compareTo(Date.from(Instant.now())) > 0) {
       return tokenForValidation.equals(token.getToken());
     }
     return false;

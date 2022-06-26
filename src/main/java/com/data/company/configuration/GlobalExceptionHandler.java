@@ -3,6 +3,7 @@ package com.data.company.configuration;
 import com.data.company.error.GeneralErrorMessage;
 import com.data.company.exceptions.PasswordNotMatchingException;
 import com.data.company.exceptions.ProductNotFoundException;
+import com.data.company.exceptions.RegisteredEmailFoundException;
 import com.data.company.exceptions.TokenNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<GeneralErrorMessage> handleProductNotFoundException(ProductNotFoundException ex) {
     log.error("Product not found.");
     GeneralErrorMessage message = new GeneralErrorMessage("Product not found.");
+
+    return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler(RegisteredEmailFoundException.class)
+  public ResponseEntity<GeneralErrorMessage> handleRegisteredEmailFoundException(RegisteredEmailFoundException ex) {
+    log.error("Registered email already in use.");
+    GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
 
     return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
   }
