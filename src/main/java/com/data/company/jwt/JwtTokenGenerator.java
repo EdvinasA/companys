@@ -29,7 +29,7 @@ public class JwtTokenGenerator {
       Date expiration = Date.from(Instant.now().plusSeconds(expirationDate));
 
       String token = buildToken(email, algorithm, expiration);
-      log.info("Generated token: {} , with expiration date: {}", token, expiration);
+      log.info("Generated token with expiration date: {}", expiration);
 
       jpaRepository.save(new TokenEntity(UUID.randomUUID(), token, email, expiration));
 
@@ -42,8 +42,12 @@ public class JwtTokenGenerator {
 
   public boolean validateToken(String token) {
     Optional<TokenEntity> tokenFromJpa = jpaRepository.findDistinctByToken(token);
-    TokenEntity tokenEntity = tokenFromJpa
-        .orElseThrow(TokenNotFoundException::new);
+
+    if (tokenFromJpa.isEmpty()) {
+      return false;
+    }
+
+    TokenEntity tokenEntity = tokenFromJpa.get();
 
     if (tokenEntity.getDate().compareTo(Date.from(Instant.now())) > 0) {
       return token.equals(tokenEntity.getToken());

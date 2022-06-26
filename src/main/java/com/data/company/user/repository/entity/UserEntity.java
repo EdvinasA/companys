@@ -22,7 +22,10 @@ public class UserEntity {
   private String email;
 
   @Column(name = "name")
-  private String fullName;
+  private String name;
+
+  @Column(name = "last_name")
+  private String lastName;
 
   @Column(name = "password")
   private String password;

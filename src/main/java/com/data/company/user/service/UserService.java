@@ -35,7 +35,8 @@ public class UserService {
     User loginUser = new User();
     loginUser.setEmail(userLoginInputBody.getEmail());
     loginUser.setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
-    loginUser.setFullName(user.getFullName());
+    loginUser.setName(user.getName());
+    loginUser.setLastName(user.getLastName());
     loginUser.setRegisteredDate(user.getRegisteredDate());
     return loginUser;
   }
@@ -47,7 +48,8 @@ public class UserService {
     User newUser = new User();
     newUser.setId(UUID.randomUUID());
     newUser.setEmail(email);
-    newUser.setFullName(userRegisterInputBody.getName());
+    newUser.setName(userRegisterInputBody.getName());
+    newUser.setLastName(userRegisterInputBody.getLastName());
     newUser.setPassword(passwordEncoder.encode(userRegisterInputBody.getPassword()));
     newUser.setRegisteredDate(LocalDate.now());
     newUser.setRole(Authority.USER);
