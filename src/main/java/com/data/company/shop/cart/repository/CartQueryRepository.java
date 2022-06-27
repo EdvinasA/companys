@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class CartQueryRepository {
 
+
 }
