@@ -37,4 +37,7 @@ public class CartEntity {
 
   @Column(name = "purchase_date")
   private LocalDateTime purchaseDate;
+
+  @Column(name = "user_id")
+  private UUID userId;
 }

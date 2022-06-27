@@ -16,5 +16,6 @@ public class Cart {
   private boolean insurance;
   private boolean warranty;
   private LocalDateTime purchaseDate;
+  private UUID userId;
 
 }

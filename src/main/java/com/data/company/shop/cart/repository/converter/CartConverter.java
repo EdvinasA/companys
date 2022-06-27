@@ -17,6 +17,7 @@ public class CartConverter {
     cart.setWarranty(entity.isWarranty());
     cart.setPrice(entity.getPrice());
     cart.setPurchaseDate(entity.getPurchaseDate());
+    cart.setUserId(entity.getUserId());
     return cart;
   }
 
@@ -30,6 +31,7 @@ public class CartConverter {
     entity.setWarranty(cart.isWarranty());
     entity.setPrice(cart.getPrice());
     entity.setPurchaseDate(cart.getPurchaseDate());
+    entity.setUserId(cart.getUserId());
     return entity;
   }
 }
