@@ -3,6 +3,8 @@ spring:
     baseline-on-migrate: true
     locations: classpath:/changelog/migration/
   datasource:
+    hikari:
+      max-lifetime: 30000
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
