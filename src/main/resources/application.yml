@@ -3,9 +3,9 @@ spring:
     baseline-on-migrate: true
     locations: classpath:/changelog/migration/
   datasource:
-    url: jdbc:postgresql://localhost:5432/company-data
-    username: CHANGE_ME
-    password: CHANGE_ME
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   liquibase:
     change-log: classpath*:/changelog/changelog_dev.yaml
   sql:
@@ -14,7 +14,7 @@ spring:
 cloud:
   aws:
     region:
-      static: eu-west-1
+      static: ireland
       auto: false
 server:
   port: 8081

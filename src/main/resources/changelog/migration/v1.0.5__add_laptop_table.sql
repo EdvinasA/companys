@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Edvinas:5
+--changeset Edvinas:1
 CREATE TABLE laptop(
     id UUID PRIMARY KEY NOT NULL,
     name VARCHAR(255),
@@ -30,5 +30,7 @@ CREATE TABLE laptop(
     graphics_card_memory_size VARCHAR(255),
     video_camera BOOLEAN NOT NULL,
     integrated_microphone BOOLEAN NOT NULL,
-    keyboard_language VARCHAR(255)
+    keyboard_language VARCHAR(255),
+    category VARCHAR(255),
+    computer_and_office_category VARCHAR(255)
 )

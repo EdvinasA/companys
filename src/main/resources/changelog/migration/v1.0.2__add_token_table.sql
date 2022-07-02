@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Edvinas:2
+--changeset Edvinas:1
 CREATE TABLE token(
   id UUID PRIMARY KEY NOT NULL,
   token VARCHAR(255),
