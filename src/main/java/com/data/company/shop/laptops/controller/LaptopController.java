@@ -3,6 +3,7 @@ package com.data.company.shop.laptops.controller;
 import com.data.company.shop.laptops.model.Laptop;
 import com.data.company.shop.laptops.repository.LaptopQueryRepository;
 import com.data.company.shop.laptops.service.LaptopCommandService;
+import com.data.company.shop.laptops.service.LaptopQueryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LaptopController {
 
   private final LaptopCommandService commandService;
-  private final LaptopQueryRepository queryRepository;
+  private final LaptopQueryService queryService;
 
   @PostMapping
   public void createNewLaptopObject(@RequestBody Laptop laptop) {
@@ -34,7 +35,7 @@ public class LaptopController {
   public ResponseEntity<Page<Laptop>> getPageListOfLaptops(@PageableDefault Pageable pageable) {
     log.info("Request for getting list of laptops with parameters: [Size: {}, Page: {}]", pageable.getPageSize(), pageable.getPageNumber());
 
-    Page<Laptop> result = queryRepository.findAll(pageable);
+    Page<Laptop> result = queryService.findAll(pageable);
     log.info("Retrieved list of laptops: [Size: {}]", result.getContent().size());
 
     return ResponseEntity.ok(result);
