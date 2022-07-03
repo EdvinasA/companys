@@ -4,13 +4,16 @@ import com.data.company.shop.laptops.model.Laptop;
 import com.data.company.shop.laptops.repository.LaptopQueryRepository;
 import com.data.company.shop.laptops.service.LaptopCommandService;
 import com.data.company.shop.laptops.service.LaptopQueryService;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +40,16 @@ public class LaptopController {
 
     Page<Laptop> result = queryService.findAll(pageable);
     log.info("Retrieved list of laptops: [Size: {}]", result.getContent().size());
+
+    return ResponseEntity.ok(result);
+  }
+
+  @GetMapping("{id}")
+  public ResponseEntity<Laptop> getLaptopById(@PathVariable UUID id) throws NotFoundException {
+    log.info("Retrieving laptop by id: {}", id);
+
+    Laptop result = queryService.findById(id);
+    log.info("Found result: {}", result);
 
     return ResponseEntity.ok(result);
   }

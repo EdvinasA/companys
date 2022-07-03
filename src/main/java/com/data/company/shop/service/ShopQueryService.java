@@ -2,7 +2,6 @@ package com.data.company.shop.service;
 
 import com.data.company.shop.model.Categories;
 import com.data.company.shop.shared.Category;
-import com.data.company.shop.shared.ComputerAndOfficeCategory;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,7 +14,7 @@ public class ShopQueryService {
 
   public Categories getCategories() {
     List<String> categories = Stream.of(Category.values())
-        .map(Enum::name)
+        .map(Category::getCategory)
         .collect(Collectors.toList());
 
     Categories object = new Categories();
