@@ -26,11 +26,17 @@ public class LaptopController {
 
   @PostMapping
   public void createNewLaptopObject(@RequestBody Laptop laptop) {
+    log.info("Creating laptop object: {}", laptop);
     commandService.createNew(laptop);
   }
 
   @GetMapping
   public ResponseEntity<Page<Laptop>> getPageListOfLaptops(@PageableDefault Pageable pageable) {
-    return ResponseEntity.ok(queryRepository.findAll(pageable));
+    log.info("Request for getting list of laptops with parameters: [Size: {}, Page: {}]", pageable.getPageSize(), pageable.getPageNumber());
+
+    Page<Laptop> result = queryRepository.findAll(pageable);
+    log.info("Retrieved list of laptops: [Size: {}]", result.getContent().size());
+
+    return ResponseEntity.ok(result);
   }
 }
