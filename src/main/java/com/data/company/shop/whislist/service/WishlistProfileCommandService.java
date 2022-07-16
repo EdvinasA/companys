@@ -1,5 +1,6 @@
 package com.data.company.shop.whislist.service;
 
+import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.model.WishlistProfile;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.repository.WishlistProfileCommandRepository;

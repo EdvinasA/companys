@@ -17,9 +17,19 @@ public class WishlistItemEntity {
   @Id
   private UUID id;
 
+  @Column(name = "item_id")
+  private UUID itemId;
+
+  @Column(name = "item_name")
+  private String itemName;
+
   @Column(name = "item_picture")
   private String itemPicture;
 
   @Column(name = "item_price")
   private double itemPrice;
+
+  @Column(name = "wishlist_profile_id")
+  private UUID wishListProfileId;
+
 }
