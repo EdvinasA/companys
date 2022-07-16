@@ -30,6 +30,18 @@ public class UserEntity {
   @Column(name = "password")
   private String password;
 
+  @Column(name = "receive_emails")
+  private boolean receiveEmails;
+
+  @Column(name = "receive_emails_about_looked_items")
+  private boolean receiveEmailsAboutLookedItems;
+
+  @Column(name = "receive_emails_about_giving_feedback")
+  private boolean receiveEmailsAboutGivingFeedback;
+
+  @Column(name = "receive_emails_about_service_quality")
+  private boolean receiveEmailsAboutServiceQuality;
+
   @Column(name = "registered_date")
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;

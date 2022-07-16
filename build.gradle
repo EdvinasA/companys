@@ -62,10 +62,6 @@ dependencies {
 	integrationTestImplementation 'com.github.tomakehurst:wiremock:2.27.2'
 }
 
-integrationTest {
-	outputs.upToDateWhen {false}
-}
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
