@@ -33,12 +33,14 @@ public class WishlistProfileController {
   private final WishlistItemQueryService wishlistItemQueryService;
 
   @PostMapping
-  public ResponseEntity<Void> createWishlistProfile(@RequestBody WishlistProfileInput input,
+  public ResponseEntity<UUID> createWishlistProfile(@RequestBody WishlistProfileInput input,
                                                     @PathVariable("userId") UUID userId) {
     log.info("Received wishlist profile name: {}", input.getName());
 
-    commandService.createWishlistProfile(input, userId);
-    return ResponseEntity.ok(null);
+    UUID result = commandService.createWishlistProfile(input, userId);
+    log.info("Created wishlist profile with id: {}", result);
+
+    return ResponseEntity.ok(result);
   }
 
   @GetMapping
@@ -51,11 +53,11 @@ public class WishlistProfileController {
     return ResponseEntity.ok(result);
   }
 
-  @DeleteMapping
-  public ResponseEntity<Void> deleteWishlistProfile(@RequestBody WishlistDeleteInput input,
+  @DeleteMapping("/{wishlistProfileId}")
+  public ResponseEntity<Void> deleteWishlistProfile(@PathVariable("wishlistProfileId") UUID wishlistProfileId,
                                                     @PathVariable("userId") UUID userId) {
-    log.info("Deleting wishlist profile with id: {}. Requested by user with id: {}", input.getId(), userId);
-    commandService.deleteWishlistProfile(input.getId());
+    log.info("Deleting wishlist profile with id: {}. Requested by user with id: {}", wishlistProfileId, userId);
+    commandService.deleteWishlistProfile(wishlistProfileId);
 
     return ResponseEntity.ok(null);
   }
@@ -80,11 +82,11 @@ public class WishlistProfileController {
     return ResponseEntity.ok(result);
   }
 
-  @DeleteMapping("/item")
-  public ResponseEntity<Void> deleteItemFromWishlist(@RequestBody List<WishlistItem> items,
-                                                     @PathVariable String userId) {
-    log.info("Removing from wishlist items: {}. Requested by user with id: {}", items, userId);
-    wishlistItemCommandService.deleteItemsFromWishlist(items);
+  @DeleteMapping("/item/{itemId}")
+  public ResponseEntity<Void> deleteItemFromWishlist(@PathVariable("itemId") UUID itemId,
+                                                     @PathVariable("userId") UUID userId) {
+    log.info("Removing from wishlist item id: {}. Requested by user with id: {}", itemId, userId);
+    wishlistItemCommandService.deleteItemFromWishlist(itemId);
 
     return ResponseEntity.ok(null);
   }

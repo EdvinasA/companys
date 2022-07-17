@@ -17,12 +17,14 @@ public class WishlistProfileCommandService {
   private final WishlistItemQueryService wishlistItemQueryService;
   private final WishlistItemCommandService wishlistItemCommandService;
 
-  public void createWishlistProfile(WishlistProfileInput input, UUID userId) {
+  public UUID createWishlistProfile(WishlistProfileInput input, UUID userId) {
     WishlistProfile profile = new WishlistProfile();
     profile.setId(UUID.randomUUID());
     profile.setName(input.getName());
     profile.setUserId(userId);
     commandRepository.create(profile);
+
+    return profile.getId();
   }
 
   public void deleteWishlistProfile(UUID wishlistProfileId) {

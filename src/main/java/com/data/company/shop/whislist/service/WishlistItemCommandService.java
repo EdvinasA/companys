@@ -18,7 +18,11 @@ public class WishlistItemCommandService {
     commandRepository.create(input);
   }
 
+  public void deleteItemFromWishlist(UUID itemId) {
+    commandRepository.delete(itemId);
+  }
+
   public void deleteItemsFromWishlist(List<WishlistItem> items) {
-    commandRepository.delete(items);
+    commandRepository.deleteAllByProfileId(items);
   }
 }
