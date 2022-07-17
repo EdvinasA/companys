@@ -26,7 +26,7 @@ public class WishlistProfileEntity {
   private String name;
 
   @OneToMany(
-      cascade = CascadeType.ALL,
+      cascade = CascadeType.REMOVE,
       orphanRemoval = true
   )
   @JoinColumn(name = "wishlist_profile_id")

@@ -24,7 +24,6 @@ public class WishlistItemConverter {
     item.setId(entity.getId());
     item.setItemName(entity.getItemName());
     item.setItemId(entity.getItemId());
-    item.setItemId(entity.getId());
     item.setItemPicture(entity.getItemPicture());
     item.setItemPrice(entity.getItemPrice());
     item.setWishListProfileId(entity.getWishListProfileId());

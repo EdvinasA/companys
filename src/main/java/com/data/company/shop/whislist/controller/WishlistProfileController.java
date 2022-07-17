@@ -2,6 +2,7 @@ package com.data.company.shop.whislist.controller;
 
 import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.model.WishlistProfile;
+import com.data.company.shop.whislist.model.WishlistProfileDeleteInput;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.service.WishlistItemCommandService;
 import com.data.company.shop.whislist.service.WishlistItemQueryService;
@@ -12,6 +13,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +49,15 @@ public class WishlistProfileController {
     log.info("Retrieved a list of profiles: [Size: {}]", result.size());
 
     return ResponseEntity.ok(result);
+  }
+
+  @DeleteMapping
+  public ResponseEntity<Void> deleteWishlistProfile(@RequestBody WishlistProfileDeleteInput input,
+                                                    @PathVariable("userId") UUID userId) {
+    log.info("Deleting wishlist profile with id: {}. Requested by user with id: {}", input.getId(), userId);
+    commandService.deleteWishlistProfile(input.getId());
+
+    return ResponseEntity.ok(null);
   }
 
   @PostMapping("/item")

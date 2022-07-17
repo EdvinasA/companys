@@ -4,6 +4,7 @@ import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.model.WishlistProfile;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.repository.WishlistProfileCommandRepository;
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class WishlistProfileCommandService {
 
   private final WishlistProfileCommandRepository commandRepository;
+  private final WishlistItemQueryService wishlistItemQueryService;
+  private final WishlistItemCommandService wishlistItemCommandService;
 
   public void createWishlistProfile(WishlistProfileInput input, UUID userId) {
     WishlistProfile profile = new WishlistProfile();
@@ -20,5 +23,15 @@ public class WishlistProfileCommandService {
     profile.setName(input.getName());
     profile.setUserId(userId);
     commandRepository.create(profile);
+  }
+
+  public void deleteWishlistProfile(UUID wishlistProfileId) {
+    List<WishlistItem> itemsOfProfile = wishlistItemQueryService.getListOfWishlistItems(wishlistProfileId);
+
+    if (!itemsOfProfile.isEmpty()) {
+      wishlistItemCommandService.deleteItemsFromWishlist(itemsOfProfile);
+    }
+
+    commandRepository.delete(wishlistProfileId);
   }
 }
