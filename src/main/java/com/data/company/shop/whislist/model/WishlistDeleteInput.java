@@ -4,7 +4,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class WishlistProfileDeleteInput {
+public class WishlistDeleteInput {
 
   private UUID id;
 }
