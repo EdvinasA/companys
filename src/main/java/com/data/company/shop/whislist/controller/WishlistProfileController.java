@@ -4,6 +4,7 @@ import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.model.WishlistProfile;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.service.WishlistItemCommandService;
+import com.data.company.shop.whislist.service.WishlistItemQueryService;
 import com.data.company.shop.whislist.service.WishlistProfileCommandService;
 import com.data.company.shop.whislist.service.WishlistProfileQueryService;
 import java.util.List;
@@ -27,6 +28,7 @@ public class WishlistProfileController {
   private final WishlistProfileCommandService commandService;
   private final WishlistProfileQueryService queryService;
   private final WishlistItemCommandService wishlistItemCommandService;
+  private final WishlistItemQueryService wishlistItemQueryService;
 
   @PostMapping
   public ResponseEntity<Void> createWishlistProfile(@RequestBody WishlistProfileInput input,
@@ -35,6 +37,16 @@ public class WishlistProfileController {
 
     commandService.createWishlistProfile(input, userId);
     return ResponseEntity.ok(null);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<WishlistProfile>> getWishlistProfilesByUserId(@PathVariable("userId") UUID userId) {
+    log.info("Retrieving wishlist profiles for user id: {}", userId);
+
+    List<WishlistProfile> result = queryService.findProfilesByUserId(userId);
+    log.info("Retrieved a list of profiles: [Size: {}]", result.size());
+
+    return ResponseEntity.ok(result);
   }
 
   @PostMapping("/item")
@@ -46,12 +58,13 @@ public class WishlistProfileController {
     return ResponseEntity.ok(null);
   }
 
-  @GetMapping
-  public ResponseEntity<List<WishlistProfile>> getWishlistProfilesByUserId(@PathVariable("userId") UUID userId) {
-    log.info("Retrieving wishlist profiles for user id: {}", userId);
+  @GetMapping("/item/{profileId}")
+  public ResponseEntity<List<WishlistItem>> getItemsForWishlistProfile(@PathVariable("profileId") UUID profileId,
+                                                         @PathVariable("userId") UUID userId) {
+    log.info("Getting items of wishlist profile: {} for userId {}", profileId, userId);
 
-    List<WishlistProfile> result = queryService.findProfilesByUserId(userId);
-    log.info("Retrieved a list of profiles: [Size: {}]", result.size());
+    List<WishlistItem> result = wishlistItemQueryService.getListOfWishlistItems(profileId);
+    log.info("Retrieved list of items: [Size: {}]", result.size());
 
     return ResponseEntity.ok(result);
   }
