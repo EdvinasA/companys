@@ -2,7 +2,6 @@ package com.data.company.shop.whislist.controller;
 
 import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.model.WishlistProfile;
-import com.data.company.shop.whislist.model.WishlistDeleteInput;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.service.WishlistItemCommandService;
 import com.data.company.shop.whislist.service.WishlistItemQueryService;
