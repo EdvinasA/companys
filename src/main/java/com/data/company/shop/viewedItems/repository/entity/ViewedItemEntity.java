@@ -2,10 +2,16 @@ package com.data.company.shop.viewedItems.repository.entity;
 
 import java.util.UUID;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Entity(name = "viewed_item")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ViewedItemEntity {
 
   @Id
