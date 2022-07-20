@@ -26,6 +26,9 @@ public class ViewedItemEntity {
   @Column(name = "item_name")
   private String itemName;
 
+  @Column(name = "item_code")
+  private String itemCode;
+
   @Column(name = "item_price")
   private double itemPrice;
 

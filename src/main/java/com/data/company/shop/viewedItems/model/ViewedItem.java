@@ -10,6 +10,7 @@ public class ViewedItem {
   private UUID itemId;
   private String itemPicture;
   private String itemName;
+  private String itemCode;
   private double itemPrice;
   private boolean delivery;
   private boolean withdrawal;

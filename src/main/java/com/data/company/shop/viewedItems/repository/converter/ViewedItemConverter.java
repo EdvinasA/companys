@@ -17,6 +17,7 @@ public class ViewedItemConverter {
     entity.setDelivery(input.isDelivery());
     entity.setWithdrawal(input.isWithdrawal());
     entity.setUserId(input.getUserId());
+    entity.setItemCode(input.getItemCode());
 
     return entity;
   }
@@ -31,7 +32,8 @@ public class ViewedItemConverter {
     item.setDelivery(entity.isDelivery());
     item.setWithdrawal(entity.isWithdrawal());
     item.setUserId(entity.getUserId());
+    item.setItemCode(entity.getItemCode());
 
-    return item;
+    return new ViewedItem().setItemId(entity.getItemId());
   }
 }
