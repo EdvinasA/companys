@@ -8,26 +8,22 @@ import org.springframework.stereotype.Component;
 public class WishlistItemConverter {
 
   public WishlistItemEntity convertToEntity(WishlistItem item) {
-    WishlistItemEntity entity = new WishlistItemEntity();
-    entity.setId(item.getId());
-    entity.setItemName(item.getItemName());
-    entity.setItemId(item.getItemId());
-    entity.setItemPicture(item.getItemPicture());
-    entity.setItemPrice(item.getItemPrice());
-    entity.setWishListProfileId(item.getWishListProfileId());
-
-    return entity;
+    return new WishlistItemEntity()
+        .setId(item.getId())
+        .setItemName(item.getItemName())
+        .setItemId(item.getItemId())
+        .setItemPicture(item.getItemPicture())
+        .setItemPrice(item.getItemPrice())
+        .setWishListProfileId(item.getWishListProfileId());
   }
 
   public WishlistItem convertFromEntity(WishlistItemEntity entity) {
-    WishlistItem item = new WishlistItem();
-    item.setId(entity.getId());
-    item.setItemName(entity.getItemName());
-    item.setItemId(entity.getItemId());
-    item.setItemPicture(entity.getItemPicture());
-    item.setItemPrice(entity.getItemPrice());
-    item.setWishListProfileId(entity.getWishListProfileId());
-
-    return item;
+    return new WishlistItem()
+        .setId(entity.getId())
+        .setItemName(entity.getItemName())
+        .setItemId(entity.getItemId())
+        .setItemPicture(entity.getItemPicture())
+        .setItemPrice(entity.getItemPrice())
+        .setWishListProfileId(entity.getWishListProfileId());
   }
 }
