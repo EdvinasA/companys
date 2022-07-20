@@ -1,6 +1,7 @@
 package com.data.company.configuration;
 
 import com.data.company.error.GeneralErrorMessage;
+import com.data.company.exceptions.ItemFoundException;
 import com.data.company.exceptions.PasswordNotMatchingException;
 import com.data.company.exceptions.ProductNotFoundException;
 import com.data.company.exceptions.RegisteredEmailFoundException;
@@ -53,6 +54,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(RegisteredEmailFoundException.class)
   public ResponseEntity<GeneralErrorMessage> handleRegisteredEmailFoundException(RegisteredEmailFoundException ex) {
     log.error("Registered email already in use.");
+    GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
+
+    return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler(ItemFoundException.class)
+  public ResponseEntity<GeneralErrorMessage> handleItemFoundException(ItemFoundException ex) {
+    log.error("Item already added to users viewed list.");
     GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
 
     return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
