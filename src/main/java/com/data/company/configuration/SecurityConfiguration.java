@@ -2,6 +2,8 @@ package com.data.company.configuration;
 
 import com.data.company.jwt.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.logging.LogFile;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

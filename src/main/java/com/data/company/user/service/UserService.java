@@ -7,6 +7,7 @@ import com.data.company.jwt.JwtTokenGenerator;
 import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import com.data.company.user.model.Authority;
+import com.data.company.user.model.Role;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
 import com.data.company.user.model.User;
@@ -31,43 +32,35 @@ public class UserService {
 
   public User login(UserLoginInput userLoginInputBody) {
     User user = checkIfUserLoginIsValid(userLoginInputBody);
-    User loginUser = new User();
-    loginUser.setEmail(userLoginInputBody.getEmail());
-    loginUser.setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
-    loginUser.setName(user.getName());
-    loginUser.setLastName(user.getLastName());
-    loginUser.setRegisteredDate(user.getRegisteredDate());
-    return loginUser;
+    return user
+        .setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
   }
 
   public User register(UserRegisterInput userRegisterInputBody) {
     String email = userRegisterInputBody.getEmail();
 
     checkIfEmailExists(email);
-    User newUser = new User();
-    newUser.setId(UUID.randomUUID());
-    newUser.setEmail(email);
-    newUser.setName(userRegisterInputBody.getName());
-    newUser.setLastName(userRegisterInputBody.getLastName());
-    newUser.setPassword(passwordEncoder.encode(userRegisterInputBody.getPassword()));
-    newUser.setRegisteredDate(LocalDate.now());
-    newUser.setRole(Authority.USER);
 
-    User createdUser = commandRepository.create(newUser);
+    User newUser = new User()
+        .setId(UUID.randomUUID())
+        .setEmail(email)
+        .setName(userRegisterInputBody.getName())
+        .setLastName(userRegisterInputBody.getLastName())
+        .setPassword(passwordEncoder.encode(userRegisterInputBody.getPassword()))
+        .setRegisteredDate(LocalDate.now());
 
-    if (createdUser != null) {
-      newUser.setToken(tokenGenerator.generateToken(email));
-    }
+    Role role = new Role()
+        .setRole(Authority.USER);
 
-    return newUser;
+    User user = commandRepository.create(newUser, role);
+    newUser.setToken(tokenGenerator.generateToken(email));
+
+    return user;
   }
 
   public User validateToken(String token) {
     Optional<TokenEntity> entityOptional = tokenJpaRepository.findDistinctByToken(token);
     TokenEntity entity = entityOptional.orElseThrow(TokenNotFoundException::new);
-    if (entity == null) {
-      throw new TokenNotFoundException("Token not found");
-    }
 
     User user = queryRepository.getUserByEmail(entity.getEmail());
     user.setToken(entity.getToken());

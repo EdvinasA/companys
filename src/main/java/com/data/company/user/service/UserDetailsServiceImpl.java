@@ -1,9 +1,13 @@
 package com.data.company.user.service;
 
+import com.data.company.user.model.Authority;
 import com.data.company.user.model.User;
 import com.data.company.user.repository.UserQueryRepository;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -26,11 +30,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   public UserDetails loadUserByUsername(String email) throws EntityNotFoundException {
     User user = userQueryRepository.getUserByEmail(email);
 
-    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true
-        , true, true, true, getAuthorities(user.getRole().getAuthority()));
+    return new org.springframework.security.core.userdetails.User(user.getEmail(),
+        user.getPassword(), true,
+        true,
+        true,
+        true,
+        getAuthorities(user.getRole().stream()
+            .map(Authority::getAuthority)
+            .collect(Collectors.toList())));
   }
 
-  private Collection<? extends GrantedAuthority> getAuthorities(String role) {
-    return Collections.singletonList(new SimpleGrantedAuthority(role));
+  private Set<? extends GrantedAuthority> getAuthorities(List<String> role) {
+    return role
+        .stream()
+        .map(SimpleGrantedAuthority::new)
+        .collect(Collectors.toSet());
   }
 }

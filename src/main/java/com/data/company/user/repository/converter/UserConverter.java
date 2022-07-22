@@ -1,42 +1,43 @@
 package com.data.company.user.repository.converter;
 
 import com.data.company.user.model.User;
+import com.data.company.user.repository.entity.RolesEntity;
 import com.data.company.user.repository.entity.UserEntity;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserConverter {
 
   public User convertFromEntity(UserEntity entity) {
-    User user = new User();
-    user.setId(entity.getId());
-    user.setEmail(entity.getEmail());
-    user.setPassword(entity.getPassword());
-    user.setRegisteredDate(entity.getRegisteredDate());
-    user.setName(entity.getName());
-    user.setLastName(entity.getLastName());
-    user.setRole(entity.getRole().getAuthority());
-    user.setReceiveEmails(entity.isReceiveEmails());
-    user.setReceiveEmailsAboutLookedItems(entity.isReceiveEmailsAboutLookedItems());
-    user.setReceiveEmailsAboutServiceQuality(entity.isReceiveEmailsAboutServiceQuality());
-    user.setReceiveEmailsAboutGivingFeedback(entity.isReceiveEmailsAboutGivingFeedback());
-
-    return user;
+    return new User()
+        .setId(entity.getId())
+        .setEmail(entity.getEmail())
+        .setPassword(entity.getPassword())
+        .setRegisteredDate(entity.getRegisteredDate())
+        .setName(entity.getName())
+        .setLastName(entity.getLastName())
+        .setReceiveEmails(entity.isReceiveEmails())
+        .setReceiveEmailsAboutLookedItems(entity.isReceiveEmailsAboutLookedItems())
+        .setReceiveEmailsAboutServiceQuality(entity.isReceiveEmailsAboutServiceQuality())
+        .setReceiveEmailsAboutGivingFeedback(entity.isReceiveEmailsAboutGivingFeedback())
+        .setRole(entity.getRole()
+            .stream()
+            .map(RolesEntity::getAuthority)
+            .collect(Collectors.toList()));
   }
 
   public UserEntity convertToEntity(User user) {
-    UserEntity entity = new UserEntity();
-    entity.setId(user.getId());
-    entity.setEmail(user.getEmail());
-    entity.setPassword(user.getPassword());
-    entity.setRegisteredDate(user.getRegisteredDate());
-    entity.setName(user.getName());
-    entity.setLastName(user.getLastName());
-    entity.setReceiveEmails(user.isReceiveEmails());
-    entity.setReceiveEmailsAboutLookedItems(user.isReceiveEmailsAboutLookedItems());
-    entity.setReceiveEmailsAboutServiceQuality(user.isReceiveEmailsAboutServiceQuality());
-    entity.setReceiveEmailsAboutGivingFeedback(user.isReceiveEmailsAboutGivingFeedback());
-
-    return entity;
+    return new UserEntity()
+        .setId(user.getId())
+        .setEmail(user.getEmail())
+        .setPassword(user.getPassword())
+        .setRegisteredDate(user.getRegisteredDate())
+        .setName(user.getName())
+        .setLastName(user.getLastName())
+        .setReceiveEmails(user.isReceiveEmails())
+        .setReceiveEmailsAboutLookedItems(user.isReceiveEmailsAboutLookedItems())
+        .setReceiveEmailsAboutServiceQuality(user.isReceiveEmailsAboutServiceQuality())
+        .setReceiveEmailsAboutGivingFeedback(user.isReceiveEmailsAboutGivingFeedback());
   }
 }
