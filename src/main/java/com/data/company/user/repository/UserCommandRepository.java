@@ -34,4 +34,9 @@ public class UserCommandRepository {
     return userConverter.convertFromEntity(entity);
   }
 
+  @Transactional
+  public void update() {
+
+  }
+
 }
