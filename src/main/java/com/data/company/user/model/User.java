@@ -21,13 +21,7 @@ public class User {
 
   private String token;
 
-  private boolean receiveEmails;
-
-  private boolean receiveEmailsAboutLookedItems;
-
-  private boolean receiveEmailsAboutGivingFeedback;
-
-  private boolean receiveEmailsAboutServiceQuality;
+  private SubscriptionDetails subscriptionDetails;
 
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
