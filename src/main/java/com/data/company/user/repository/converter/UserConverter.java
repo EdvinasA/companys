@@ -17,10 +17,6 @@ public class UserConverter {
         .setRegisteredDate(entity.getRegisteredDate())
         .setName(entity.getName())
         .setLastName(entity.getLastName())
-        .setReceiveEmails(entity.isReceiveEmails())
-        .setReceiveEmailsAboutLookedItems(entity.isReceiveEmailsAboutLookedItems())
-        .setReceiveEmailsAboutServiceQuality(entity.isReceiveEmailsAboutServiceQuality())
-        .setReceiveEmailsAboutGivingFeedback(entity.isReceiveEmailsAboutGivingFeedback())
         .setRole(entity.getRole()
             .stream()
             .map(RolesEntity::getAuthority)
@@ -34,10 +30,6 @@ public class UserConverter {
         .setPassword(user.getPassword())
         .setRegisteredDate(user.getRegisteredDate())
         .setName(user.getName())
-        .setLastName(user.getLastName())
-        .setReceiveEmails(user.isReceiveEmails())
-        .setReceiveEmailsAboutLookedItems(user.isReceiveEmailsAboutLookedItems())
-        .setReceiveEmailsAboutServiceQuality(user.isReceiveEmailsAboutServiceQuality())
-        .setReceiveEmailsAboutGivingFeedback(user.isReceiveEmailsAboutGivingFeedback());
+        .setLastName(user.getLastName());
   }
 }
