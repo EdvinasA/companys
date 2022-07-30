@@ -15,13 +15,7 @@ public class UserUpdateInput {
 
   private String password;
 
-  private Boolean receiveEmails;
-
-  private Boolean receiveEmailsAboutLookedItems;
-
-  private Boolean receiveEmailsAboutGivingFeedback;
-
-  private Boolean receiveEmailsAboutServiceQuality;
+  private SubscriptionDetails subscriptionDetails;
 
   private List<Authority> role;
 }

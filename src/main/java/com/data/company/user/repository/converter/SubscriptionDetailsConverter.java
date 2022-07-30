@@ -23,13 +23,13 @@ public class SubscriptionDetailsConverter {
   public SubscriptionDetailsEntity convertToEntity(SubscriptionDetails subscriptionDetails) {
     return new SubscriptionDetailsEntity()
         .setId(subscriptionDetails.getId())
-        .setReceiveEmails(subscriptionDetails.isReceiveEmails())
+        .setReceiveEmails(subscriptionDetails.getReceiveEmails())
         .setReceiveEmailsDate(subscriptionDetails.getReceiveEmailsDate())
-        .setReceiveEmailsAboutGivingFeedback(subscriptionDetails.isReceiveEmailsAboutGivingFeedback())
+        .setReceiveEmailsAboutGivingFeedback(subscriptionDetails.getReceiveEmailsAboutGivingFeedback())
         .setReceiveEmailsAboutGivingFeedbackDate(subscriptionDetails.getReceiveEmailsAboutGivingFeedbackDate())
-        .setReceiveEmailsAboutLookedItems(subscriptionDetails.isReceiveEmailsAboutLookedItems())
+        .setReceiveEmailsAboutLookedItems(subscriptionDetails.getReceiveEmailsAboutLookedItems())
         .setReceiveEmailsAboutLookedItemsDate(subscriptionDetails.getReceiveEmailsAboutLookedItemsDate())
-        .setReceiveEmailsAboutServiceQuality(subscriptionDetails.isReceiveEmailsAboutServiceQuality())
+        .setReceiveEmailsAboutServiceQuality(subscriptionDetails.getReceiveEmailsAboutServiceQuality())
         .setReceiveEmailsAboutServiceQualityDate(subscriptionDetails.getReceiveEmailsAboutServiceQualityDate());
   }
 }

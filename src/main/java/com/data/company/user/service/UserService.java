@@ -89,20 +89,20 @@ public class UserService {
     return user;
   }
 
-  public void updateUser(UserUpdateInput input) {
+  public User updateUser(UserUpdateInput input) {
     User storedUser = queryRepository.findById(input.getId());
     updateUserFields(storedUser, input);
 
     commandRepository.update(storedUser);
+
+    return storedUser;
   }
 
   private void updateUserFields(User user, UserUpdateInput input) {
     Optional.ofNullable(input.getName()).ifPresent(user::setName);
     Optional.ofNullable(input.getLastName()).ifPresent(user::setLastName);
-    Optional.ofNullable(input.getReceiveEmails()).ifPresent(user.getSubscriptionDetails()::setReceiveEmails);
-    Optional.ofNullable(input.getReceiveEmailsAboutGivingFeedback()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutGivingFeedback);
-    Optional.ofNullable(input.getReceiveEmailsAboutLookedItems()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutLookedItems);
-    Optional.ofNullable(input.getReceiveEmailsAboutServiceQuality()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutServiceQuality);
+    Optional.ofNullable(input.getSubscriptionDetails())
+        .ifPresent(user::setSubscriptionDetails);
   }
 
   private void checkIfEmailExists(String input) {

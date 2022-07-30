@@ -44,11 +44,11 @@ public class UserController {
   }
 
   @PutMapping
-  public ResponseEntity<Void> updateUserInformation(@RequestBody UserUpdateInput input) {
-    log.info("Updating user");
+  public ResponseEntity<User> updateUserInformation(@RequestBody UserUpdateInput input) {
+    log.info("Updating user {}", input);
 
-    userService.updateUser(input);
-    return ResponseEntity.ok(null);
+    User result = userService.updateUser(input);
+    return ResponseEntity.ok(result);
   }
 
 
