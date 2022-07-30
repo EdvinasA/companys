@@ -8,9 +8,12 @@ import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import com.data.company.user.model.Authority;
 import com.data.company.user.model.Role;
+import com.data.company.user.model.SubscriptionDetails;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
 import com.data.company.user.model.User;
+import com.data.company.user.model.UserUpdateInput;
+import com.data.company.user.repository.SubscriptionDetailsQueryRepository;
 import com.data.company.user.repository.UserCommandRepository;
 import com.data.company.user.repository.UserQueryRepository;
 import java.time.LocalDate;
@@ -26,6 +29,7 @@ public class UserService {
 
   private final UserQueryRepository queryRepository;
   private final TokenJpaRepository tokenJpaRepository;
+  private final SubscriptionDetailsQueryRepository subscriptionDetailsQueryRepository;
   private final UserCommandRepository commandRepository;
   private final JwtTokenGenerator tokenGenerator;
   private final PasswordEncoder passwordEncoder;
@@ -52,10 +56,26 @@ public class UserService {
     Role role = new Role()
         .setRole(Authority.USER);
 
-    User user = commandRepository.create(newUser, role);
+    SubscriptionDetails subscriptionDetails = buildNewSubscriptionDetails();
+
+    User user = commandRepository.create(newUser, role, subscriptionDetails);
     newUser.setToken(tokenGenerator.generateToken(email));
 
     return user;
+  }
+
+  private SubscriptionDetails buildNewSubscriptionDetails() {
+    LocalDate localDate = LocalDate.now();
+
+    return new SubscriptionDetails()
+        .setReceiveEmails(true)
+        .setReceiveEmailsDate(localDate)
+        .setReceiveEmailsAboutServiceQuality(true)
+        .setReceiveEmailsAboutServiceQualityDate(localDate)
+        .setReceiveEmailsAboutLookedItems(true)
+        .setReceiveEmailsAboutLookedItemsDate(localDate)
+        .setReceiveEmailsAboutGivingFeedback(true)
+        .setReceiveEmailsAboutGivingFeedbackDate(localDate);
   }
 
   public User validateToken(String token) {
@@ -63,13 +83,30 @@ public class UserService {
     TokenEntity entity = entityOptional.orElseThrow(TokenNotFoundException::new);
 
     User user = queryRepository.getUserByEmail(entity.getEmail());
+    user.setSubscriptionDetails(subscriptionDetailsQueryRepository.findByUserId(user.getId()));
     user.setToken(entity.getToken());
 
     return user;
   }
 
+  public void updateUser(UserUpdateInput input) {
+    User storedUser = queryRepository.findById(input.getId());
+    updateUserFields(storedUser, input);
+
+    commandRepository.update(storedUser);
+  }
+
+  private void updateUserFields(User user, UserUpdateInput input) {
+    Optional.ofNullable(input.getName()).ifPresent(user::setName);
+    Optional.ofNullable(input.getLastName()).ifPresent(user::setLastName);
+    Optional.ofNullable(input.getReceiveEmails()).ifPresent(user.getSubscriptionDetails()::setReceiveEmails);
+    Optional.ofNullable(input.getReceiveEmailsAboutGivingFeedback()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutGivingFeedback);
+    Optional.ofNullable(input.getReceiveEmailsAboutLookedItems()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutLookedItems);
+    Optional.ofNullable(input.getReceiveEmailsAboutServiceQuality()).ifPresent(user.getSubscriptionDetails()::setReceiveEmailsAboutServiceQuality);
+  }
+
   private void checkIfEmailExists(String input) {
-    if (queryRepository.findUserByEmail(input) != null) {
+    if (queryRepository.findUserByEmail(input).getEmail() != null) {
       throw new RegisteredEmailFoundException(String.format("Email %s already in use.", input));
     }
   }

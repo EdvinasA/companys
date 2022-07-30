@@ -45,7 +45,9 @@ public class UserController {
 
   @PutMapping
   public ResponseEntity<Void> updateUserInformation(@RequestBody UserUpdateInput input) {
+    log.info("Updating user");
 
+    userService.updateUser(input);
     return ResponseEntity.ok(null);
   }
 

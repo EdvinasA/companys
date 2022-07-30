@@ -5,8 +5,11 @@ import com.data.company.user.repository.converter.UserConverter;
 import com.data.company.user.repository.entity.UserEntity;
 import com.data.company.user.repository.jpa.UserJpaRepository;
 import java.util.Optional;
+import java.util.UUID;
 import javax.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +29,15 @@ public class UserQueryRepository {
 
   @Transactional
   public User findUserByEmail(String email) {
-    Optional<UserEntity> optionalUserEntity = userJpaRepository.findByEmail(email);
-    UserEntity entity = optionalUserEntity.orElse(null);
-    if (entity != null) {
-      return converter.convertFromEntity(entity);
-    }
-    return null;
+    return userJpaRepository.findByEmail(email)
+        .map(converter::convertFromEntity)
+        .orElse(new User());
   }
 
+  @Transactional
+  public User findById(UUID userId) {
+    return userJpaRepository.findById(userId)
+        .map(converter::convertFromEntity)
+        .orElseThrow(EntityNotFoundException::new);
+  }
 }

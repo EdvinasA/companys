@@ -1,5 +1,6 @@
 package com.data.company.user.model;
 
+import java.util.List;
 import java.util.UUID;
 import lombok.Data;
 
@@ -14,13 +15,13 @@ public class UserUpdateInput {
 
   private String password;
 
-  private boolean receiveEmails;
+  private Boolean receiveEmails;
 
-  private boolean receiveEmailsAboutLookedItems;
+  private Boolean receiveEmailsAboutLookedItems;
 
-  private boolean receiveEmailsAboutGivingFeedback;
+  private Boolean receiveEmailsAboutGivingFeedback;
 
-  private boolean receiveEmailsAboutServiceQuality;
+  private Boolean receiveEmailsAboutServiceQuality;
 
-  private Authority role;
+  private List<Authority> role;
 }

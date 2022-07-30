@@ -2,10 +2,13 @@ package com.data.company.user.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
+import java.util.UUID;
 import lombok.Data;
 
 @Data
 public class SubscriptionDetails {
+
+  private Long id;
 
   private boolean receiveEmails;
 

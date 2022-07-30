@@ -4,10 +4,14 @@ import com.data.company.user.model.User;
 import com.data.company.user.repository.entity.RolesEntity;
 import com.data.company.user.repository.entity.UserEntity;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
 public class UserConverter {
+
+  private final SubscriptionDetailsConverter subscriptionDetailsConverter;
 
   public User convertFromEntity(UserEntity entity) {
     return new User()
