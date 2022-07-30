@@ -101,8 +101,9 @@ public class UserService {
   private void updateUserFields(User user, UserUpdateInput input) {
     Optional.ofNullable(input.getName()).ifPresent(user::setName);
     Optional.ofNullable(input.getLastName()).ifPresent(user::setLastName);
-    Optional.ofNullable(input.getSubscriptionDetails())
-        .ifPresent(user::setSubscriptionDetails);
+    Optional.ofNullable(input.getPassword()).ifPresent(user::setPassword);
+    Optional.ofNullable(input.getSubscriptionDetails()).ifPresent(user::setSubscriptionDetails);
+    Optional.ofNullable(input.getRole()).ifPresent(user::setRole);
   }
 
   private void checkIfEmailExists(String input) {
