@@ -1,5 +1,8 @@
 package com.data.company;
 
+import com.data.company.shop.stripe.configuration.properties.StripeProperties;
+import com.stripe.Stripe;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
@@ -18,6 +21,7 @@ public class CompanyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CompanyApplication.class, args);
+		Stripe.apiKey = args[0];
 	}
 
 }

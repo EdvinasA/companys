@@ -7,6 +7,7 @@ import com.data.company.shop.whislist.service.WishlistItemCommandService;
 import com.data.company.shop.whislist.service.WishlistItemQueryService;
 import com.data.company.shop.whislist.service.WishlistProfileCommandService;
 import com.data.company.shop.whislist.service.WishlistProfileQueryService;
+import com.stripe.exception.StripeException;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -43,7 +44,8 @@ public class WishlistProfileController {
   }
 
   @GetMapping
-  public ResponseEntity<List<WishlistProfile>> getWishlistProfilesByUserId(@PathVariable("userId") UUID userId) {
+  public ResponseEntity<List<WishlistProfile>> getWishlistProfilesByUserId(@PathVariable("userId") UUID userId)
+      throws StripeException {
     log.info("Retrieving wishlist profiles for user id: {}", userId);
 
     List<WishlistProfile> result = queryService.findProfilesByUserId(userId);
