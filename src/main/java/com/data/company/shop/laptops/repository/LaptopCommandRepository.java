@@ -21,4 +21,12 @@ public class LaptopCommandRepository {
 
     jpaRepository.save(entity);
   }
+
+  @Transactional
+  public void update(Laptop input) {
+    LaptopEntity entity = converter.convertToEntity(input);
+
+    jpaRepository.save(entity);
+  }
+
 }

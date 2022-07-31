@@ -6,6 +6,7 @@ import com.data.company.exceptions.PasswordNotMatchingException;
 import com.data.company.exceptions.ProductNotFoundException;
 import com.data.company.exceptions.RegisteredEmailFoundException;
 import com.data.company.exceptions.TokenNotFoundException;
+import com.stripe.exception.StripeException;
 import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -65,6 +66,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
 
     return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler(StripeException.class)
+  public ResponseEntity<GeneralErrorMessage> handleStripeException(StripeException ex) {
+    log.error("Stripe exception thrown! {}", ex.getMessage());
+    GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
+
+    return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, message);
   }
 
   private <T> ResponseEntity<T> buildResponseEntity(HttpStatus status, T body) {

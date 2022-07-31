@@ -39,5 +39,6 @@ public class Laptop {
   private String keyboardLanguage;
   private Category category;
   private ComputerAndOfficeCategory computerAndOfficeCategory;
+  private String stripeProductId;
 
 }

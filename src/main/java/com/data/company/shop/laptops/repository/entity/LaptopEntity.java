@@ -112,4 +112,7 @@ public class LaptopEntity {
   @Column(name = "computer_and_office_category")
   @Enumerated(EnumType.STRING)
   private ComputerAndOfficeCategory computerAndOfficeCategory;
+
+  @Column(name = "stripe_product_id")
+  private String stripeProductId;
 }

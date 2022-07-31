@@ -5,6 +5,7 @@ import com.stripe.model.Price;
 import com.stripe.model.Product;
 import com.stripe.param.PriceCreateParams;
 import com.stripe.param.ProductCreateParams;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +13,27 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class StripeService {
 
-  public void create() throws StripeException {
+  public String createProductWithPrice(String productName, double productPrice) throws StripeException {
+    Product product = createProduct(productName);
+    PriceCreateParams params = getPriceCreateParams(product, productPrice);
+    Price.create(params);
+    return product.getId();
+  }
+
+  private PriceCreateParams getPriceCreateParams(Product product, double productPrice) {
+    return PriceCreateParams
+        .builder()
+        .setProduct(product.getId())
+        .setCurrency("EUR")
+        .setUnitAmountDecimal(BigDecimal.valueOf(productPrice))
+        .build();
+  }
+
+  private Product createProduct(String name) throws StripeException {
     ProductCreateParams productParams =
         ProductCreateParams.builder()
-            .setName("Starter Subscription")
-            .setDescription("$12/Month subscription")
+            .setName(name)
             .build();
-    Product product = Product.create(productParams);
-
-    PriceCreateParams params =
-        PriceCreateParams
-            .builder()
-            .setProduct(product.getId())
-            .setCurrency("usd")
-            .setUnitAmount(1200L)
-            .setRecurring(
-                PriceCreateParams.Recurring
-                    .builder()
-                    .setInterval(PriceCreateParams.Recurring.Interval.MONTH)
-                    .build())
-            .build();
-    Price price = Price.create(params);
+    return Product.create(productParams);
   }
 }
