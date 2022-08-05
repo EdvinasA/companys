@@ -1,7 +1,5 @@
 package com.data.company.shop.countries.controller;
 
-import com.data.company.shop.countries.client.CountriesClient;
-import com.data.company.shop.countries.model.Country;
 import com.data.company.shop.countries.model.CountryName;
 import com.data.company.shop.countries.service.CountriesCommandService;
 import com.data.company.shop.countries.service.CountriesQueryService;
