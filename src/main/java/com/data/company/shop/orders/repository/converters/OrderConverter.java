@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderConverter {
 
-  public OrderEntity convertFromEntity(Order order) {
+  public OrderEntity convertToEntity(Order order) {
     return new OrderEntity()
         .setId(order.getId())
         .setUserId(order.getUserId())
