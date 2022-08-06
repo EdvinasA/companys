@@ -16,8 +16,8 @@ public class OrderedItemsQueryRepository {
   private final OrderedItemsJpaRepository jpaRepository;
   private final OrderedItemsConverter converter;
 
-  public List<OrderedItems> findOrderedItemsByOrderId(UUID orderId) {
-    return jpaRepository.findByOrderId(orderId)
+  public List<OrderedItems> findOrderedItemsByOrderIdAndUserId(UUID orderId, UUID userId) {
+    return jpaRepository.findByOrderIdAndUserId(orderId, userId)
         .stream()
         .map(converter::convertFromEntity)
         .collect(Collectors.toList());
