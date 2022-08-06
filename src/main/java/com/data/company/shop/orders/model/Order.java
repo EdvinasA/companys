@@ -16,7 +16,18 @@ public class Order {
   private String paymentMethod;
   private File invoice;
   private double totalPrice;
-  private OrderedItems orderedItems;
   private LocalDate orderUpdate;
   private Status status;
+
+  public static Order from(OrderInput input) {
+    return new Order()
+        .setCollectOption(input.getCollectOption())
+        .setUserId(input.getUserId())
+        .setOrderNumber(input.getOrderNumber())
+        .setOrderDate(input.getOrderDate())
+        .setPaymentMethod(input.getPaymentMethod())
+        .setTotalPrice(input.getTotalPrice())
+        .setOrderUpdate(input.getOrderUpdate())
+        .setStatus(input.getStatus());
+  }
 }
