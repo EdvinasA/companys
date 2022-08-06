@@ -26,6 +26,9 @@ public class OrderedItemsEntity {
   @Column(name = "order_id")
   private UUID orderId;
 
+  @Column(name = "user_id")
+  private UUID userId;
+
   @Column(name = "picture")
   private String picture;
 
