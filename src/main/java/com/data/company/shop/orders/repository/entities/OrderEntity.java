@@ -26,7 +26,7 @@ public class OrderEntity {
   private UUID id;
 
   @Column(name = "user_id")
-  private String userId;
+  private UUID userId;
 
   @Column(name = "order_number")
   private String orderNumber;
