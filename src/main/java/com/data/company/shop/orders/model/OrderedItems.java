@@ -8,6 +8,7 @@ public class OrderedItems {
 
   private UUID id;
   private UUID itemId;
+  private UUID orderId;
   private String picture;
   private String itemName;
   private String itemCode;
