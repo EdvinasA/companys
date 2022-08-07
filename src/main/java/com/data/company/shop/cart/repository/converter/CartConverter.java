@@ -1,7 +1,11 @@
 package com.data.company.shop.cart.repository.converter;
 
 import com.data.company.shop.cart.model.Cart;
+import com.data.company.shop.cart.model.CartItem;
 import com.data.company.shop.cart.repository.entity.CartEntity;
+import com.data.company.shop.cart.repository.entity.CartItemEntity;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,10 +21,11 @@ public class CartConverter {
         .setId(entity.getId())
         .setPurchaseDate(entity.getPurchaseDate())
         .setUserId(entity.getUserId())
-        .setCartItems(entity.getCartItems()
-            .stream()
-            .map(cartItemConverter::convertFromEntity)
-            .collect(Collectors.toList()));
+        .setStatus(entity.getStatus());
+//        .setCartItems(entity.getCartItems()
+//            .stream()
+//            .map(cartItemConverter::convertFromEntity)
+//            .collect(Collectors.toList()));
   }
 
   public CartEntity convertToEntity(Cart cart) {
@@ -28,9 +33,17 @@ public class CartConverter {
         .setId(cart.getId())
         .setPurchaseDate(cart.getPurchaseDate())
         .setUserId(cart.getUserId())
-        .setCartItems(cart.getCartItems()
-            .stream()
-            .map(cartItemConverter::convertToEntity)
-            .collect(Collectors.toList()));
+        .setStatus(cart.getStatus());
+//        .setCartItems(setIfNotNull(cart.getCartItems()));
+  }
+
+  private List<CartItemEntity> setIfNotNull(List<CartItem> cartItem) {
+    if (cartItem != null) {
+      return cartItem
+          .stream()
+          .map(cartItemConverter::convertToEntity)
+          .collect(Collectors.toList());
+    }
+    return new ArrayList<>();
   }
 }

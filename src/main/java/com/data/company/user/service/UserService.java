@@ -24,6 +24,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -43,6 +44,7 @@ public class UserService {
         .setToken(tokenGenerator.generateToken(userLoginInputBody.getEmail()));
   }
 
+  @Transactional
   public User register(UserRegisterInput userRegisterInputBody) {
     String email = userRegisterInputBody.getEmail();
 

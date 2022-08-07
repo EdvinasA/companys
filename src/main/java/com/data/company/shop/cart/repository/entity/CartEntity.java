@@ -30,10 +30,10 @@ public class CartEntity {
   @Enumerated(EnumType.STRING)
   private CartStatus status;
 
-  @OneToMany(
-      mappedBy = "cart",
-      cascade = CascadeType.ALL,
-      orphanRemoval = true
-  )
-  private List<CartItemEntity> cartItems;
+//  @OneToMany(
+//      mappedBy = "cart",
+//      cascade = CascadeType.ALL,
+//      orphanRemoval = true
+//  )
+//  private List<CartItemEntity> cartItems;
 }
