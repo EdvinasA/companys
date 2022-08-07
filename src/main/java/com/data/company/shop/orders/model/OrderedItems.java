@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class OrderedItems {
 
-  private UUID id;
+  private Long id;
   private UUID itemId;
   private UUID orderId;
   private String picture;

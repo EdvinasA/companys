@@ -24,10 +24,8 @@ public class Order {
         .setCollectOption(input.getCollectOption())
         .setUserId(input.getUserId())
         .setOrderNumber(input.getOrderNumber())
-        .setOrderDate(input.getOrderDate())
         .setPaymentMethod(input.getPaymentMethod())
         .setTotalPrice(input.getTotalPrice())
-        .setOrderUpdate(input.getOrderUpdate())
         .setStatus(input.getStatus());
   }
 }

@@ -39,6 +39,6 @@ public class OrderCommandService {
     Order savedOrder = commandRepository.create(order);
     orderedItemsCommandService.createOrderItems(input.getOrderedItems(), savedOrder.getId());
 
-    cartCommandService.updateCart(input.getUserId());
+    cartCommandService.moveCartToOrder(input.getUserId());
   }
 }

@@ -27,6 +27,10 @@ public class CartConverter {
     return new CartEntity()
         .setId(cart.getId())
         .setPurchaseDate(cart.getPurchaseDate())
-        .setUserId(cart.getUserId());
+        .setUserId(cart.getUserId())
+        .setCartItems(cart.getCartItems()
+            .stream()
+            .map(cartItemConverter::convertToEntity)
+            .collect(Collectors.toList()));
   }
 }
