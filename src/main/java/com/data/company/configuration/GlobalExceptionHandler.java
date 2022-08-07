@@ -9,6 +9,7 @@ import com.data.company.exceptions.TokenNotFoundException;
 import com.stripe.exception.StripeException;
 import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -63,6 +64,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(ItemFoundException.class)
   public ResponseEntity<GeneralErrorMessage> handleItemFoundException(ItemFoundException ex) {
     log.error("Item already added to users viewed list.");
+    GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
+
+    return buildResponseEntity(HttpStatus.BAD_REQUEST, message);
+  }
+
+  @ExceptionHandler(NotFoundException.class)
+  public ResponseEntity<GeneralErrorMessage> handleNotFoundException(NotFoundException ex) {
+    log.error("Request entity was not found.");
     GeneralErrorMessage message = new GeneralErrorMessage(ex.getMessage());
 
     return buildResponseEntity(HttpStatus.BAD_REQUEST, message);

@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CartJpaRepository extends JpaRepository<CartEntity, UUID> {
 
-  @Query(value = "SELECT * FROM cart WHERE user_id = :userId AND purchase_date IS NULL",
+  @Query(value = "SELECT * FROM cart WHERE user_id = :userId AND status = 'FILLING'",
       nativeQuery = true)
-  Optional<List<CartEntity>> findByUserId(@Param("userId") UUID userId);
+  Optional<CartEntity> findByUserId(@Param("userId") UUID userId);
 }

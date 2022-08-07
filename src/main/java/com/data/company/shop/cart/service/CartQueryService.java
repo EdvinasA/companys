@@ -13,7 +13,7 @@ public class CartQueryService {
 
   private final CartQueryRepository queryRepository;
 
-  public List<Cart> findByUserId(UUID userId) {
+  public Cart findByUserId(UUID userId) {
     return queryRepository.findByUserId(userId);
   }
 }

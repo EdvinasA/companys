@@ -1,11 +1,14 @@
 package com.data.company.shop.cart.repository.entity;
 
+import com.data.company.shop.cart.model.CartStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
@@ -22,6 +25,10 @@ public class CartEntity {
 
   @Column(name = "user_id")
   private UUID userId;
+
+  @Column(name = "status")
+  @Enumerated(EnumType.STRING)
+  private CartStatus status;
 
   @OneToMany(
       mappedBy = "cart",
