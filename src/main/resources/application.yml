@@ -13,6 +13,8 @@ spring:
   sql:
     init:
       platform: postgres
+  jpa:
+    show-sql: true
 cloud:
   aws:
     region:
