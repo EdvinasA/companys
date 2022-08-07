@@ -10,12 +10,6 @@ public class CartConverter {
   public Cart convertFromEntity(CartEntity entity) {
     Cart cart = new Cart();
     cart.setId(entity.getId());
-    cart.setProductName(entity.getProductName());
-    cart.setProductCode(entity.getProductCode());
-    cart.setPicture(entity.getPicture());
-    cart.setInsurance(entity.isInsurance());
-    cart.setWarranty(entity.isWarranty());
-    cart.setPrice(entity.getPrice());
     cart.setPurchaseDate(entity.getPurchaseDate());
     cart.setUserId(entity.getUserId());
     return cart;
@@ -24,12 +18,6 @@ public class CartConverter {
   public CartEntity convertToEntity(Cart cart) {
     CartEntity entity = new CartEntity();
     entity.setId(cart.getId());
-    entity.setProductName(cart.getProductName());
-    entity.setProductCode(cart.getProductCode());
-    entity.setPicture(cart.getPicture());
-    entity.setInsurance(cart.isInsurance());
-    entity.setWarranty(cart.isWarranty());
-    entity.setPrice(cart.getPrice());
     entity.setPurchaseDate(cart.getPurchaseDate());
     entity.setUserId(cart.getUserId());
     return entity;
