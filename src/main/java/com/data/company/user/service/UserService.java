@@ -127,6 +127,7 @@ public class UserService {
 
   private User checkIfUserLoginIsValid(UserLoginInput userLoginInput) {
     User user = queryRepository.getUserByEmail(userLoginInput.getEmail());
+    user.setSubscriptionDetails(subscriptionDetailsQueryRepository.findByUserId(user.getId()));
 
     if (userLoginInput.getEmail().equals(user.getEmail()) && passwordEncoder
         .matches(userLoginInput.getPassword(), user.getPassword())) {
