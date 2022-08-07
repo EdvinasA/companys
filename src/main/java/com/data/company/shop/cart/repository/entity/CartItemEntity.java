@@ -3,9 +3,11 @@ package com.data.company.shop.cart.repository.entity;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity(name = "cart_item")
@@ -16,8 +18,8 @@ public class CartItemEntity {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(name = "cart_id")
-  private UUID cartId;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private CartEntity cart;
 
   @Column(name = "item_id")
   private UUID itemId;
@@ -25,11 +27,11 @@ public class CartItemEntity {
   @Column(name = "picture")
   private String picture;
 
-  @Column(name = "product_name")
-  private String productName;
+  @Column(name = "item_name")
+  private String itemName;
 
-  @Column(name = "product_code")
-  private String productCode;
+  @Column(name = "item_code")
+  private String itemCode;
 
   @Column(name = "quantity")
   private int quantity;
@@ -42,4 +44,16 @@ public class CartItemEntity {
 
   @Column(name = "warranty")
   private boolean warranty;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof CartItemEntity )) return false;
+    return id != null && id.equals(((CartItemEntity) o).getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 }

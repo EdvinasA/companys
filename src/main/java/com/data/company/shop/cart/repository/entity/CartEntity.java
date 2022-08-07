@@ -1,10 +1,14 @@
 package com.data.company.shop.cart.repository.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import lombok.Data;
 
 @Entity(name = "cart")
@@ -19,4 +23,11 @@ public class CartEntity {
 
   @Column(name = "user_id")
   private UUID userId;
+
+  @OneToMany(
+      mappedBy = "cart",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true
+  )
+  private List<CartItemEntity> cartItems;
 }

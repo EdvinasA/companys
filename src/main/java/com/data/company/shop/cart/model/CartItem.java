@@ -7,11 +7,10 @@ import lombok.Data;
 public class CartItem {
 
   private Long id;
-  private UUID cartId;
   private UUID itemId;
   private String picture;
-  private String productName;
-  private String productCode;
+  private String itemName;
+  private String itemCode;
   private int quantity;
   private double price;
   private boolean insurance;

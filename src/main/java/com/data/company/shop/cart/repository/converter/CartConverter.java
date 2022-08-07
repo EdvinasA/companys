@@ -8,18 +8,16 @@ import org.springframework.stereotype.Component;
 public class CartConverter {
 
   public Cart convertFromEntity(CartEntity entity) {
-    Cart cart = new Cart();
-    cart.setId(entity.getId());
-    cart.setPurchaseDate(entity.getPurchaseDate());
-    cart.setUserId(entity.getUserId());
-    return cart;
+    return new Cart()
+        .setId(entity.getId())
+        .setPurchaseDate(entity.getPurchaseDate())
+        .setUserId(entity.getUserId());
   }
 
   public CartEntity convertToEntity(Cart cart) {
-    CartEntity entity = new CartEntity();
-    entity.setId(cart.getId());
-    entity.setPurchaseDate(cart.getPurchaseDate());
-    entity.setUserId(cart.getUserId());
-    return entity;
+    return new CartEntity()
+        .setId(cart.getId())
+        .setPurchaseDate(cart.getPurchaseDate())
+        .setUserId(cart.getUserId());
   }
 }
