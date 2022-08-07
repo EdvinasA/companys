@@ -25,6 +25,9 @@ public class WishlistItemEntity {
   @Column(name = "item_name")
   private String itemName;
 
+  @Column(name = "item_code")
+  private String itemCode;
+
   @Column(name = "item_picture")
   private String itemPicture;
 
