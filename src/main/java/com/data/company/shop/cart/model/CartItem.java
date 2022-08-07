@@ -11,8 +11,8 @@ public class CartItem {
   private String picture;
   private String itemName;
   private String itemCode;
-  private int quantity;
-  private double price;
-  private boolean insurance;
-  private boolean warranty;
+  private int itemQuantity;
+  private double itemPrice;
+  private boolean itemInsurance;
+  private boolean itemWarranty;
 }

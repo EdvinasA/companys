@@ -13,21 +13,21 @@ public class CartItemConverter {
         .setPicture(input.getPicture())
         .setItemName(input.getItemName())
         .setItemCode(input.getItemCode())
-        .setQuantity(input.getQuantity())
-        .setPrice(input.getPrice())
-        .setInsurance(input.isInsurance())
-        .setWarranty(input.isWarranty());
+        .setItemQuantity(input.getItemQuantity())
+        .setItemPrice(input.getItemPrice())
+        .setItemInsurance(input.isItemInsurance())
+        .setItemWarranty(input.isItemWarranty());
   }
 
-  public CartItem convertToEntity(CartItemEntity input) {
+  public CartItem convertFromEntity(CartItemEntity input) {
     return new CartItem()
         .setItemId(input.getItemId())
         .setPicture(input.getPicture())
         .setItemName(input.getItemName())
         .setItemCode(input.getItemCode())
-        .setQuantity(input.getQuantity())
-        .setPrice(input.getPrice())
-        .setInsurance(input.isInsurance())
-        .setWarranty(input.isWarranty());
+        .setItemQuantity(input.getItemQuantity())
+        .setItemPrice(input.getItemPrice())
+        .setItemInsurance(input.isItemInsurance())
+        .setItemWarranty(input.isItemWarranty());
   }
 }

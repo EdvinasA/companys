@@ -43,4 +43,10 @@ public class OrderedItemsEntity {
 
   @Column(name = "item_quantity")
   private Integer itemQuantity;
+
+  @Column(name = "item_insurance")
+  private boolean itemInsurance;
+
+  @Column(name = "item_warranty")
+  private boolean itemWarranty;
 }

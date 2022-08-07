@@ -14,4 +14,6 @@ public class OrderedItems {
   private String itemCode;
   private double itemPrice;
   private Integer itemQuantity;
+  private boolean itemInsurance;
+  private boolean itemWarranty;
 }

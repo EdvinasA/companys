@@ -33,17 +33,17 @@ public class CartItemEntity {
   @Column(name = "item_code")
   private String itemCode;
 
-  @Column(name = "quantity")
-  private int quantity;
+  @Column(name = "item_quantity")
+  private int itemQuantity;
 
-  @Column(name = "price")
-  private double price;
+  @Column(name = "item_price")
+  private double itemPrice;
 
-  @Column(name = "insurance")
-  private boolean insurance;
+  @Column(name = "item_insurance")
+  private boolean itemInsurance;
 
-  @Column(name = "warranty")
-  private boolean warranty;
+  @Column(name = "item_warranty")
+  private boolean itemWarranty;
 
   @Override
   public boolean equals(Object o) {
