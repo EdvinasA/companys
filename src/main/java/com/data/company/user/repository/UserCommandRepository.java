@@ -30,12 +30,12 @@ public class UserCommandRepository {
   @Transactional
   public User create(User user, Role role, SubscriptionDetails subscriptionDetails) {
     RolesEntity rolesEntity = roleConverter.convertToEntity(role);
-    rolesEntity.setId(UUID.randomUUID());
     UserEntity entity = userConverter.convertToEntity(user);
+    SubscriptionDetailsEntity subscriptionDetailsEntity = subscriptionDetailsConverter.convertToEntity(subscriptionDetails);
+    rolesEntity.setId(UUID.randomUUID());
+    subscriptionDetailsEntity.setUser(entity);
     rolesEntity.setUser(List.of(entity));
     entity.setRole(List.of(rolesEntity));
-    SubscriptionDetailsEntity subscriptionDetailsEntity = subscriptionDetailsConverter.convertToEntity(subscriptionDetails);
-    subscriptionDetailsEntity.setUser(entity);
 
     userJpaRepository.save(entity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);

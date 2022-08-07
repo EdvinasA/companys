@@ -6,6 +6,8 @@ import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.JwtTokenGenerator;
 import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.jwt.repository.jpa.TokenJpaRepository;
+import com.data.company.shop.cart.model.Cart;
+import com.data.company.shop.cart.service.CartCommandService;
 import com.data.company.user.model.Authority;
 import com.data.company.user.model.Role;
 import com.data.company.user.model.SubscriptionDetails;
@@ -30,6 +32,7 @@ public class UserService {
   private final UserQueryRepository queryRepository;
   private final TokenJpaRepository tokenJpaRepository;
   private final SubscriptionDetailsQueryRepository subscriptionDetailsQueryRepository;
+  private final CartCommandService cartCommandService;
   private final UserCommandRepository commandRepository;
   private final JwtTokenGenerator tokenGenerator;
   private final PasswordEncoder passwordEncoder;
@@ -60,6 +63,8 @@ public class UserService {
 
     User user = commandRepository.create(newUser, role, subscriptionDetails);
     newUser.setToken(tokenGenerator.generateToken(email));
+
+    cartCommandService.createCart(new Cart().setUserId(user.getId()), user.getId());
 
     return user;
   }

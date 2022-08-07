@@ -11,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/shop/cart")
+@RequestMapping("/shop/cart/{userId}")
 @AllArgsConstructor
 @Slf4j
 public class CartController {
@@ -25,12 +25,12 @@ public class CartController {
   private final CartQueryService queryService;
 
   @PostMapping
-  public void createCart(Cart cart) {
+  public void createCart(@RequestBody Cart cart, @PathVariable UUID userId) {
     log.info("Creating cart for user with id: {}", cart.getUserId());
-    commandService.createCart(cart);
+    commandService.createCart(cart, userId);
   }
 
-  @GetMapping("{userId}")
+  @GetMapping
   public ResponseEntity<List<Cart>> getCartByUserId(@PathVariable UUID userId) {
     log.info("Retrieving cart items for userId={}", userId);
 
