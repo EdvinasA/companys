@@ -6,8 +6,9 @@ import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.JwtTokenGenerator;
 import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.jwt.repository.jpa.TokenJpaRepository;
-import com.data.company.shop.cart.model.Cart;
 import com.data.company.shop.cart.service.CartCommandService;
+import com.data.company.shop.whislist.model.WishlistProfileInput;
+import com.data.company.shop.whislist.service.WishlistProfileCommandService;
 import com.data.company.user.model.Authority;
 import com.data.company.user.model.Role;
 import com.data.company.user.model.SubscriptionDetails;
@@ -33,8 +34,11 @@ public class UserService {
   private final UserQueryRepository queryRepository;
   private final TokenJpaRepository tokenJpaRepository;
   private final SubscriptionDetailsQueryRepository subscriptionDetailsQueryRepository;
-  private final CartCommandService cartCommandService;
   private final UserCommandRepository commandRepository;
+
+  private final CartCommandService cartCommandService;
+  private final WishlistProfileCommandService wishlistProfileCommandService;
+
   private final JwtTokenGenerator tokenGenerator;
   private final PasswordEncoder passwordEncoder;
 
@@ -64,9 +68,11 @@ public class UserService {
     SubscriptionDetails subscriptionDetails = buildNewSubscriptionDetails();
 
     User user = commandRepository.create(newUser, role, subscriptionDetails);
-    newUser.setToken(tokenGenerator.generateToken(email));
+    user.setToken(tokenGenerator.generateToken(email));
+    user.setSubscriptionDetails(subscriptionDetails);
 
     cartCommandService.createCart(user.getId());
+    wishlistProfileCommandService.createWishlistProfile(new WishlistProfileInput().setName("Saved items"), user.getId());
 
     return user;
   }
