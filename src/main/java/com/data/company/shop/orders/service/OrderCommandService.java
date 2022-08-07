@@ -1,5 +1,6 @@
 package com.data.company.shop.orders.service;
 
+import com.data.company.shop.cart.service.CartCommandService;
 import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.model.Status;
@@ -17,6 +18,7 @@ public class OrderCommandService {
   private final OrderCommandRepository commandRepository;
   private final OrderQueryService queryService;
   private final OrderedItemsCommandService orderedItemsCommandService;
+  private final CartCommandService cartCommandService;
 
   // Added Transactional if saving order to database fails, then revert changes
   @Transactional
@@ -36,5 +38,7 @@ public class OrderCommandService {
 
     Order savedOrder = commandRepository.create(order);
     orderedItemsCommandService.createOrderItems(input.getOrderedItems(), savedOrder.getId());
+
+    cartCommandService.updateCart(input.getUserId());
   }
 }

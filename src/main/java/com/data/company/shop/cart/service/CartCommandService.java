@@ -12,11 +12,20 @@ import org.springframework.stereotype.Service;
 public class CartCommandService {
 
   private final CartCommandRepository commandRepository;
+  private final CartQueryService queryService;
 
   public void createCart(UUID userId) {
     commandRepository.create(new Cart()
         .setUserId(userId)
         .setId(UUID.randomUUID())
         .setStatus(CartStatus.FILLING));
+  }
+
+  public void updateCart(UUID userId) {
+    Cart cart = queryService.findByUserId(userId);
+    cart.setStatus(CartStatus.MOVED_TO_ORDER);
+
+    // After old cart moved to different status create new cart for user
+    createCart(userId);
   }
 }

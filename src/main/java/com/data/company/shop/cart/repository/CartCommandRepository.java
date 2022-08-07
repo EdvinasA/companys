@@ -22,4 +22,11 @@ public class CartCommandRepository {
     jpaRepository.save(entity);
   }
 
+  @Transactional
+  public void update(Cart cart) {
+    CartEntity entity = converter.convertToEntity(cart);
+
+    jpaRepository.save(entity);
+  }
+
 }
