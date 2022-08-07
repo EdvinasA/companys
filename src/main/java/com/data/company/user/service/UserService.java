@@ -64,7 +64,7 @@ public class UserService {
     User user = commandRepository.create(newUser, role, subscriptionDetails);
     newUser.setToken(tokenGenerator.generateToken(email));
 
-    cartCommandService.createCart(new Cart().setUserId(user.getId()), user.getId());
+    cartCommandService.createCart(user.getId());
 
     return user;
   }

@@ -13,11 +13,10 @@ public class CartCommandService {
 
   private final CartCommandRepository commandRepository;
 
-  public void createCart(Cart cart, UUID userId) {
-    cart.setUserId(userId);
-    cart.setId(UUID.randomUUID());
-    cart.setStatus(CartStatus.FILLING);
-
-    commandRepository.create(cart);
+  public void createCart(UUID userId) {
+    commandRepository.create(new Cart()
+        .setUserId(userId)
+        .setId(UUID.randomUUID())
+        .setStatus(CartStatus.FILLING));
   }
 }
