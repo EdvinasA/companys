@@ -1,6 +1,6 @@
-package com.data.company.shop.service;
+package com.data.company.shop.shared.service;
 
-import com.data.company.shop.model.Categories;
+import com.data.company.shop.shared.model.Categories;
 import com.data.company.shop.shared.Category;
 import java.util.List;
 import java.util.stream.Collectors;

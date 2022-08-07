@@ -1,7 +1,7 @@
-package com.data.company.shop.controller;
+package com.data.company.shop.shared.controller;
 
-import com.data.company.shop.model.Categories;
-import com.data.company.shop.service.ShopQueryService;
+import com.data.company.shop.shared.model.Categories;
+import com.data.company.shop.shared.service.ShopQueryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

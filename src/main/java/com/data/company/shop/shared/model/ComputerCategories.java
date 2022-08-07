@@ -1,4 +1,4 @@
-package com.data.company.shop.model;
+package com.data.company.shop.shared.model;
 
 import java.util.List;
 import lombok.Data;
