@@ -17,5 +17,6 @@ public class Cart {
   private boolean warranty;
   private LocalDateTime purchaseDate;
   private UUID userId;
+  private CartStatus status;
 
 }

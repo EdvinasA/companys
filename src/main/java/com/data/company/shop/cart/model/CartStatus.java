@@ -1,15 +1,15 @@
-package com.data.company.shop.orders.model;
+package com.data.company.shop.cart.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Status {
+public enum CartStatus {
 
-  ORDERED("ORDERED"),
-  COMPLETED("COMPLETED");
+  FILLING("FILLING"),
+  MOVED_TO_ORDER("MOVED_TO_ORDER");
 
   private final String status;
 
-  Status(String status) {
+  CartStatus(String status) {
     this.status = status;
   }
 

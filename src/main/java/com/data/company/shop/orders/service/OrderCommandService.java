@@ -2,6 +2,7 @@ package com.data.company.shop.orders.service;
 
 import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.model.OrderInput;
+import com.data.company.shop.orders.model.Status;
 import com.data.company.shop.orders.repository.OrderCommandRepository;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -26,7 +27,12 @@ public class OrderCommandService {
     order.setId(UUID.randomUUID())
         .setOrderDate(currentDate)
         .setOrderUpdate(currentDate)
-        .setOrderNumber(String.format("EA%s%s%s%s", currentDate.getYear(), currentDate.getMonthValue(), currentDate.getDayOfMonth(), queryService.getCountOfOrdersInDatabase()));
+        .setStatus(Status.ORDERED)
+        .setOrderNumber(String.format("EA%s%s%s%s",
+            currentDate.getYear(),
+            currentDate.getMonthValue(),
+            currentDate.getDayOfMonth(),
+            queryService.getCountOfOrdersInDatabase()));
 
     Order savedOrder = commandRepository.create(order);
     orderedItemsCommandService.createOrderItems(input.getOrderedItems(), savedOrder.getId());
