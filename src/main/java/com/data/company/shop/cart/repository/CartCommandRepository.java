@@ -18,6 +18,7 @@ public class CartCommandRepository {
   @Transactional
   public void create(Cart cart) {
     CartEntity entity = converter.convertToEntity(cart);
+
     jpaRepository.save(entity);
   }
 

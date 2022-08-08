@@ -18,8 +18,8 @@ public class CartItemCommandRepository {
 
   @Transactional
   public void deleteAllCartItems(UUID cartId) {
-    Optional<CartEntity> cartEntity = cartJpaRepository.findById(cartId);
+    Optional<CartEntity> cartEntity = cartJpaRepository.findByIdNative(cartId);
 
-    cartEntity.ifPresent(jpaRepository::deleteAllByCart);
+    cartEntity.ifPresent(jpaRepository::deleteByCart);
   }
 }

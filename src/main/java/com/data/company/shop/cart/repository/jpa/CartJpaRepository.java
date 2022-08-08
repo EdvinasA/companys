@@ -13,4 +13,8 @@ public interface CartJpaRepository extends JpaRepository<CartEntity, UUID> {
   @Query(value = "SELECT * FROM cart WHERE user_id = :userId AND status = 'FILLING'",
       nativeQuery = true)
   Optional<CartEntity> findByUserId(@Param("userId") UUID userId);
+
+  @Query(value = "SELECT * FROM cart WHERE id = :cartId",
+      nativeQuery = true)
+  Optional<CartEntity> findByIdNative(@Param("cartId") UUID cartId);
 }

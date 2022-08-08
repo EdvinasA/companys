@@ -29,12 +29,16 @@ public class CartConverter {
   }
 
   public CartEntity convertToEntity(Cart cart) {
-    return new CartEntity()
+    CartEntity cartEntity = new CartEntity()
         .setId(cart.getId())
         .setPurchaseDate(cart.getPurchaseDate())
         .setUserId(cart.getUserId())
-        .setStatus(cart.getStatus())
-        .setCartItems(setIfNotNull(cart.getCartItems()));
+        .setStatus(cart.getStatus());
+
+    List<CartItemEntity> cartItemEntities = setIfNotNull(cart.getCartItems());
+
+    cartEntity.setCartItems(cartItemEntities);
+    return cartEntity;
   }
 
   private List<CartItemEntity> setIfNotNull(List<CartItem> cartItem) {

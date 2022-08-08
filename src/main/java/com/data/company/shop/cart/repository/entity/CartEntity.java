@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import lombok.Data;
 
@@ -32,7 +31,6 @@ public class CartEntity {
   @Enumerated(EnumType.STRING)
   private CartStatus status;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "cart_id")
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cart")
   private List<CartItemEntity> cartItems = new ArrayList<>();
 }
