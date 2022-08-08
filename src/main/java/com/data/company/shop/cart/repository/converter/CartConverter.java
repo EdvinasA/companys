@@ -21,11 +21,11 @@ public class CartConverter {
         .setId(entity.getId())
         .setPurchaseDate(entity.getPurchaseDate())
         .setUserId(entity.getUserId())
-        .setStatus(entity.getStatus());
-//        .setCartItems(entity.getCartItems()
-//            .stream()
-//            .map(cartItemConverter::convertFromEntity)
-//            .collect(Collectors.toList()));
+        .setStatus(entity.getStatus())
+        .setCartItems(entity.getCartItems()
+            .stream()
+            .map(cartItemConverter::convertFromEntity)
+            .collect(Collectors.toList()));
   }
 
   public CartEntity convertToEntity(Cart cart) {
@@ -33,8 +33,8 @@ public class CartConverter {
         .setId(cart.getId())
         .setPurchaseDate(cart.getPurchaseDate())
         .setUserId(cart.getUserId())
-        .setStatus(cart.getStatus());
-//        .setCartItems(setIfNotNull(cart.getCartItems()));
+        .setStatus(cart.getStatus())
+        .setCartItems(setIfNotNull(cart.getCartItems()));
   }
 
   private List<CartItemEntity> setIfNotNull(List<CartItem> cartItem) {

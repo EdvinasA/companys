@@ -32,7 +32,7 @@ public class CartEntity {
   @Enumerated(EnumType.STRING)
   private CartStatus status;
 
-//  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//  @JoinColumn(name = "cart_id")
-//  private List<CartItemEntity> cartItems = new ArrayList<>();
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "cart_id")
+  private List<CartItemEntity> cartItems = new ArrayList<>();
 }

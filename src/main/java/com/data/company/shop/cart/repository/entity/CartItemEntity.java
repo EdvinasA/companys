@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import lombok.Data;
 
-@Entity(name = "cart_item")
+@Entity(name = "cart_items")
 @Data
 public class CartItemEntity {
 

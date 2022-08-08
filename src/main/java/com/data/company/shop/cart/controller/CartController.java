@@ -40,7 +40,6 @@ public class CartController {
     log.info("Retrieving cart items for userId={}", userId);
 
     Cart cart = queryService.findByUserId(userId);
-    log.info("Retrieved cart items. Size: {}", cart.getCartItems().size());
 
     return ResponseEntity.ok(cart);
   }
