@@ -1,17 +1,22 @@
 package com.data.company.shop.orders.repository.entities;
 
+import com.data.company.shop.cart.repository.entity.CartItemEntity;
 import com.data.company.shop.orders.model.OrderedItems;
 import com.data.company.shop.orders.model.Status;
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,6 +53,10 @@ public class OrderEntity {
 
   @Column(name = "order_update")
   private LocalDate orderUpdate;
+
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "order_id")
+  private List<OrderedItemsEntity> orderedItems = new ArrayList<>();
 
   @Column(name = "status")
   @Enumerated(value = EnumType.STRING)

@@ -1,5 +1,6 @@
 package com.data.company.shop.orders.model;
 
+import com.data.company.shop.cart.model.CartItem;
 import java.util.UUID;
 import lombok.Data;
 
@@ -8,7 +9,6 @@ public class OrderedItems {
 
   private Long id;
   private UUID itemId;
-  private UUID orderId;
   private String picture;
   private String itemName;
   private String itemCode;
@@ -16,4 +16,16 @@ public class OrderedItems {
   private Integer itemQuantity;
   private boolean itemInsurance;
   private boolean itemWarranty;
+
+  public static OrderedItems from(CartItem cartItem) {
+    return new OrderedItems()
+        .setItemId(cartItem.getItemId())
+        .setPicture(cartItem.getPicture())
+        .setItemName(cartItem.getItemName())
+        .setItemCode(cartItem.getItemCode())
+        .setItemPrice(cartItem.getItemPrice())
+        .setItemQuantity(cartItem.getItemQuantity())
+        .setItemInsurance(cartItem.isItemInsurance())
+        .setItemWarranty(cartItem.isItemWarranty());
+  }
 }

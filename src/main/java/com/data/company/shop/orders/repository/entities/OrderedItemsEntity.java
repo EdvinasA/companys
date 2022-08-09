@@ -1,11 +1,14 @@
 package com.data.company.shop.orders.repository.entities;
 
+import com.data.company.shop.cart.repository.entity.CartItemEntity;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,4 +52,19 @@ public class OrderedItemsEntity {
 
   @Column(name = "item_warranty")
   private boolean itemWarranty;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private OrderEntity orderEntity;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof CartItemEntity)) return false;
+    return id != null && id.equals(((CartItemEntity) o).getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 }

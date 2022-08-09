@@ -1,7 +1,7 @@
 package com.data.company.shop.orders.controller;
 
+import com.data.company.shop.cart.model.CartItem;
 import com.data.company.shop.orders.model.Order;
-import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.service.OrderCommandService;
 import com.data.company.shop.orders.service.OrderQueryService;
 import java.util.List;
@@ -26,11 +26,10 @@ public class OrderController {
   private final OrderCommandService commandService;
 
   @PostMapping
-  public ResponseEntity<Void> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) {
-    input.setUserId(userId);
+  public ResponseEntity<Void> createOrder(@RequestBody List<CartItem> input, @PathVariable UUID userId) {
 
     log.info("Received input for creating order");
-    commandService.createOrder(input);
+    commandService.createOrder(input, userId);
 
     log.info("Created order");
     return ResponseEntity.ok(null);

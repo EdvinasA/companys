@@ -2,6 +2,7 @@ package com.data.company.shop.orders.model;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 import lombok.Data;
 
@@ -14,18 +15,9 @@ public class Order {
   private LocalDate orderDate;
   private String collectOption;
   private String paymentMethod;
+  private List<OrderedItems> orderedItems;
   private File invoice;
   private double totalPrice;
   private LocalDate orderUpdate;
   private Status status;
-
-  public static Order from(OrderInput input) {
-    return new Order()
-        .setCollectOption(input.getCollectOption())
-        .setUserId(input.getUserId())
-        .setOrderNumber(input.getOrderNumber())
-        .setPaymentMethod(input.getPaymentMethod())
-        .setTotalPrice(input.getTotalPrice())
-        .setStatus(input.getStatus());
-  }
 }
