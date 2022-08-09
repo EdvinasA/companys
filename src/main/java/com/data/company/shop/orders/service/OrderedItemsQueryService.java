@@ -13,7 +13,7 @@ public class OrderedItemsQueryService {
 
   private final OrderedItemsQueryRepository queryRepository;
 
-  public List<OrderedItems> findAllByOrderIdAndUserId(UUID orderId, UUID userId) {
-    return queryRepository.findOrderedItemsByOrderIdAndUserId(orderId, userId);
+  public List<OrderedItems> findAllByOrderId(UUID orderId) {
+    return queryRepository.findOrderedItemsByOrderId(orderId);
   }
 }

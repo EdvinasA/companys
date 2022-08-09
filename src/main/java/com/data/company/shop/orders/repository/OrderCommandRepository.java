@@ -16,9 +16,10 @@ public class OrderCommandRepository {
   private final OrderConverter converter;
 
   @Transactional
-  public Order create(Order input) {
+  public void create(Order input) {
     OrderEntity entity = converter.convertToEntity(input);
 
-    return converter.convertFromEntity(jpaRepository.save(entity));
+    System.out.println(entity);
+    jpaRepository.save(entity);
   }
 }

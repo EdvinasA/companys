@@ -30,6 +30,7 @@ public class OrderCommandService {
     Order order = new Order();
     order
         .setId(UUID.randomUUID())
+        .setUserId(userId)
         .setOrderDate(currentDate)
         .setOrderUpdate(currentDate)
         .setStatus(Status.ORDERED)
@@ -43,6 +44,7 @@ public class OrderCommandService {
             currentDate.getDayOfMonth(),
             queryService.getCountOfOrdersInDatabase()));
 
+    System.out.println(order);
     commandRepository.create(order);
 
     cartCommandService.moveCartToOrder(userId);

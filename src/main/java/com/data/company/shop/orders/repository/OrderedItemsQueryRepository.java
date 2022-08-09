@@ -2,6 +2,7 @@ package com.data.company.shop.orders.repository;
 
 import com.data.company.shop.orders.model.OrderedItems;
 import com.data.company.shop.orders.repository.converters.OrderedItemsConverter;
+import com.data.company.shop.orders.repository.jpa.OrderJpaRepository;
 import com.data.company.shop.orders.repository.jpa.OrderedItemsJpaRepository;
 import java.util.List;
 import java.util.UUID;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Repository;
 public class OrderedItemsQueryRepository {
 
   private final OrderedItemsJpaRepository jpaRepository;
+  private final OrderJpaRepository orderJpaRepository;
   private final OrderedItemsConverter converter;
 
-  public List<OrderedItems> findOrderedItemsByOrderIdAndUserId(UUID orderId, UUID userId) {
-    return jpaRepository.findByOrderIdAndUserId(orderId, userId)
+  public List<OrderedItems> findOrderedItemsByOrderId(UUID orderId) {
+    return jpaRepository.findByOrder(orderJpaRepository.getById(orderId))
         .stream()
         .map(converter::convertFromEntity)
         .collect(Collectors.toList());

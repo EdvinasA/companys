@@ -24,7 +24,7 @@ public class OrderedItemsController {
   public ResponseEntity<List<OrderedItems>> getListOfOrdersForOrder(@PathVariable UUID userId, @PathVariable UUID orderId) {
     log.info("Received request for retrieving order items: [User ID: {}, Order ID: {}]", userId, orderId);
 
-    List<OrderedItems> result = queryService.findAllByOrderIdAndUserId(orderId, userId);
+    List<OrderedItems> result = queryService.findAllByOrderId(orderId);
     log.info("Retrieved a list of ordered items: [Size: {}]", result.size());
 
     return ResponseEntity.ok(result);

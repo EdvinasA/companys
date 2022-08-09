@@ -1,7 +1,5 @@
 package com.data.company.shop.orders.repository.entities;
 
-import com.data.company.shop.cart.repository.entity.CartItemEntity;
-import com.data.company.shop.orders.model.OrderedItems;
 import com.data.company.shop.orders.model.Status;
 import java.io.File;
 import java.time.LocalDate;
@@ -15,7 +13,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;

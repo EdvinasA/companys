@@ -20,17 +20,11 @@ import lombok.NoArgsConstructor;
 public class OrderedItemsEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "item_id")
   private UUID itemId;
-
-  @Column(name = "order_id")
-  private UUID orderId;
-
-  @Column(name = "user_id")
-  private UUID userId;
 
   @Column(name = "picture")
   private String picture;
@@ -54,7 +48,7 @@ public class OrderedItemsEntity {
   private boolean itemWarranty;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private OrderEntity orderEntity;
+  private OrderEntity order;
 
   @Override
   public boolean equals(Object o) {
