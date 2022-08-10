@@ -13,6 +13,7 @@ import com.data.company.user.repository.jpa.SubscriptionDetailsJpaRepository;
 import com.data.company.user.repository.jpa.UserJpaRepository;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,8 +45,9 @@ public class UserCommandRepository {
   }
 
   @Transactional
-  public void update(User user) {
-    UserEntity userEntity = userConverter.convertToEntity(user);
+  public void update(User user, List<Role> roles) {
+    List<RolesEntity> rolesEntity = getConvertedRoles(roles);
+    UserEntity userEntity = updatedUserEntity(user.getId(), rolesEntity);
     SubscriptionDetailsEntity subscriptionDetailsEntity =
         subscriptionDetailsConverter.convertToEntity(user.getSubscriptionDetails());
     subscriptionDetailsEntity.setUser(userEntity);
@@ -53,5 +55,18 @@ public class UserCommandRepository {
     userJpaRepository.save(userEntity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);
   }
+
+  private List<RolesEntity> getConvertedRoles(List<Role> roles) {
+    return roles.stream()
+        .map(roleConverter::convertToEntity)
+        .collect(Collectors.toList());
+  }
+
+  private UserEntity updatedUserEntity(UUID id, List<RolesEntity> rolesEntity) {
+    UserEntity userEntity = userJpaRepository.getById(id);
+    userEntity.getRole().addAll(rolesEntity);
+    return userEntity;
+  }
+
 
 }

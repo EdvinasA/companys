@@ -34,4 +34,15 @@ public class UserConverter {
         .setName(user.getName())
         .setLastName(user.getLastName());
   }
+
+  public UserEntity convertToEntityUpdate(UserEntity user) {
+    return new UserEntity()
+        .setId(user.getId())
+        .setEmail(user.getEmail())
+        .setPassword(user.getPassword())
+        .setRegisteredDate(user.getRegisteredDate())
+        .setName(user.getName())
+        .setLastName(user.getLastName())
+        .setRole(user.getRole());
+  }
 }
