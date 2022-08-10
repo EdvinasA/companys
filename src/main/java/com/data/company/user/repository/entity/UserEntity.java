@@ -40,14 +40,13 @@ public class UserEntity {
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
 
-  @ManyToMany(fetch = FetchType.EAGER,
-      cascade = {
-          CascadeType.PERSIST,
-          CascadeType.MERGE
-      })
+  @ManyToMany(cascade = {
+      CascadeType.PERSIST,
+      CascadeType.MERGE
+  })
   @JoinTable(name = "users_roles",
-      joinColumns = { @JoinColumn(name = "user_id") },
-      inverseJoinColumns = { @JoinColumn(name = "role_id") })
+      joinColumns = { @JoinColumn(name = "role_id") },
+      inverseJoinColumns = { @JoinColumn(name = "user_id") })
   private List<RolesEntity> role = new ArrayList<>();
 
 }

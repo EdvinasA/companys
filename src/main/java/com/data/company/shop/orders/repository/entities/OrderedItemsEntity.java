@@ -53,8 +53,8 @@ public class OrderedItemsEntity {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof CartItemEntity)) return false;
-    return id != null && id.equals(((CartItemEntity) o).getId());
+    if (!(o instanceof OrderedItemsEntity)) return false;
+    return id != null && id.equals(((OrderedItemsEntity) o).getId());
   }
 
   @Override

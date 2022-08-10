@@ -29,11 +29,7 @@ public class RolesEntity {
   @Column(name = "id")
   private UUID id;
 
-  @ManyToMany(fetch = FetchType.LAZY,
-      cascade = {
-          CascadeType.PERSIST,
-          CascadeType.MERGE
-      }, mappedBy = "role")
+  @ManyToMany(mappedBy = "role")
   @JsonIgnore
   private List<UserEntity> user = new ArrayList<>();
 

@@ -37,10 +37,10 @@ public class UserCommandRepository {
     rolesEntity.setUser(List.of(entity));
     entity.setRole(List.of(rolesEntity));
 
-    userJpaRepository.save(entity);
+    UserEntity createdUser = userJpaRepository.save(entity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);
 
-    return userConverter.convertFromEntity(entity);
+    return userConverter.convertFromEntity(createdUser);
   }
 
   @Transactional

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserConverter {
 
-  private final SubscriptionDetailsConverter subscriptionDetailsConverter;
-
   public User convertFromEntity(UserEntity entity) {
     return new User()
         .setId(entity.getId())

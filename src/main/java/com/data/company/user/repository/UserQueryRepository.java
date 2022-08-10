@@ -22,7 +22,8 @@ public class UserQueryRepository {
 
   @Transactional
   public User getUserByEmail(String email) {
-      return userJpaRepository.findByEmail(email)
+    Optional<UserEntity> user = userJpaRepository.findByEmail(email);
+      return user
           .map(converter::convertFromEntity)
           .orElseThrow(EntityNotFoundException::new);
   }
