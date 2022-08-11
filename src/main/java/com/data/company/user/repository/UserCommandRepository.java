@@ -6,7 +6,7 @@ import com.data.company.user.model.User;
 import com.data.company.user.repository.converter.RoleConverter;
 import com.data.company.user.repository.converter.SubscriptionDetailsConverter;
 import com.data.company.user.repository.converter.UserConverter;
-import com.data.company.user.repository.entity.RolesEntity;
+import com.data.company.user.repository.entity.RoleEntity;
 import com.data.company.user.repository.entity.SubscriptionDetailsEntity;
 import com.data.company.user.repository.entity.UserEntity;
 import com.data.company.user.repository.jpa.SubscriptionDetailsJpaRepository;
@@ -29,14 +29,11 @@ public class UserCommandRepository {
   private final RoleConverter roleConverter;
 
   @Transactional
-  public User create(User user, Role role, SubscriptionDetails subscriptionDetails) {
-    RolesEntity rolesEntity = roleConverter.convertToEntity(role);
+  public User create(User user, SubscriptionDetails subscriptionDetails) {
     UserEntity entity = userConverter.convertToEntity(user);
     SubscriptionDetailsEntity subscriptionDetailsEntity = subscriptionDetailsConverter.convertToEntity(subscriptionDetails);
-    rolesEntity.setId(UUID.randomUUID());
     subscriptionDetailsEntity.setUser(entity);
-    rolesEntity.setUser(List.of(entity));
-    entity.setRole(List.of(rolesEntity));
+    System.out.println(entity);
 
     UserEntity createdUser = userJpaRepository.save(entity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);
@@ -45,28 +42,14 @@ public class UserCommandRepository {
   }
 
   @Transactional
-  public void update(User user, List<Role> roles) {
-    List<RolesEntity> rolesEntity = getConvertedRoles(roles);
-    UserEntity userEntity = updatedUserEntity(user.getId(), rolesEntity);
+  public void update(User user) {
+    UserEntity userEntity = userConverter.convertToEntity(user);
     SubscriptionDetailsEntity subscriptionDetailsEntity =
         subscriptionDetailsConverter.convertToEntity(user.getSubscriptionDetails());
     subscriptionDetailsEntity.setUser(userEntity);
 
     userJpaRepository.save(userEntity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);
+
   }
-
-  private List<RolesEntity> getConvertedRoles(List<Role> roles) {
-    return roles.stream()
-        .map(roleConverter::convertToEntity)
-        .collect(Collectors.toList());
-  }
-
-  private UserEntity updatedUserEntity(UUID id, List<RolesEntity> rolesEntity) {
-    UserEntity userEntity = userJpaRepository.getById(id);
-    userEntity.getRole().addAll(rolesEntity);
-    return userEntity;
-  }
-
-
 }

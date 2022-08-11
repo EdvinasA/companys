@@ -35,13 +35,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         true,
         true,
         true,
-        getAuthorities(user.getRole().stream()
-            .map(Authority::getAuthority)
-            .collect(Collectors.toList())));
+        getAuthorities(user.getRoles()));
   }
 
-  private Set<? extends GrantedAuthority> getAuthorities(List<String> role) {
-    return role
+  private Set<? extends GrantedAuthority> getAuthorities(List<String> roles) {
+    return roles
         .stream()
         .map(SimpleGrantedAuthority::new)
         .collect(Collectors.toSet());

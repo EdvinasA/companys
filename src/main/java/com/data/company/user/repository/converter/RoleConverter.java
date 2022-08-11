@@ -1,15 +1,14 @@
 package com.data.company.user.repository.converter;
 
 import com.data.company.user.model.Role;
-import com.data.company.user.repository.entity.RolesEntity;
+import com.data.company.user.repository.entity.RoleEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RoleConverter {
 
-  public RolesEntity convertToEntity(Role input) {
-    return new RolesEntity()
-        .setId(input.getId())
+  public RoleEntity convertToEntity(Role input) {
+    return new RoleEntity()
         .setAuthority(input.getRole());
   }
 }

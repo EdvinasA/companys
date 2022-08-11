@@ -1,7 +1,7 @@
 package com.data.company.user.repository.converter;
 
 import com.data.company.user.model.User;
-import com.data.company.user.repository.entity.RolesEntity;
+import com.data.company.user.repository.entity.RoleEntity;
 import com.data.company.user.repository.entity.UserEntity;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -19,10 +19,7 @@ public class UserConverter {
         .setRegisteredDate(entity.getRegisteredDate())
         .setName(entity.getName())
         .setLastName(entity.getLastName())
-        .setRole(entity.getRole()
-            .stream()
-            .map(RolesEntity::getAuthority)
-            .collect(Collectors.toList()));
+        .setRoles(entity.getRoles());
   }
 
   public UserEntity convertToEntity(User user) {
@@ -32,17 +29,7 @@ public class UserConverter {
         .setPassword(user.getPassword())
         .setRegisteredDate(user.getRegisteredDate())
         .setName(user.getName())
-        .setLastName(user.getLastName());
-  }
-
-  public UserEntity convertToEntityUpdate(UserEntity user) {
-    return new UserEntity()
-        .setId(user.getId())
-        .setEmail(user.getEmail())
-        .setPassword(user.getPassword())
-        .setRegisteredDate(user.getRegisteredDate())
-        .setName(user.getName())
         .setLastName(user.getLastName())
-        .setRole(user.getRole());
+        .setRoles(user.getRoles());
   }
 }

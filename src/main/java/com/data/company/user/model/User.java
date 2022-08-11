@@ -26,6 +26,6 @@ public class User {
   @JsonFormat(pattern="yyyy-MM-dd")
   private LocalDate registeredDate;
 
-  private List<Authority> role;
+  private List<String> roles;
 
 }

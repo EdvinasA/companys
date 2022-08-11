@@ -12,6 +12,4 @@ public class UserRegisterInput {
   private String lastName;
 
   private String password;
-
-  private Authority authority;
 }

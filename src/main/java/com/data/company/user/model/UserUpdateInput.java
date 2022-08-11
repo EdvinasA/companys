@@ -17,5 +17,5 @@ public class UserUpdateInput {
 
   private SubscriptionDetails subscriptionDetails;
 
-  private List<Authority> role;
+  private List<String> role;
 }

@@ -20,6 +20,7 @@ import com.data.company.user.repository.SubscriptionDetailsQueryRepository;
 import com.data.company.user.repository.UserCommandRepository;
 import com.data.company.user.repository.UserQueryRepository;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -60,14 +61,12 @@ public class UserService {
         .setName(userRegisterInputBody.getName())
         .setLastName(userRegisterInputBody.getLastName())
         .setPassword(passwordEncoder.encode(userRegisterInputBody.getPassword()))
-        .setRegisteredDate(LocalDate.now());
-
-    Role role = new Role()
-        .setRole(Authority.USER);
+        .setRegisteredDate(LocalDate.now())
+        .setRoles(List.of("USER"));
 
     SubscriptionDetails subscriptionDetails = buildNewSubscriptionDetails();
 
-    User user = commandRepository.create(newUser, role, subscriptionDetails);
+    User user = commandRepository.create(newUser, subscriptionDetails);
     user.setToken(tokenGenerator.generateToken(email));
     user.setSubscriptionDetails(subscriptionDetails);
 
@@ -116,7 +115,6 @@ public class UserService {
     Optional.ofNullable(input.getLastName()).ifPresent(user::setLastName);
     Optional.ofNullable(input.getPassword()).ifPresent(user::setPassword);
     Optional.ofNullable(input.getSubscriptionDetails()).ifPresent(user::setSubscriptionDetails);
-    Optional.ofNullable(input.getRole()).ifPresent(user::setRole);
   }
 
   private void checkIfEmailExists(String input) {
