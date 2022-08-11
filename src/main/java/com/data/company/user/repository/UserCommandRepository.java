@@ -26,7 +26,6 @@ public class UserCommandRepository {
   private final SubscriptionDetailsJpaRepository subscriptionDetailsJpaRepository;
   private final SubscriptionDetailsConverter subscriptionDetailsConverter;
   private final UserConverter userConverter;
-  private final RoleConverter roleConverter;
 
   @Transactional
   public User create(User user, SubscriptionDetails subscriptionDetails) {
