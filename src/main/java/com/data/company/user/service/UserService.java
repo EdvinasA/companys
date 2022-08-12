@@ -103,7 +103,7 @@ public class UserService {
     User storedUser = queryRepository.findById(input.getId());
     updateUserFields(storedUser, input);
 
-//    commandRepository.update(storedUser);
+    commandRepository.update(storedUser);
 
     return storedUser;
   }
