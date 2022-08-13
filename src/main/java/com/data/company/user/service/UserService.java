@@ -20,6 +20,7 @@ import com.data.company.user.repository.UserCommandRepository;
 import com.data.company.user.repository.UserQueryRepository;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -117,12 +118,7 @@ public class UserService {
     Optional.ofNullable(input.getPassword()).ifPresent(user::setPassword);
     Optional.ofNullable(input.getSubscriptionDetails()).ifPresent(user::setSubscriptionDetails);
     Optional.ofNullable(input.getRoles()).ifPresent(user::setRoles);
-    Optional.of(
-        input.getDeliveryInformation()
-            .stream()
-            .filter(info -> !user.getDeliveryInformationList().contains(info))
-            .collect(Collectors.toList()))
-        .ifPresent(user::setDeliveryInformationList);
+    Optional.ofNullable(input.getDeliveryInformation()).ifPresent(user::setDeliveryInformationList);
   }
 
   private void checkIfEmailExists(String input) {
