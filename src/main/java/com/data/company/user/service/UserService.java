@@ -9,6 +9,7 @@ import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import com.data.company.shop.cart.service.CartCommandService;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.service.WishlistProfileCommandService;
+import com.data.company.user.model.DeliveryInformation;
 import com.data.company.user.model.SubscriptionDetails;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -69,7 +71,8 @@ public class UserService {
     user.setSubscriptionDetails(subscriptionDetails);
 
     cartCommandService.createCart(user.getId());
-    wishlistProfileCommandService.createWishlistProfile(new WishlistProfileInput().setName("Saved items"), user.getId());
+    wishlistProfileCommandService
+        .createWishlistProfile(new WishlistProfileInput().setName("Saved items"), user.getId());
 
     return user;
   }
@@ -114,6 +117,12 @@ public class UserService {
     Optional.ofNullable(input.getPassword()).ifPresent(user::setPassword);
     Optional.ofNullable(input.getSubscriptionDetails()).ifPresent(user::setSubscriptionDetails);
     Optional.ofNullable(input.getRoles()).ifPresent(user::setRoles);
+    Optional.of(
+        input.getDeliveryInformation()
+            .stream()
+            .filter(info -> !user.getDeliveryInformationList().contains(info))
+            .collect(Collectors.toList()))
+        .ifPresent(user::setDeliveryInformationList);
   }
 
   private void checkIfEmailExists(String input) {

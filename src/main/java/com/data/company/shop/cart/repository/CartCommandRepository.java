@@ -26,7 +26,6 @@ public class CartCommandRepository {
 
     List<CartItemEntity> cartItemEntities = entity.getCartItems();
     cartItemEntities.forEach(cartItemEntity -> cartItemEntity.setCart(entity));
-    System.out.println(cartItemEntities);
     cartItemJpaRepository.saveAll(cartItemEntities);
 
     entity.setCartItems(new ArrayList<>());

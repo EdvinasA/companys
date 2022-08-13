@@ -18,4 +18,6 @@ public class UserUpdateInput {
   private SubscriptionDetails subscriptionDetails;
 
   private List<String> roles;
+
+  private List<DeliveryInformation> deliveryInformation;
 }

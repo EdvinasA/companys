@@ -6,6 +6,7 @@ import com.data.company.user.model.User;
 import com.data.company.user.repository.converter.RoleConverter;
 import com.data.company.user.repository.converter.SubscriptionDetailsConverter;
 import com.data.company.user.repository.converter.UserConverter;
+import com.data.company.user.repository.entity.DeliveryInformationEntity;
 import com.data.company.user.repository.entity.RoleEntity;
 import com.data.company.user.repository.entity.SubscriptionDetailsEntity;
 import com.data.company.user.repository.entity.UserEntity;
@@ -30,9 +31,9 @@ public class UserCommandRepository {
   @Transactional
   public User create(User user, SubscriptionDetails subscriptionDetails) {
     UserEntity entity = userConverter.convertToEntity(user);
-    SubscriptionDetailsEntity subscriptionDetailsEntity = subscriptionDetailsConverter.convertToEntity(subscriptionDetails);
+    SubscriptionDetailsEntity subscriptionDetailsEntity = subscriptionDetailsConverter
+        .convertToEntity(subscriptionDetails);
     subscriptionDetailsEntity.setUser(entity);
-    System.out.println(entity);
 
     UserEntity createdUser = userJpaRepository.save(entity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);
@@ -46,6 +47,8 @@ public class UserCommandRepository {
     SubscriptionDetailsEntity subscriptionDetailsEntity =
         subscriptionDetailsConverter.convertToEntity(user.getSubscriptionDetails());
     subscriptionDetailsEntity.setUser(userEntity);
+    userEntity.getDeliveryInformationList()
+        .forEach(deliveryInformationEntity -> deliveryInformationEntity.setUser(userEntity));
 
     userJpaRepository.save(userEntity);
     subscriptionDetailsJpaRepository.save(subscriptionDetailsEntity);

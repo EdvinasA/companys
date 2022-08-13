@@ -36,6 +36,10 @@ public class UserConverter {
         .setRegisteredDate(user.getRegisteredDate())
         .setName(user.getName())
         .setLastName(user.getLastName())
-        .setRoles(user.getRoles());
+        .setRoles(user.getRoles())
+        .setDeliveryInformationList(user.getDeliveryInformationList()
+            .stream()
+            .map(deliveryInformationConverter::convertToEntity)
+            .collect(Collectors.toList()));
   }
 }

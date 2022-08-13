@@ -23,6 +23,7 @@ public class DeliveryInformationConverter {
 
   public DeliveryInformation convertFromEntity(DeliveryInformationEntity input) {
     return new DeliveryInformation()
+        .setId(input.getId())
         .setFirstName(input.getFirstName())
         .setLastName(input.getLastName())
         .setPhoneNumber(input.getPhoneNumber())
