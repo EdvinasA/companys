@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserConverter {
 
+  private final DeliveryInformationConverter deliveryInformationConverter;
+
   public User convertFromEntity(UserEntity entity) {
     return new User()
         .setId(entity.getId())
@@ -19,7 +21,11 @@ public class UserConverter {
         .setRegisteredDate(entity.getRegisteredDate())
         .setName(entity.getName())
         .setLastName(entity.getLastName())
-        .setRoles(entity.getRoles());
+        .setRoles(entity.getRoles())
+        .setDeliveryInformationList(entity.getDeliveryInformationList()
+            .stream()
+            .map(deliveryInformationConverter::convertFromEntity)
+            .collect(Collectors.toList()));
   }
 
   public UserEntity convertToEntity(User user) {

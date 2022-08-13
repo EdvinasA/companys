@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -44,5 +45,9 @@ public class UserEntity {
   @Type(type = "jsonb")
   @Column(name = "roles", columnDefinition = "jsonb")
   private List<String> roles;
+
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "user_id")
+  private List<DeliveryInformationEntity> deliveryInformationList;
 
 }
