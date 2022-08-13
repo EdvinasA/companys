@@ -22,7 +22,7 @@ public class UserConverter {
         .setName(entity.getName())
         .setLastName(entity.getLastName())
         .setRoles(entity.getRoles())
-        .setDeliveryInformationList(entity.getDeliveryInformationList()
+        .setDeliveryInformation(entity.getDeliveryInformationList()
             .stream()
             .map(deliveryInformationConverter::convertFromEntity)
             .collect(Collectors.toList()));
@@ -37,7 +37,7 @@ public class UserConverter {
         .setName(user.getName())
         .setLastName(user.getLastName())
         .setRoles(user.getRoles())
-        .setDeliveryInformationList(user.getDeliveryInformationList()
+        .setDeliveryInformationList(user.getDeliveryInformation()
             .stream()
             .map(deliveryInformationConverter::convertToEntity)
             .collect(Collectors.toList()));

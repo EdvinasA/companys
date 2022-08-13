@@ -28,6 +28,6 @@ public class User {
 
   private List<String> roles;
 
-  private List<DeliveryInformation> deliveryInformationList;
+  private List<DeliveryInformation> deliveryInformation;
 
 }

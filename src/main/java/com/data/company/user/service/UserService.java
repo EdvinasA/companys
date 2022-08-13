@@ -118,7 +118,7 @@ public class UserService {
     Optional.ofNullable(input.getPassword()).ifPresent(user::setPassword);
     Optional.ofNullable(input.getSubscriptionDetails()).ifPresent(user::setSubscriptionDetails);
     Optional.ofNullable(input.getRoles()).ifPresent(user::setRoles);
-    Optional.ofNullable(input.getDeliveryInformation()).ifPresent(user::setDeliveryInformationList);
+    Optional.ofNullable(input.getDeliveryInformation()).ifPresent(user::setDeliveryInformation);
   }
 
   private void checkIfEmailExists(String input) {
