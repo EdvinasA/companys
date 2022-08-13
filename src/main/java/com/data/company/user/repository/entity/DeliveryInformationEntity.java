@@ -18,7 +18,7 @@ public class DeliveryInformationEntity {
   private Long id;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  private UserEntity userEntity;
+  private UserEntity user;
 
   @Column(name = "first_name")
   private String firstName;
