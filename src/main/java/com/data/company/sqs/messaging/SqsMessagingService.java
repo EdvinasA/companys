@@ -16,12 +16,12 @@ public class SqsMessagingService implements MessagingService {
 
   @Override
   public void sendMessage(String message) {
-    log.info("Sending: {}", message);
-    SendMessageRequest messageRequest = new SendMessageRequest()
-        .withQueueUrl(sqsClient.getQueueUrl("sample-queue").getQueueUrl())
-        .withMessageBody(JsonUtils.toJson(message))
-        .withDelaySeconds(0);
-
-    sqsClient.sendMessage(messageRequest);
+//    log.info("Sending: {}", message);
+//    SendMessageRequest messageRequest = new SendMessageRequest()
+//        .withQueueUrl(sqsClient.getQueueUrl("sample-queue").getQueueUrl())
+//        .withMessageBody(JsonUtils.toJson(message))
+//        .withDelaySeconds(0);
+//
+//    sqsClient.sendMessage(messageRequest);
   }
 }
