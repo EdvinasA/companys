@@ -1,6 +1,5 @@
 package com.data.company.shop.orders.repository.entities;
 
-import com.data.company.shop.cart.repository.entity.CartItemEntity;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
