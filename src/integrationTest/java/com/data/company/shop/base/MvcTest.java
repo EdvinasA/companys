@@ -13,28 +13,25 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@SpringBootTest(
-    webEnvironment = WebEnvironment.RANDOM_PORT,
-    classes = {
-        CompanyApplication.class,
-        TestFileUtils.class
-    }
-)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = {
+		CompanyApplication.class,
+		TestFileUtils.class
+})
 @AutoConfigureEmbeddedDatabase(provider = DatabaseProvider.ZONKY, refresh = RefreshMode.AFTER_EACH_TEST_METHOD)
 public class MvcTest {
 
-  protected MockMvc mvc;
+	protected MockMvc mvc;
 
-  @Autowired
-  protected WebApplicationContext context;
+	@Autowired
+	protected WebApplicationContext context;
 
-  @Autowired
-  protected TestFileUtils testFileUtils;
+	@Autowired
+	protected TestFileUtils testFileUtils;
 
-  @BeforeEach
-  void setUp() {
-    mvc = MockMvcBuilders.webAppContextSetup(context)
-        .build();
-  }
+	@BeforeEach
+	void setUp() {
+		mvc = MockMvcBuilders.webAppContextSetup(context)
+				.build();
+	}
 
 }

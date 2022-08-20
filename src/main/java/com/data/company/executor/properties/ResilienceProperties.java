@@ -9,9 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ResilienceProperties {
 
-  private int timeoutInSeconds;
-  private int retryDelayInSeconds;
-  private int numberOfRetries;
+	private int timeoutInSeconds;
+	private int retryDelayInSeconds;
+	private int numberOfRetries;
 
-  private CircuitBreakerProperties circuitBreaker;
+	private CircuitBreakerProperties circuitBreaker;
 }

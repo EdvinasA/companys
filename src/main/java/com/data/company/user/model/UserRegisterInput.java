@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class UserRegisterInput {
 
-  private String email;
+	private String email;
 
-  private String name;
+	private String name;
 
-  private String lastName;
+	private String lastName;
 
-  private String password;
+	private String password;
 }

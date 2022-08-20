@@ -22,34 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class UserController {
 
-  private final UserService userService;
+	private final UserService userService;
 
-  @PostMapping("/login")
-  public ResponseEntity<User> login(@RequestBody UserLoginInput userLoginInputBody) {
-    log.info("Checking if user provided valid credentials for email {}",
-        userLoginInputBody.getEmail());
-    return ResponseEntity.ok(userService.login(userLoginInputBody));
-  }
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody UserLoginInput userLoginInputBody) {
+		log.info("Checking if user provided valid credentials for email {}",
+				userLoginInputBody.getEmail());
+		return ResponseEntity.ok(userService.login(userLoginInputBody));
+	}
 
-  @PostMapping("/register")
-  public ResponseEntity<User> register(@RequestBody UserRegisterInput userRegisterInputBody) {
-    log.info("Checking if user provided valid credentials for email {}",
-        userRegisterInputBody.getEmail());
-    return ResponseEntity.ok(userService.register(userRegisterInputBody));
-  }
+	@PostMapping("/register")
+	public ResponseEntity<User> register(@RequestBody UserRegisterInput userRegisterInputBody) {
+		log.info("Checking if user provided valid credentials for email {}",
+				userRegisterInputBody.getEmail());
+		return ResponseEntity.ok(userService.register(userRegisterInputBody));
+	}
 
-  @GetMapping("{token}")
-  public ResponseEntity<User> getUserByToken(@PathVariable String token) {
-    return ResponseEntity.ok(userService.validateToken(token));
-  }
+	@GetMapping("{token}")
+	public ResponseEntity<User> getUserByToken(@PathVariable String token) {
+		return ResponseEntity.ok(userService.validateToken(token));
+	}
 
-  @PutMapping
-  public ResponseEntity<User> updateUserInformation(@RequestBody UserUpdateInput input) {
-    log.info("Updating user {}", input);
+	@PutMapping
+	public ResponseEntity<User> updateUserInformation(@RequestBody UserUpdateInput input) {
+		log.info("Updating user {}", input);
 
-    User result = userService.updateUser(input);
-    return ResponseEntity.ok(result);
-  }
-
+		User result = userService.updateUser(input);
+		return ResponseEntity.ok(result);
+	}
 
 }

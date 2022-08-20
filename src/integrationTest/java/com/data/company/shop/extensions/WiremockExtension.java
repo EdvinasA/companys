@@ -9,20 +9,20 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class WiremockExtension extends WireMockServer implements BeforeEachCallback, AfterEachCallback {
 
-  public WiremockExtension() {
-    super(8888);
-  }
+	public WiremockExtension() {
+		super(8888);
+	}
 
-  @Override
-  public void afterEach(ExtensionContext context){
-    stop();
-  }
+	@Override
+	public void afterEach(ExtensionContext context) {
+		stop();
+	}
 
-  @Override
-  public void beforeEach(ExtensionContext context) {
-    start();
-    resetAll();
+	@Override
+	public void beforeEach(ExtensionContext context) {
+		start();
+		resetAll();
 
-    configureFor("localhost", 8888);
-  }
+		configureFor("localhost", 8888);
+	}
 }

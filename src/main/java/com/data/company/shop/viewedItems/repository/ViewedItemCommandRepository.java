@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class ViewedItemCommandRepository {
 
-  private final ViewedItemJpaRepository jpaRepository;
-  private final ViewedItemConverter converter;
+	private final ViewedItemJpaRepository jpaRepository;
+	private final ViewedItemConverter converter;
 
-  @Transactional
-  public void create(ViewedItem viewedItem) {
-    ViewedItemEntity entity = converter.convertToEntity(viewedItem);
+	@Transactional
+	public void create(ViewedItem viewedItem) {
+		ViewedItemEntity entity = converter.convertToEntity(viewedItem);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 }

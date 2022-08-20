@@ -9,15 +9,15 @@ import lombok.Data;
 @Data
 public class Order {
 
-  private UUID id;
-  private UUID userId;
-  private String orderNumber;
-  private LocalDate orderDate;
-  private String collectOption;
-  private String paymentMethod;
-  private List<OrderedItems> orderedItems;
-  private File invoice;
-  private double totalPrice;
-  private LocalDate orderUpdate;
-  private Status status;
+	private UUID id;
+	private UUID userId;
+	private String orderNumber;
+	private LocalDate orderDate;
+	private String collectOption;
+	private String paymentMethod;
+	private List<OrderedItems> orderedItems;
+	private File invoice;
+	private double totalPrice;
+	private LocalDate orderUpdate;
+	private Status status;
 }

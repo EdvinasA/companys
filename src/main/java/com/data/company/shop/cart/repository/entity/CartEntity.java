@@ -19,20 +19,20 @@ import lombok.Data;
 @Data
 public class CartEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "purchase_date")
-  private LocalDateTime purchaseDate;
+	@Column(name = "purchase_date")
+	private LocalDateTime purchaseDate;
 
-  @Column(name = "user_id")
-  private UUID userId;
+	@Column(name = "user_id")
+	private UUID userId;
 
-  @Column(name = "status")
-  @Enumerated(EnumType.STRING)
-  private CartStatus status;
+	@Column(name = "status")
+	@Enumerated(EnumType.STRING)
+	private CartStatus status;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "cart_id")
-  private List<CartItemEntity> cartItems = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "cart_id")
+	private List<CartItemEntity> cartItems = new ArrayList<>();
 }

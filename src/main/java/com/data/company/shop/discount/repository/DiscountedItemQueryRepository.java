@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class DiscountedItemQueryRepository {
 
-  private final DiscountedItemJpaRepository jpaRepository;
-  private final DiscountedItemConverter converter;
+	private final DiscountedItemJpaRepository jpaRepository;
+	private final DiscountedItemConverter converter;
 
-  @Transactional
-  public List<DiscountedItem> findAllDiscountedItemsByDiscountId(UUID discountId) {
-    return jpaRepository.findByDiscountId(discountId)
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	@Transactional
+	public List<DiscountedItem> findAllDiscountedItemsByDiscountId(UUID discountId) {
+		return jpaRepository.findByDiscountId(discountId)
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

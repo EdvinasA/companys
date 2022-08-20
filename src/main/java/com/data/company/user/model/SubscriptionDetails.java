@@ -7,25 +7,25 @@ import lombok.Data;
 @Data
 public class SubscriptionDetails {
 
-  private Long id;
+	private Long id;
 
-  private Boolean receiveEmails;
+	private Boolean receiveEmails;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate receiveEmailsDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate receiveEmailsDate;
 
-  private Boolean receiveEmailsAboutLookedItems;
+	private Boolean receiveEmailsAboutLookedItems;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate receiveEmailsAboutLookedItemsDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate receiveEmailsAboutLookedItemsDate;
 
-  private Boolean receiveEmailsAboutGivingFeedback;
+	private Boolean receiveEmailsAboutGivingFeedback;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate receiveEmailsAboutGivingFeedbackDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate receiveEmailsAboutGivingFeedbackDate;
 
-  private Boolean receiveEmailsAboutServiceQuality;
+	private Boolean receiveEmailsAboutServiceQuality;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate receiveEmailsAboutServiceQualityDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate receiveEmailsAboutServiceQualityDate;
 }

@@ -2,11 +2,8 @@ package com.data.company.configuration;
 
 import com.data.company.jwt.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.logging.LogFile;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,28 +17,28 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable();
-    http.cors();
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
+		http.cors();
 
-    http.authorizeRequests()
-//        .antMatchers(HttpMethod.POST, "/user/**").permitAll()
-        .anyRequest()
-        .permitAll()
-//        .authenticated()
-        .and()
-        .httpBasic();
+		http.authorizeRequests()
+				//        .antMatchers(HttpMethod.POST, "/user/**").permitAll()
+				.anyRequest()
+				.permitAll()
+				//        .authenticated()
+				.and()
+				.httpBasic();
 
-    http.addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-  }
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
 }

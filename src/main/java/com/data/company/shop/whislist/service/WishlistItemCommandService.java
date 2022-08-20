@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WishlistItemCommandService {
 
-  private final WishlistItemCommandRepository commandRepository;
+	private final WishlistItemCommandRepository commandRepository;
 
-  public void addItemToWishlistProfile(WishlistItem input) {
-    input.setId(UUID.randomUUID());
-    commandRepository.create(input);
-  }
+	public void addItemToWishlistProfile(WishlistItem input) {
+		input.setId(UUID.randomUUID());
+		commandRepository.create(input);
+	}
 
-  public void deleteItemFromWishlist(UUID itemId) {
-    commandRepository.delete(itemId);
-  }
+	public void deleteItemFromWishlist(UUID itemId) {
+		commandRepository.delete(itemId);
+	}
 
-  public void deleteItemsFromWishlist(List<WishlistItem> items) {
-    commandRepository.deleteAllByProfileId(items);
-  }
+	public void deleteItemsFromWishlist(List<WishlistItem> items) {
+		commandRepository.deleteAllByProfileId(items);
+	}
 }

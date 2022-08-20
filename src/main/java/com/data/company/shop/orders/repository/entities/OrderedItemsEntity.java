@@ -18,46 +18,48 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderedItemsEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-  @Column(name = "item_id")
-  private UUID itemId;
+	@Column(name = "item_id")
+	private UUID itemId;
 
-  @Column(name = "picture")
-  private String picture;
+	@Column(name = "picture")
+	private String picture;
 
-  @Column(name = "item_name")
-  private String itemName;
+	@Column(name = "item_name")
+	private String itemName;
 
-  @Column(name = "item_code")
-  private String itemCode;
+	@Column(name = "item_code")
+	private String itemCode;
 
-  @Column(name = "item_price")
-  private double itemPrice;
+	@Column(name = "item_price")
+	private double itemPrice;
 
-  @Column(name = "item_quantity")
-  private Integer itemQuantity;
+	@Column(name = "item_quantity")
+	private Integer itemQuantity;
 
-  @Column(name = "item_insurance")
-  private boolean itemInsurance;
+	@Column(name = "item_insurance")
+	private boolean itemInsurance;
 
-  @Column(name = "item_warranty")
-  private boolean itemWarranty;
+	@Column(name = "item_warranty")
+	private boolean itemWarranty;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private OrderEntity order;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private OrderEntity order;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof OrderedItemsEntity)) return false;
-    return id != null && id.equals(((OrderedItemsEntity) o).getId());
-  }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof OrderedItemsEntity))
+			return false;
+		return id != null && id.equals(((OrderedItemsEntity) o).getId());
+	}
 
-  @Override
-  public int hashCode() {
-    return getClass().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

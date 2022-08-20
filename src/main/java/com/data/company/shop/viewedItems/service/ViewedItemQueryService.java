@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ViewedItemQueryService {
 
-  private final ViewedItemQueryRepository queryRepository;
+	private final ViewedItemQueryRepository queryRepository;
 
-  public List<ViewedItem> getViewedItemsByUserId(UUID userId) {
-    return queryRepository.getListOfViewedItems(userId);
-  }
+	public List<ViewedItem> getViewedItemsByUserId(UUID userId) {
+		return queryRepository.getListOfViewedItems(userId);
+	}
 }

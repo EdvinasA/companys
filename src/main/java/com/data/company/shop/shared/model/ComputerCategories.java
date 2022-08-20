@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class ComputerCategories {
 
-  private List<String> mainCategories;
+	private List<String> mainCategories;
 }

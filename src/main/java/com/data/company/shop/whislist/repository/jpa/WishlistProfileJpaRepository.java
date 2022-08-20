@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WishlistProfileJpaRepository extends JpaRepository<WishlistProfileEntity, UUID> {
 
-  List<WishlistProfileEntity> findAllByUserId(UUID userId);
+	List<WishlistProfileEntity> findAllByUserId(UUID userId);
 }

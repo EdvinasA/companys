@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class CompanyCommandRepository {
 
-  private final CompanyRepository companyCommandRepository;
-  private final CompanyDataConverter companyDataConverter;
+	private final CompanyRepository companyCommandRepository;
+	private final CompanyDataConverter companyDataConverter;
 
-  @Transactional
-  public void save(CompanyData companyData) {
-    CompanyDataEntity entity = companyDataConverter.convertToEntity(companyData);
+	@Transactional
+	public void save(CompanyData companyData) {
+		CompanyDataEntity entity = companyDataConverter.convertToEntity(companyData);
 
-    companyCommandRepository.save(entity);
-  }
+		companyCommandRepository.save(entity);
+	}
 
 }

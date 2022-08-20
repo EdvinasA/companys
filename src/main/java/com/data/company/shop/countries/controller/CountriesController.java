@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class CountriesController {
 
-  private final CountriesQueryService queryService;
-  private final CountriesCommandService commandService;
+	private final CountriesQueryService queryService;
+	private final CountriesCommandService commandService;
 
-  @PostMapping
-  public ResponseEntity<Void> ingestCountries() {
-    commandService.createCountry();
-    return ResponseEntity.ok(null);
-  }
+	@PostMapping
+	public ResponseEntity<Void> ingestCountries() {
+		commandService.createCountry();
+		return ResponseEntity.ok(null);
+	}
 
-  @GetMapping
-  public ResponseEntity<List<CountryName>> getCountries() {
-    return ResponseEntity.ok(queryService.getAll());
-  }
+	@GetMapping
+	public ResponseEntity<List<CountryName>> getCountries() {
+		return ResponseEntity.ok(queryService.getAll());
+	}
 }

@@ -7,25 +7,25 @@ import lombok.Data;
 @Data
 public class OrderedItems {
 
-  private Long id;
-  private UUID itemId;
-  private String picture;
-  private String itemName;
-  private String itemCode;
-  private double itemPrice;
-  private Integer itemQuantity;
-  private boolean itemInsurance;
-  private boolean itemWarranty;
+	private Long id;
+	private UUID itemId;
+	private String picture;
+	private String itemName;
+	private String itemCode;
+	private double itemPrice;
+	private Integer itemQuantity;
+	private boolean itemInsurance;
+	private boolean itemWarranty;
 
-  public static OrderedItems from(CartItem cartItem) {
-    return new OrderedItems()
-        .setItemId(cartItem.getItemId())
-        .setPicture(cartItem.getPicture())
-        .setItemName(cartItem.getItemName())
-        .setItemCode(cartItem.getItemCode())
-        .setItemPrice(cartItem.getItemPrice())
-        .setItemQuantity(cartItem.getItemQuantity())
-        .setItemInsurance(cartItem.isItemInsurance())
-        .setItemWarranty(cartItem.isItemWarranty());
-  }
+	public static OrderedItems from(CartItem cartItem) {
+		return new OrderedItems()
+				.setItemId(cartItem.getItemId())
+				.setPicture(cartItem.getPicture())
+				.setItemName(cartItem.getItemName())
+				.setItemCode(cartItem.getItemCode())
+				.setItemPrice(cartItem.getItemPrice())
+				.setItemQuantity(cartItem.getItemQuantity())
+				.setItemInsurance(cartItem.isItemInsurance())
+				.setItemWarranty(cartItem.isItemWarranty());
+	}
 }

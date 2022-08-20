@@ -24,38 +24,38 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "user_id")
-  private UUID userId;
+	@Column(name = "user_id")
+	private UUID userId;
 
-  @Column(name = "order_number")
-  private String orderNumber;
+	@Column(name = "order_number")
+	private String orderNumber;
 
-  @Column(name = "order_date")
-  private LocalDate orderDate;
+	@Column(name = "order_date")
+	private LocalDate orderDate;
 
-  @Column(name = "collect_option")
-  private String collectOption;
+	@Column(name = "collect_option")
+	private String collectOption;
 
-  @Column(name = "payment_method")
-  private String paymentMethod;
+	@Column(name = "payment_method")
+	private String paymentMethod;
 
-  @Column(name = "invoice")
-  private File invoice;
+	@Column(name = "invoice")
+	private File invoice;
 
-  @Column(name = "total_price")
-  private double totalPrice;
+	@Column(name = "total_price")
+	private double totalPrice;
 
-  @Column(name = "order_update")
-  private LocalDate orderUpdate;
+	@Column(name = "order_update")
+	private LocalDate orderUpdate;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "order_id")
-  private List<OrderedItemsEntity> orderedItems = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "order_id")
+	private List<OrderedItemsEntity> orderedItems = new ArrayList<>();
 
-  @Column(name = "status")
-  @Enumerated(value = EnumType.STRING)
-  private Status status;
+	@Column(name = "status")
+	@Enumerated(value = EnumType.STRING)
+	private Status status;
 }

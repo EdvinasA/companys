@@ -19,19 +19,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WishlistProfileEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "name")
-  private String name;
+	@Column(name = "name")
+	private String name;
 
-  @OneToMany(
-      cascade = CascadeType.REMOVE,
-      orphanRemoval = true
-  )
-  @JoinColumn(name = "wishlist_profile_id")
-  private List<WishlistItemEntity> items = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JoinColumn(name = "wishlist_profile_id")
+	private List<WishlistItemEntity> items = new ArrayList<>();
 
-  @Column(name = "user_id")
-  private UUID userId;
+	@Column(name = "user_id")
+	private UUID userId;
 }

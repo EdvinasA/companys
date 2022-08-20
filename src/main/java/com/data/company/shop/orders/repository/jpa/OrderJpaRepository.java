@@ -8,10 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, UUID> {
 
-  @Query(value = "SELECT COUNT(*) "
-      + "FROM orders",
-      nativeQuery = true)
-  Integer findCountOfOrdersInDatabase();
+	@Query(value = "SELECT COUNT(*) "
+			+ "FROM orders", nativeQuery = true)
+	Integer findCountOfOrdersInDatabase();
 
-  List<OrderEntity> findByUserId(UUID userId);
+	List<OrderEntity> findByUserId(UUID userId);
 }

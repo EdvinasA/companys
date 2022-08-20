@@ -12,21 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class LaptopCommandRepository {
 
-  private final LaptopConverter converter;
-  private final LaptopRepository jpaRepository;
+	private final LaptopConverter converter;
+	private final LaptopRepository jpaRepository;
 
-  @Transactional
-  public void save(Laptop input) {
-    LaptopEntity entity = converter.convertToEntity(input);
+	@Transactional
+	public void save(Laptop input) {
+		LaptopEntity entity = converter.convertToEntity(input);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 
-  @Transactional
-  public void update(Laptop input) {
-    LaptopEntity entity = converter.convertToEntity(input);
+	@Transactional
+	public void update(Laptop input) {
+		LaptopEntity entity = converter.convertToEntity(input);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 
 }

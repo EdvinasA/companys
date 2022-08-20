@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class DiscountQueryRepository {
 
-  private final DiscountJpaRepository jpaRepository;
-  private final DiscountConverter converter;
+	private final DiscountJpaRepository jpaRepository;
+	private final DiscountConverter converter;
 
-  @Transactional
-  public Optional<Discount> findDiscountByCode(String code) {
-    return jpaRepository.findByCodeAndLatestDate(code)
-        .stream()
-        .map(converter::convertFromEntity)
-        .findFirst();
-  }
+	@Transactional
+	public Optional<Discount> findDiscountByCode(String code) {
+		return jpaRepository.findByCodeAndLatestDate(code)
+				.stream()
+				.map(converter::convertFromEntity)
+				.findFirst();
+	}
 }

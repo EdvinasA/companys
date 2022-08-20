@@ -20,27 +20,27 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class CartController {
 
-  private final CartCommandService commandService;
-  private final CartQueryService queryService;
+	private final CartCommandService commandService;
+	private final CartQueryService queryService;
 
-  @PutMapping
-  public ResponseEntity<Void> updateCart(@RequestBody Cart cart, @PathVariable UUID userId) {
-    cart.setUserId(userId);
+	@PutMapping
+	public ResponseEntity<Void> updateCart(@RequestBody Cart cart, @PathVariable UUID userId) {
+		cart.setUserId(userId);
 
-    log.info("Received update cart request for user with id: {}", userId);
+		log.info("Received update cart request for user with id: {}", userId);
 
-    commandService.updateCart(cart);
-    log.info("Cart was updated");
+		commandService.updateCart(cart);
+		log.info("Cart was updated");
 
-    return ResponseEntity.ok(null);
-  }
+		return ResponseEntity.ok(null);
+	}
 
-  @GetMapping
-  public ResponseEntity<Cart> getCartByUserId(@PathVariable UUID userId) {
-    log.info("Retrieving cart items for userId={}", userId);
+	@GetMapping
+	public ResponseEntity<Cart> getCartByUserId(@PathVariable UUID userId) {
+		log.info("Retrieving cart items for userId={}", userId);
 
-    Cart cart = queryService.findByUserId(userId);
+		Cart cart = queryService.findByUserId(userId);
 
-    return ResponseEntity.ok(cart);
-  }
+		return ResponseEntity.ok(cart);
+	}
 }

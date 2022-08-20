@@ -1,11 +1,9 @@
 package com.data.company.shop.whislist.repository.entity;
 
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,25 +14,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WishlistItemEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "item_id")
-  private UUID itemId;
+	@Column(name = "item_id")
+	private UUID itemId;
 
-  @Column(name = "item_name")
-  private String itemName;
+	@Column(name = "item_name")
+	private String itemName;
 
-  @Column(name = "item_code")
-  private String itemCode;
+	@Column(name = "item_code")
+	private String itemCode;
 
-  @Column(name = "item_picture")
-  private String itemPicture;
+	@Column(name = "item_picture")
+	private String itemPicture;
 
-  @Column(name = "item_price")
-  private double itemPrice;
+	@Column(name = "item_price")
+	private double itemPrice;
 
-  @Column(name = "wishlist_profile_id")
-  private UUID wishListProfileId;
+	@Column(name = "wishlist_profile_id")
+	private UUID wishListProfileId;
 
 }

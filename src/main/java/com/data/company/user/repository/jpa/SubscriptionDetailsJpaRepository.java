@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SubscriptionDetailsJpaRepository extends JpaRepository<SubscriptionDetailsEntity, Long> {
 
-  Optional<SubscriptionDetailsEntity> findByUserId(UUID userId);
+	Optional<SubscriptionDetailsEntity> findByUserId(UUID userId);
 }

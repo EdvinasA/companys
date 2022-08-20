@@ -18,101 +18,101 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LaptopEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "name")
-  private String name;
+	@Column(name = "name")
+	private String name;
 
-  @Column(name = "picture")
-  private String picture;
+	@Column(name = "picture")
+	private String picture;
 
-  @Column(name = "product_code")
-  private String productCode;
+	@Column(name = "product_code")
+	private String productCode;
 
-  @Column(name = "price")
-  private double price;
+	@Column(name = "price")
+	private double price;
 
-  @Column(name = "product_type")
-  private String productType;
+	@Column(name = "product_type")
+	private String productType;
 
-  @Column(name = "product_creator")
-  private String productCreator;
+	@Column(name = "product_creator")
+	private String productCreator;
 
-  @Column(name = "series")
-  private String series;
+	@Column(name = "series")
+	private String series;
 
-  @Column(name = "model")
-  private String model;
+	@Column(name = "model")
+	private String model;
 
-  @Column(name = "computer_type")
-  private String computerType;
+	@Column(name = "computer_type")
+	private String computerType;
 
-  @Column(name = "weight")
-  private String weight;
+	@Column(name = "weight")
+	private String weight;
 
-  @Column(name = "length")
-  private String length;
+	@Column(name = "length")
+	private String length;
 
-  @Column(name = "screen_size")
-  private String screenSize;
+	@Column(name = "screen_size")
+	private String screenSize;
 
-  @Column(name = "screen_resolution")
-  private String screenResolution;
+	@Column(name = "screen_resolution")
+	private String screenResolution;
 
-  @Column(name = "operational_system")
-  private String operationalSystem;
+	@Column(name = "operational_system")
+	private String operationalSystem;
 
-  @Column(name = "processor_class")
-  private String processorClass;
+	@Column(name = "processor_class")
+	private String processorClass;
 
-  @Column(name = "processor_type")
-  private String processorType;
+	@Column(name = "processor_type")
+	private String processorType;
 
-  @Column(name = "ram_type")
-  private String ramType;
+	@Column(name = "ram_type")
+	private String ramType;
 
-  @Column(name = "amount_of_ram")
-  private String amountOfRam;
+	@Column(name = "amount_of_ram")
+	private String amountOfRam;
 
-  @Column(name = "max_amount_of_ram")
-  private String maxAmountOfRam;
+	@Column(name = "max_amount_of_ram")
+	private String maxAmountOfRam;
 
-  @Column(name = "data_storage_type")
-  private String dataStorageType;
+	@Column(name = "data_storage_type")
+	private String dataStorageType;
 
-  @Column(name = "data_storage_size")
-  private String dataStorageSize;
+	@Column(name = "data_storage_size")
+	private String dataStorageSize;
 
-  @Column(name = "graphics_card_type")
-  private String graphicsCardType;
+	@Column(name = "graphics_card_type")
+	private String graphicsCardType;
 
-  @Column(name = "graphics_card_series")
-  private String graphicsCardSeries;
+	@Column(name = "graphics_card_series")
+	private String graphicsCardSeries;
 
-  @Column(name = "graphics_card_model")
-  private String graphicsCardModel;
+	@Column(name = "graphics_card_model")
+	private String graphicsCardModel;
 
-  @Column(name = "graphics_card_memory_size")
-  private String graphicsCardMemorySize;
+	@Column(name = "graphics_card_memory_size")
+	private String graphicsCardMemorySize;
 
-  @Column(name = "video_camera")
-  private Boolean videoCamera;
+	@Column(name = "video_camera")
+	private Boolean videoCamera;
 
-  @Column(name = "integrated_microphone")
-  private Boolean integratedMicrophone;
+	@Column(name = "integrated_microphone")
+	private Boolean integratedMicrophone;
 
-  @Column(name = "keyboard_language")
-  private String keyboardLanguage;
+	@Column(name = "keyboard_language")
+	private String keyboardLanguage;
 
-  @Column(name = "category")
-  @Enumerated(EnumType.STRING)
-  private Category category;
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
+	private Category category;
 
-  @Column(name = "computer_and_office_category")
-  @Enumerated(EnumType.STRING)
-  private ComputerAndOfficeCategory computerAndOfficeCategory;
+	@Column(name = "computer_and_office_category")
+	@Enumerated(EnumType.STRING)
+	private ComputerAndOfficeCategory computerAndOfficeCategory;
 
-  @Column(name = "stripe_product_id")
-  private String stripeProductId;
+	@Column(name = "stripe_product_id")
+	private String stripeProductId;
 }

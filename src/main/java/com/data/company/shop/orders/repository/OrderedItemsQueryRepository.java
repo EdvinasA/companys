@@ -14,14 +14,14 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class OrderedItemsQueryRepository {
 
-  private final OrderedItemsJpaRepository jpaRepository;
-  private final OrderJpaRepository orderJpaRepository;
-  private final OrderedItemsConverter converter;
+	private final OrderedItemsJpaRepository jpaRepository;
+	private final OrderJpaRepository orderJpaRepository;
+	private final OrderedItemsConverter converter;
 
-  public List<OrderedItems> findOrderedItemsByOrderId(UUID orderId) {
-    return jpaRepository.findByOrder(orderJpaRepository.getById(orderId))
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<OrderedItems> findOrderedItemsByOrderId(UUID orderId) {
+		return jpaRepository.findByOrder(orderJpaRepository.getById(orderId))
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

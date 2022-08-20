@@ -18,35 +18,35 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class OrderCommandService {
 
-  private final OrderCommandRepository commandRepository;
-  private final OrderQueryService queryService;
-  private final CartCommandService cartCommandService;
+	private final OrderCommandRepository commandRepository;
+	private final OrderQueryService queryService;
+	private final CartCommandService cartCommandService;
 
-  // Added Transactional if saving order to database fails, then revert changes
-  @Transactional
-  public void createOrder(List<CartItem> input, UUID userId) {
-    LocalDate currentDate = LocalDate.now();
+	// Added Transactional if saving order to database fails, then revert changes
+	@Transactional
+	public void createOrder(List<CartItem> input, UUID userId) {
+		LocalDate currentDate = LocalDate.now();
 
-    Order order = new Order();
-    order
-        .setId(UUID.randomUUID())
-        .setUserId(userId)
-        .setOrderDate(currentDate)
-        .setOrderUpdate(currentDate)
-        .setStatus(Status.ORDERED)
-        .setOrderedItems(input
-            .stream()
-            .map(OrderedItems::from)
-            .collect(Collectors.toList()))
-        .setOrderNumber(String.format("EA%s%s%s%s",
-            currentDate.getYear(),
-            currentDate.getMonthValue(),
-            currentDate.getDayOfMonth(),
-            queryService.getCountOfOrdersInDatabase()));
+		Order order = new Order();
+		order
+				.setId(UUID.randomUUID())
+				.setUserId(userId)
+				.setOrderDate(currentDate)
+				.setOrderUpdate(currentDate)
+				.setStatus(Status.ORDERED)
+				.setOrderedItems(input
+						.stream()
+						.map(OrderedItems::from)
+						.collect(Collectors.toList()))
+				.setOrderNumber(String.format("EA%s%s%s%s",
+						currentDate.getYear(),
+						currentDate.getMonthValue(),
+						currentDate.getDayOfMonth(),
+						queryService.getCountOfOrdersInDatabase()));
 
-    System.out.println(order);
-    commandRepository.create(order);
+		System.out.println(order);
+		commandRepository.create(order);
 
-    cartCommandService.moveCartToOrder(userId);
-  }
+		cartCommandService.moveCartToOrder(userId);
+	}
 }

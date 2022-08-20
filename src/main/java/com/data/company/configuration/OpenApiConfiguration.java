@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
 
-  @Bean
-  public OpenAPI openApi() {
-    return new OpenAPI()
-        .info(new Info().title("Company data"));
-  }
+	@Bean
+	public OpenAPI openApi() {
+		return new OpenAPI()
+				.info(new Info().title("Company data"));
+	}
 }

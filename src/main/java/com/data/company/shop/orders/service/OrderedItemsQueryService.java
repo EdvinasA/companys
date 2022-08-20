@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class OrderedItemsQueryService {
 
-  private final OrderedItemsQueryRepository queryRepository;
+	private final OrderedItemsQueryRepository queryRepository;
 
-  public List<OrderedItems> findAllByOrderId(UUID orderId) {
-    return queryRepository.findOrderedItemsByOrderId(orderId);
-  }
+	public List<OrderedItems> findAllByOrderId(UUID orderId) {
+		return queryRepository.findOrderedItemsByOrderId(orderId);
+	}
 }

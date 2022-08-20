@@ -14,40 +14,40 @@ import org.springframework.stereotype.Component;
 @Component
 public class CartConverter {
 
-  private final CartItemConverter cartItemConverter;
+	private final CartItemConverter cartItemConverter;
 
-  public Cart convertFromEntity(CartEntity entity) {
-    return new Cart()
-        .setId(entity.getId())
-        .setPurchaseDate(entity.getPurchaseDate())
-        .setUserId(entity.getUserId())
-        .setStatus(entity.getStatus())
-        .setCartItems(entity.getCartItems()
-            .stream()
-            .map(cartItemConverter::convertFromEntity)
-            .collect(Collectors.toList()));
-  }
+	public Cart convertFromEntity(CartEntity entity) {
+		return new Cart()
+				.setId(entity.getId())
+				.setPurchaseDate(entity.getPurchaseDate())
+				.setUserId(entity.getUserId())
+				.setStatus(entity.getStatus())
+				.setCartItems(entity.getCartItems()
+						.stream()
+						.map(cartItemConverter::convertFromEntity)
+						.collect(Collectors.toList()));
+	}
 
-  public CartEntity convertToEntity(Cart cart) {
-    CartEntity cartEntity = new CartEntity()
-        .setId(cart.getId())
-        .setPurchaseDate(cart.getPurchaseDate())
-        .setUserId(cart.getUserId())
-        .setStatus(cart.getStatus());
+	public CartEntity convertToEntity(Cart cart) {
+		CartEntity cartEntity = new CartEntity()
+				.setId(cart.getId())
+				.setPurchaseDate(cart.getPurchaseDate())
+				.setUserId(cart.getUserId())
+				.setStatus(cart.getStatus());
 
-    List<CartItemEntity> cartItemEntities = setIfNotNull(cart.getCartItems());
+		List<CartItemEntity> cartItemEntities = setIfNotNull(cart.getCartItems());
 
-    cartEntity.setCartItems(cartItemEntities);
-    return cartEntity;
-  }
+		cartEntity.setCartItems(cartItemEntities);
+		return cartEntity;
+	}
 
-  private List<CartItemEntity> setIfNotNull(List<CartItem> cartItem) {
-    if (cartItem != null) {
-      return cartItem
-          .stream()
-          .map(cartItemConverter::convertToEntity)
-          .collect(Collectors.toList());
-    }
-    return new ArrayList<>();
-  }
+	private List<CartItemEntity> setIfNotNull(List<CartItem> cartItem) {
+		if (cartItem != null) {
+			return cartItem
+					.stream()
+					.map(cartItemConverter::convertToEntity)
+					.collect(Collectors.toList());
+		}
+		return new ArrayList<>();
+	}
 }

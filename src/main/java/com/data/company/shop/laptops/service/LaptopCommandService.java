@@ -15,31 +15,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class LaptopCommandService {
 
-  private final LaptopCommandRepository commandRepository;
-  private final LaptopQueryRepository queryRepository;
-  private final StripeService stripeService;
+	private final LaptopCommandRepository commandRepository;
+	private final LaptopQueryRepository queryRepository;
+	private final StripeService stripeService;
 
-  public void createNew(Laptop laptop) {
-    laptop.setId(UUID.randomUUID());
+	public void createNew(Laptop laptop) {
+		laptop.setId(UUID.randomUUID());
 
-    commandRepository.save(laptop);
-  }
+		commandRepository.save(laptop);
+	}
 
-  public void updateLaptop() {
-    List<Laptop> laptops = queryRepository.findAll();
+	public void updateLaptop() {
+		List<Laptop> laptops = queryRepository.findAll();
 
-    laptops
-        .forEach(laptop -> {
-          try {
-            if (Objects.isNull(laptop.getStripeProductId())) {
-              String productId = stripeService
-                  .createProductWithPrice(laptop.getName(), laptop.getPrice());
-              laptop.setStripeProductId(productId);
-              commandRepository.update(laptop);
-            }
-          } catch (StripeException e) {
-            e.printStackTrace();
-          }
-        });
-  }
+		laptops
+				.forEach(laptop -> {
+					try {
+						if (Objects.isNull(laptop.getStripeProductId())) {
+							String productId = stripeService
+									.createProductWithPrice(laptop.getName(), laptop.getPrice());
+							laptop.setStripeProductId(productId);
+							commandRepository.update(laptop);
+						}
+					} catch (StripeException e) {
+						e.printStackTrace();
+					}
+				});
+	}
 }

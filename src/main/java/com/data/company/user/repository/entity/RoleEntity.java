@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoleEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-  @Column(name = "role")
-  private String authority;
+	@Column(name = "role")
+	private String authority;
 
 }

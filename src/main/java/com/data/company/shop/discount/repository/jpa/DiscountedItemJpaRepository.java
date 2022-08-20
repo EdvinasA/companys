@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DiscountedItemJpaRepository extends JpaRepository<DiscountedItemEntity, Long> {
 
-  List<DiscountedItemEntity> findByDiscountId(UUID discountId);
+	List<DiscountedItemEntity> findByDiscountId(UUID discountId);
 }

@@ -9,9 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface DiscountJpaRepository extends JpaRepository<DiscountEntity, UUID> {
 
-  @Query(value = "SELECT * FROM discount "
-      + "WHERE valid_until = (SELECT MAX(valid_until) FROM discount WHERE code = :code) "
-      + "AND code = :code",
-      nativeQuery = true)
-  Optional<DiscountEntity> findByCodeAndLatestDate(@Param("code") String code);
+	@Query(value = "SELECT * FROM discount "
+			+ "WHERE valid_until = (SELECT MAX(valid_until) FROM discount WHERE code = :code) "
+			+ "AND code = :code", nativeQuery = true)
+	Optional<DiscountEntity> findByCodeAndLatestDate(@Param("code") String code);
 }

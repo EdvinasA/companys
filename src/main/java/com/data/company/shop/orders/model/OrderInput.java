@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 public class OrderInput {
 
-  private UUID userId;
-  private String orderNumber;
-  private String collectOption;
-  private String paymentMethod;
-  private File invoice;
-  private double totalPrice;
-  private List<OrderedItems> orderedItems;
-  private Status status;
+	private UUID userId;
+	private String orderNumber;
+	private String collectOption;
+	private String paymentMethod;
+	private File invoice;
+	private double totalPrice;
+	private List<OrderedItems> orderedItems;
+	private Status status;
 }

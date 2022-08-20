@@ -13,17 +13,17 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class OrderQueryRepository {
 
-  private final OrderJpaRepository jpaRepository;
-  private final OrderConverter converter;
+	private final OrderJpaRepository jpaRepository;
+	private final OrderConverter converter;
 
-  public Integer getCountOfOrdersInDatabase() {
-    return jpaRepository.findCountOfOrdersInDatabase();
-  }
+	public Integer getCountOfOrdersInDatabase() {
+		return jpaRepository.findCountOfOrdersInDatabase();
+	}
 
-  public List<Order> findAllByUserId(UUID userId) {
-    return jpaRepository.findByUserId(userId)
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<Order> findAllByUserId(UUID userId) {
+		return jpaRepository.findByUserId(userId)
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

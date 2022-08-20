@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ShopController {
 
-  private final ShopQueryService queryService;
+	private final ShopQueryService queryService;
 
-  @GetMapping
-  public ResponseEntity<Categories> getCategories() {
-    log.info("Retrieving list of categories");
+	@GetMapping
+	public ResponseEntity<Categories> getCategories() {
+		log.info("Retrieving list of categories");
 
-    Categories result = queryService.getCategories();
+		Categories result = queryService.getCategories();
 
-    return ResponseEntity.ok(result);
-  }
+		return ResponseEntity.ok(result);
+	}
 }

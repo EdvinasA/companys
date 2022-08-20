@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CountriesQueryService {
 
-  private final CountriesQueryRepository queryRepository;
+	private final CountriesQueryRepository queryRepository;
 
-  public List<CountryName> getAll() {
-    return queryRepository.getAll()
-        .stream()
-        .sorted(Comparator.comparing(CountryName::getCommon))
-        .collect(Collectors.toList());
-  }
+	public List<CountryName> getAll() {
+		return queryRepository.getAll()
+				.stream()
+				.sorted(Comparator.comparing(CountryName::getCommon))
+				.collect(Collectors.toList());
+	}
 
 }

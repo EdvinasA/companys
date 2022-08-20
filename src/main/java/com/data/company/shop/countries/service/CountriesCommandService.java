@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CountriesCommandService {
 
-  private final CountriesCommandRepository commandRepository;
-  private final CountriesClient client;
+	private final CountriesCommandRepository commandRepository;
+	private final CountriesClient client;
 
-  public void createCountry() {
-    List<Country> countries = client.getCountries();
-    countries
-        .forEach(country -> commandRepository.create(country.getName().getCommon()));
-  }
+	public void createCountry() {
+		List<Country> countries = client.getCountries();
+		countries
+				.forEach(country -> commandRepository.create(country.getName().getCommon()));
+	}
 }

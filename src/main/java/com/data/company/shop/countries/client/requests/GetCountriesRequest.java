@@ -9,28 +9,28 @@ import org.springframework.http.HttpMethod;
 
 public class GetCountriesRequest extends ExternalServiceRequest<Void, List<Country>> {
 
-  @Override
-  public HttpMethod getHttpMethod() {
-    return HttpMethod.GET;
-  }
+	@Override
+	public HttpMethod getHttpMethod() {
+		return HttpMethod.GET;
+	}
 
-  @Override
-  public String getEndpoint() {
-    return "/v3.1/region/americas";
-  }
+	@Override
+	public String getEndpoint() {
+		return "/v3.1/region/americas";
+	}
 
-  @Override
-  public String getOperationName() {
-    return "getCountries";
-  }
+	@Override
+	public String getOperationName() {
+		return "getCountries";
+	}
 
-  @Override
-  public Optional<List<Country>> fallbackResponse() {
-    return Optional.empty();
-  }
+	@Override
+	public Optional<List<Country>> fallbackResponse() {
+		return Optional.empty();
+	}
 
-  @Override
-  public ParameterizedTypeReference<List<Country>> getResponseBody() {
-    return new ParameterizedTypeReference<>() {};
-  }
+	@Override
+	public ParameterizedTypeReference<List<Country>> getResponseBody() {
+		return new ParameterizedTypeReference<>() {};
+	}
 }

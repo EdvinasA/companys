@@ -16,19 +16,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DiscountEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "code")
-  private String code;
+	@Column(name = "code")
+	private String code;
 
-  @Column(name = "percent")
-  private int percent;
+	@Column(name = "percent")
+	private int percent;
 
-  @Column(name = "valid_until")
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-  private LocalDate validUntil;
+	@Column(name = "valid_until")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate validUntil;
 
-  @Column(name = "for_all_items")
-  private boolean forAllItems;
+	@Column(name = "for_all_items")
+	private boolean forAllItems;
 }

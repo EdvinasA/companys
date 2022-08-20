@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class OrderedItemsController {
 
-  private final OrderedItemsQueryService queryService;
+	private final OrderedItemsQueryService queryService;
 
-  @GetMapping("{orderId}")
-  public ResponseEntity<List<OrderedItems>> getListOfOrdersForOrder(@PathVariable UUID userId, @PathVariable UUID orderId) {
-    log.info("Received request for retrieving order items: [User ID: {}, Order ID: {}]", userId, orderId);
+	@GetMapping("{orderId}")
+	public ResponseEntity<List<OrderedItems>> getListOfOrdersForOrder(@PathVariable UUID userId, @PathVariable UUID orderId) {
+		log.info("Received request for retrieving order items: [User ID: {}, Order ID: {}]", userId, orderId);
 
-    List<OrderedItems> result = queryService.findAllByOrderId(orderId);
-    log.info("Retrieved a list of ordered items: [Size: {}]", result.size());
+		List<OrderedItems> result = queryService.findAllByOrderId(orderId);
+		log.info("Retrieved a list of ordered items: [Size: {}]", result.size());
 
-    return ResponseEntity.ok(result);
-  }
+		return ResponseEntity.ok(result);
+	}
 }

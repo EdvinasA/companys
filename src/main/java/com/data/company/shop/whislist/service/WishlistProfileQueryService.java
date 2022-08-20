@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WishlistProfileQueryService {
 
-  private final WishlistProfileQueryRepository queryRepository;
+	private final WishlistProfileQueryRepository queryRepository;
 
-  public List<WishlistProfile> findProfilesByUserId(UUID userId) throws StripeException {
-    return queryRepository.getAllWishlistProfilesByUserId(userId);
-  }
+	public List<WishlistProfile> findProfilesByUserId(UUID userId) throws StripeException {
+		return queryRepository.getAllWishlistProfilesByUserId(userId);
+	}
 }

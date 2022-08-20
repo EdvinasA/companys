@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenQueryService {
 
-  private final TokenQueryRepository queryRepository;
+	private final TokenQueryRepository queryRepository;
 
-  public Optional<Token> findByToken(String token) {
-    return queryRepository.findByToken(token);
-  }
+	public Optional<Token> findByToken(String token) {
+		return queryRepository.findByToken(token);
+	}
 }

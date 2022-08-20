@@ -11,5 +11,5 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class StripeProperties {
 
-  private String key;
+	private String key;
 }

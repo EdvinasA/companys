@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenCommandService {
 
-  private final TokenCommandRepository commandRepository;
+	private final TokenCommandRepository commandRepository;
 
-  public void create(Token token) {
-    commandRepository.create(token);
-  }
+	public void create(Token token) {
+		commandRepository.create(token);
+	}
 
 }

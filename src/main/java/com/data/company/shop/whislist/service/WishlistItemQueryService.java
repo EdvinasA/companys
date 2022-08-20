@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WishlistItemQueryService {
 
-  private final WishlistItemQueryRepository queryRepository;
+	private final WishlistItemQueryRepository queryRepository;
 
-  public List<WishlistItem> getListOfWishlistItems(UUID wishlistProfileId) {
-    return queryRepository.getWishlistItems(wishlistProfileId);
-  }
+	public List<WishlistItem> getListOfWishlistItems(UUID wishlistProfileId) {
+		return queryRepository.getWishlistItems(wishlistProfileId);
+	}
 }

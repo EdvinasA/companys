@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CountriesClient {
 
-  private final ExternalServiceRequestExecutor executor;
+	private final ExternalServiceRequestExecutor executor;
 
-  public List<Country> getCountries() {
-    return executor.executeBlocking(new GetCountriesRequest());
-  }
+	public List<Country> getCountries() {
+		return executor.executeBlocking(new GetCountriesRequest());
+	}
 }

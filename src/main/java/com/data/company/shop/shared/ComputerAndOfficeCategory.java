@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ComputerAndOfficeCategory {
 
-  LAPTOPS_AND_THEIR_ACCESSORIES("Laptops and they accessories");
+	LAPTOPS_AND_THEIR_ACCESSORIES("Laptops and they accessories");
 
-  private final String category;
+	private final String category;
 
-  ComputerAndOfficeCategory(String category) {
-    this.category = category;
-  }
+	ComputerAndOfficeCategory(String category) {
+		this.category = category;
+	}
 
-  @JsonValue
-  public String getCategory() {
-    return category;
-  }
+	@JsonValue
+	public String getCategory() {
+		return category;
+	}
 
 }

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class WishlistProfileInput {
 
-  private String name;
+	private String name;
 }

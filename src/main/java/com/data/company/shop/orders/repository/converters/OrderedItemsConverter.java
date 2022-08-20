@@ -7,25 +7,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderedItemsConverter {
 
-  public OrderedItemsEntity convertToEntity(OrderedItems item) {
-    return new OrderedItemsEntity()
-        .setItemCode(item.getItemCode())
-        .setItemId(item.getItemId())
-        .setItemName(item.getItemName())
-        .setItemPrice(item.getItemPrice())
-        .setItemQuantity(item.getItemQuantity())
-        .setPicture(item.getPicture());
-  }
+	public OrderedItemsEntity convertToEntity(OrderedItems item) {
+		return new OrderedItemsEntity()
+				.setItemCode(item.getItemCode())
+				.setItemId(item.getItemId())
+				.setItemName(item.getItemName())
+				.setItemPrice(item.getItemPrice())
+				.setItemQuantity(item.getItemQuantity())
+				.setPicture(item.getPicture());
+	}
 
-  public OrderedItems convertFromEntity(OrderedItemsEntity entity) {
-    return new OrderedItems()
-        .setItemCode(entity.getItemCode())
-        .setItemId(entity.getItemId())
-        .setItemName(entity.getItemName())
-        .setItemPrice(entity.getItemPrice())
-        .setItemQuantity(entity.getItemQuantity())
-        .setItemInsurance(entity.isItemInsurance())
-        .setItemWarranty(entity.isItemWarranty())
-        .setPicture(entity.getPicture());
-  }
+	public OrderedItems convertFromEntity(OrderedItemsEntity entity) {
+		return new OrderedItems()
+				.setItemCode(entity.getItemCode())
+				.setItemId(entity.getItemId())
+				.setItemName(entity.getItemName())
+				.setItemPrice(entity.getItemPrice())
+				.setItemQuantity(entity.getItemQuantity())
+				.setItemInsurance(entity.isItemInsurance())
+				.setItemWarranty(entity.isItemWarranty())
+				.setPicture(entity.getPicture());
+	}
 }

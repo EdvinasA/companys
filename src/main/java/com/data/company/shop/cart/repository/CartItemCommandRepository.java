@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class CartItemCommandRepository {
 
-  private final CartJpaRepository cartJpaRepository;
-  private final CartItemJpaRepository jpaRepository;
+	private final CartJpaRepository cartJpaRepository;
+	private final CartItemJpaRepository jpaRepository;
 
-  @Transactional
-  public void deleteAllCartItems(UUID cartId) {
-    Optional<CartEntity> cartEntity = cartJpaRepository.findByIdNative(cartId);
+	@Transactional
+	public void deleteAllCartItems(UUID cartId) {
+		Optional<CartEntity> cartEntity = cartJpaRepository.findByIdNative(cartId);
 
-    cartEntity.ifPresent(jpaRepository::deleteByCart);
-  }
+		cartEntity.ifPresent(jpaRepository::deleteByCart);
+	}
 }

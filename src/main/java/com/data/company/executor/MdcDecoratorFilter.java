@@ -10,15 +10,15 @@ import reactor.core.publisher.Mono;
 
 public class MdcDecoratorFilter implements ExchangeFilterFunction {
 
-  @Override
-  public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
-    var mdcContextMap = MDC.getCopyOfContextMap();
+	@Override
+	public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
+		var mdcContextMap = MDC.getCopyOfContextMap();
 
-    return next.exchange(request)
-        .doOnEach(value -> {
-          if (Objects.nonNull(mdcContextMap)) {
-            MDC.setContextMap(mdcContextMap);
-          }
-        });
-  }
+		return next.exchange(request)
+				.doOnEach(value -> {
+					if (Objects.nonNull(mdcContextMap)) {
+						MDC.setContextMap(mdcContextMap);
+					}
+				});
+	}
 }

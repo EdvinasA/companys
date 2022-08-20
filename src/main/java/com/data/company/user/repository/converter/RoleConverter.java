@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleConverter {
 
-  public RoleEntity convertToEntity(Role input) {
-    return new RoleEntity()
-        .setAuthority(input.getRole());
-  }
+	public RoleEntity convertToEntity(Role input) {
+		return new RoleEntity()
+				.setAuthority(input.getRole());
+	}
 }

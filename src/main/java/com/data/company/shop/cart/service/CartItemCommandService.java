@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CartItemCommandService {
 
-  private final CartItemCommandRepository commandRepository;
+	private final CartItemCommandRepository commandRepository;
 
-  public void deleteAllCartItems(UUID cartId) {
-    log.info("Removing all items from cart to update with new ones");
-    commandRepository.deleteAllCartItems(cartId);
-  }
+	public void deleteAllCartItems(UUID cartId) {
+		log.info("Removing all items from cart to update with new ones");
+		commandRepository.deleteAllCartItems(cartId);
+	}
 }

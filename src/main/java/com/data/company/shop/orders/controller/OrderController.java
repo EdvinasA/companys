@@ -22,26 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class OrderController {
 
-  private final OrderQueryService queryService;
-  private final OrderCommandService commandService;
+	private final OrderQueryService queryService;
+	private final OrderCommandService commandService;
 
-  @PostMapping
-  public ResponseEntity<Void> createOrder(@RequestBody List<CartItem> input, @PathVariable UUID userId) {
+	@PostMapping
+	public ResponseEntity<Void> createOrder(@RequestBody List<CartItem> input, @PathVariable UUID userId) {
 
-    log.info("Received input for creating order");
-    commandService.createOrder(input, userId);
+		log.info("Received input for creating order");
+		commandService.createOrder(input, userId);
 
-    log.info("Created order");
-    return ResponseEntity.ok(null);
-  }
+		log.info("Created order");
+		return ResponseEntity.ok(null);
+	}
 
-  @GetMapping
-  public ResponseEntity<List<Order>> findAllOrdersByUserId(@PathVariable UUID userId) {
-    log.info("Received request for list of orders for user with id: {}", userId);
+	@GetMapping
+	public ResponseEntity<List<Order>> findAllOrdersByUserId(@PathVariable UUID userId) {
+		log.info("Received request for list of orders for user with id: {}", userId);
 
-    List<Order> result = queryService.findAllByUserId(userId);
-    log.info("Retrieved list of orders [Size: {}]", result.size());
+		List<Order> result = queryService.findAllByUserId(userId);
+		log.info("Retrieved list of orders [Size: {}]", result.size());
 
-    return ResponseEntity.ok(result);
-  }
+		return ResponseEntity.ok(result);
+	}
 }

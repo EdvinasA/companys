@@ -7,27 +7,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class CartItemConverter {
 
-  public CartItemEntity convertToEntity(CartItem input) {
-    return new CartItemEntity()
-        .setItemId(input.getItemId())
-        .setPicture(input.getPicture())
-        .setItemName(input.getItemName())
-        .setItemCode(input.getItemCode())
-        .setItemQuantity(input.getItemQuantity())
-        .setItemPrice(input.getItemPrice())
-        .setItemInsurance(input.isItemInsurance())
-        .setItemWarranty(input.isItemWarranty());
-  }
+	public CartItemEntity convertToEntity(CartItem input) {
+		return new CartItemEntity()
+				.setItemId(input.getItemId())
+				.setPicture(input.getPicture())
+				.setItemName(input.getItemName())
+				.setItemCode(input.getItemCode())
+				.setItemQuantity(input.getItemQuantity())
+				.setItemPrice(input.getItemPrice())
+				.setItemInsurance(input.isItemInsurance())
+				.setItemWarranty(input.isItemWarranty());
+	}
 
-  public CartItem convertFromEntity(CartItemEntity input) {
-    return new CartItem()
-        .setItemId(input.getItemId())
-        .setPicture(input.getPicture())
-        .setItemName(input.getItemName())
-        .setItemCode(input.getItemCode())
-        .setItemQuantity(input.getItemQuantity())
-        .setItemPrice(input.getItemPrice())
-        .setItemInsurance(input.isItemInsurance())
-        .setItemWarranty(input.isItemWarranty());
-  }
+	public CartItem convertFromEntity(CartItemEntity input) {
+		return new CartItem()
+				.setItemId(input.getItemId())
+				.setPicture(input.getPicture())
+				.setItemName(input.getItemName())
+				.setItemCode(input.getItemCode())
+				.setItemQuantity(input.getItemQuantity())
+				.setItemPrice(input.getItemPrice())
+				.setItemInsurance(input.isItemInsurance())
+				.setItemWarranty(input.isItemWarranty());
+	}
 }

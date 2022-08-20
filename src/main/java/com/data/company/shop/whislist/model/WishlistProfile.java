@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class WishlistProfile {
 
-  private UUID id;
+	private UUID id;
 
-  private String name;
+	private String name;
 
-  private List<WishlistItem> items;
+	private List<WishlistItem> items;
 
-  private UUID userId;
+	private UUID userId;
 }

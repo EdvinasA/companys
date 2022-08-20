@@ -9,25 +9,25 @@ import lombok.Data;
 @Data
 public class User {
 
-  private UUID id;
+	private UUID id;
 
-  private String email;
+	private String email;
 
-  private String name;
+	private String name;
 
-  private String lastName;
+	private String lastName;
 
-  private String password;
+	private String password;
 
-  private String token;
+	private String token;
 
-  private SubscriptionDetails subscriptionDetails;
+	private SubscriptionDetails subscriptionDetails;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate registeredDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate registeredDate;
 
-  private List<String> roles;
+	private List<String> roles;
 
-  private List<DeliveryInformation> deliveryInformation;
+	private List<DeliveryInformation> deliveryInformation;
 
 }

@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class TokenCommandRepository {
 
-  private final TokenJpaRepository jpaRepository;
-  private final TokenConverter converter;
+	private final TokenJpaRepository jpaRepository;
+	private final TokenConverter converter;
 
-  @Transactional
-  public void create(Token token) {
-    TokenEntity entity = converter.convertToEntity(token);
+	@Transactional
+	public void create(Token token) {
+		TokenEntity entity = converter.convertToEntity(token);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 }

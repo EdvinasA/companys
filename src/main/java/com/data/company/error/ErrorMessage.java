@@ -2,7 +2,7 @@ package com.data.company.error;
 
 public interface ErrorMessage {
 
-  Enum<?> getCode();
+	Enum<?> getCode();
 
-  String getMessage();
+	String getMessage();
 }

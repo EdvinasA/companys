@@ -9,11 +9,11 @@ import lombok.Data;
 @Data
 public class Discount {
 
-  private UUID id;
-  private String code;
-  private int percent;
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-  private LocalDate validUntil;
-  private boolean forAllItems;
-  private List<UUID> itemIds;
+	private UUID id;
+	private String code;
+	private int percent;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate validUntil;
+	private boolean forAllItems;
+	private List<UUID> itemIds;
 }

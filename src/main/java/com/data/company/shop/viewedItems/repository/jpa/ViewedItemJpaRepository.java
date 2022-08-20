@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ViewedItemJpaRepository extends JpaRepository<ViewedItemEntity, UUID> {
 
-  List<ViewedItemEntity> findByUserId(UUID userId);
+	List<ViewedItemEntity> findByUserId(UUID userId);
 
-  Optional<ViewedItemEntity> findByItemIdAndUserId(UUID itemId, UUID userId);
+	Optional<ViewedItemEntity> findByItemIdAndUserId(UUID itemId, UUID userId);
 }

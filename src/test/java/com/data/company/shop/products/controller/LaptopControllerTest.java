@@ -26,38 +26,37 @@ import org.springframework.http.ResponseEntity;
 @ExtendWith(MockitoExtension.class)
 public class LaptopControllerTest {
 
-  @Mock
-  LaptopCommandService commandService;
+	@Mock
+	LaptopCommandService commandService;
 
-  @Mock
-  LaptopQueryService queryService;
+	@Mock
+	LaptopQueryService queryService;
 
-  @InjectMocks
-  private LaptopController controller;
+	@InjectMocks
+	private LaptopController controller;
 
-  @Test
-  void getPageListOfLaptopsShouldReturnListOfLaptops() {
-    when(queryService.findAll(Pageable.ofSize(10))).thenReturn(new PageImpl<>(List.of(new Laptop(), new Laptop())));
+	@Test
+	void getPageListOfLaptopsShouldReturnListOfLaptops() {
+		when(queryService.findAll(Pageable.ofSize(10))).thenReturn(new PageImpl<>(List.of(new Laptop(), new Laptop())));
 
-    ResponseEntity<Page<Laptop>> result = controller.getPageListOfLaptops(Pageable.ofSize(10));
+		ResponseEntity<Page<Laptop>> result = controller.getPageListOfLaptops(Pageable.ofSize(10));
 
-    assertAll(
-        () -> assertNotNull(Objects.requireNonNull(result.getBody()).getContent()),
-        () -> assertEquals(2, Objects.requireNonNull(result.getBody()).getContent().size())
-    );
-  }
+		assertAll(
+				() -> assertNotNull(Objects.requireNonNull(result.getBody()).getContent()),
+				() -> assertEquals(2, Objects.requireNonNull(result.getBody()).getContent().size()));
+	}
 
-  @Test
-  void createLaptop() {
-    controller.createNewLaptopObject(buildInput());
+	@Test
+	void createLaptop() {
+		controller.createNewLaptopObject(buildInput());
 
-    verify(commandService, times(1)).createNew(buildInput());
-  }
+		verify(commandService, times(1)).createNew(buildInput());
+	}
 
-  private Laptop buildInput() {
-    Laptop laptop = new Laptop();
-    laptop.setName("test");
-    return laptop;
-  }
+	private Laptop buildInput() {
+		Laptop laptop = new Laptop();
+		laptop.setName("test");
+		return laptop;
+	}
 
 }

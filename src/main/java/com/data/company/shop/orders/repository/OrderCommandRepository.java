@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class OrderCommandRepository {
 
-  private final OrderJpaRepository jpaRepository;
-  private final OrderConverter converter;
+	private final OrderJpaRepository jpaRepository;
+	private final OrderConverter converter;
 
-  @Transactional
-  public void create(Order input) {
-    OrderEntity entity = converter.convertToEntity(input);
+	@Transactional
+	public void create(Order input) {
+		OrderEntity entity = converter.convertToEntity(input);
 
-    System.out.println(entity);
-    jpaRepository.save(entity);
-  }
+		System.out.println(entity);
+		jpaRepository.save(entity);
+	}
 }

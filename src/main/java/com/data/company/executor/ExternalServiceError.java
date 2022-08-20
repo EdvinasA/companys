@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExternalServiceError {
 
-  private String code;
-  private String message;
+	private String code;
+	private String message;
 }

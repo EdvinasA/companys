@@ -13,26 +13,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class DiscountQueryService {
 
-  private final DiscountQueryRepository queryRepository;
-  private final DiscountedItemQueryRepository discountedItemQueryRepository;
+	private final DiscountQueryRepository queryRepository;
+	private final DiscountedItemQueryRepository discountedItemQueryRepository;
 
-  public DiscountResponse checkDiscount(String code) {
-    Optional<Discount> storedDiscount = queryRepository.findDiscountByCode(code);
-    if (storedDiscount.isPresent() &&
-        storedDiscount.get().getValidUntil().isAfter(LocalDate.now())) {
-      return new DiscountResponse()
-          .setExpired(false)
-          .setPercent(storedDiscount.get().getPercent())
-          .setCode(code)
-          .setItems(
-              discountedItemQueryRepository
-                  .findAllDiscountedItemsByDiscountId(storedDiscount.get().getId())
-          )
-          .setForAllItems(storedDiscount.get().isForAllItems());
-    }
+	public DiscountResponse checkDiscount(String code) {
+		Optional<Discount> storedDiscount = queryRepository.findDiscountByCode(code);
+		if (storedDiscount.isPresent() &&
+				storedDiscount.get().getValidUntil().isAfter(LocalDate.now())) {
+			return new DiscountResponse()
+					.setExpired(false)
+					.setPercent(storedDiscount.get().getPercent())
+					.setCode(code)
+					.setItems(
+							discountedItemQueryRepository
+									.findAllDiscountedItemsByDiscountId(storedDiscount.get().getId()))
+					.setForAllItems(storedDiscount.get().isForAllItems());
+		}
 
-    return new DiscountResponse()
-        .setExpired(true)
-        .setCode(code);
-  }
+		return new DiscountResponse()
+				.setExpired(true)
+				.setCode(code);
+	}
 }

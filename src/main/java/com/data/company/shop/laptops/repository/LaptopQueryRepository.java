@@ -16,24 +16,24 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class LaptopQueryRepository {
 
-  private final LaptopConverter converter;
-  private final LaptopRepository jpaRepository;
+	private final LaptopConverter converter;
+	private final LaptopRepository jpaRepository;
 
-  public Page<Laptop> findAll(Pageable pageable) {
-    return jpaRepository.findAll(pageable)
-        .map(converter::convertFromEntity);
-  }
+	public Page<Laptop> findAll(Pageable pageable) {
+		return jpaRepository.findAll(pageable)
+				.map(converter::convertFromEntity);
+	}
 
-  public Laptop findById(UUID id) throws NotFoundException {
-    return jpaRepository.findById(id)
-        .map(converter::convertFromEntity)
-        .orElseThrow(NotFoundException::new);
-  }
+	public Laptop findById(UUID id) throws NotFoundException {
+		return jpaRepository.findById(id)
+				.map(converter::convertFromEntity)
+				.orElseThrow(NotFoundException::new);
+	}
 
-  public List<Laptop> findAll() {
-    return jpaRepository.findAll()
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<Laptop> findAll() {
+		return jpaRepository.findAll()
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

@@ -10,5 +10,4 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "integrations.countries")
 @Getter
 @Setter
-public class CountriesProperties extends ExternalServiceProperties {
-}
+public class CountriesProperties extends ExternalServiceProperties {}

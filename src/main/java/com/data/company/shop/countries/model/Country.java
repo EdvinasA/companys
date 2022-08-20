@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class Country {
 
-  private CountryName name;
+	private CountryName name;
 }

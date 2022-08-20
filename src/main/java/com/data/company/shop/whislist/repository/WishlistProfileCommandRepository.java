@@ -13,18 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class WishlistProfileCommandRepository {
 
-  private final WishlistProfileJpaRepository jpaRepository;
-  private final WishlistProfileConverter converter;
+	private final WishlistProfileJpaRepository jpaRepository;
+	private final WishlistProfileConverter converter;
 
-  @Transactional
-  public void create(WishlistProfile wishlistProfile) {
-    WishlistProfileEntity entity = converter.convertToEntity(wishlistProfile);
+	@Transactional
+	public void create(WishlistProfile wishlistProfile) {
+		WishlistProfileEntity entity = converter.convertToEntity(wishlistProfile);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 
-  @Transactional
-  public void delete(UUID wishlistProfileId) {
-    jpaRepository.deleteById(wishlistProfileId);
-  }
+	@Transactional
+	public void delete(UUID wishlistProfileId) {
+		jpaRepository.deleteById(wishlistProfileId);
+	}
 }

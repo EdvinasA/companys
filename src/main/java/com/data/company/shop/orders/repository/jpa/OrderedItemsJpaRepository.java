@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderedItemsJpaRepository extends JpaRepository<OrderedItemsEntity, UUID> {
 
-  List<OrderedItemsEntity> findByOrder(OrderEntity orderId);
+	List<OrderedItemsEntity> findByOrder(OrderEntity orderId);
 }

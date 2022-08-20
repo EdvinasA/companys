@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class TokenQueryRepository {
 
-  private final TokenJpaRepository jpaRepository;
-  private final TokenConverter converter;
+	private final TokenJpaRepository jpaRepository;
+	private final TokenConverter converter;
 
-  public Optional<Token> findByToken(String token) {
-    return jpaRepository.findDistinctByToken(token)
-        .stream()
-        .map(converter::convertFromEntity)
-        .findFirst();
-  }
+	public Optional<Token> findByToken(String token) {
+		return jpaRepository.findDistinctByToken(token)
+				.stream()
+				.map(converter::convertFromEntity)
+				.findFirst();
+	}
 }

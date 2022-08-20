@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TokenEntity {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  @Column(name = "token")
-  private String token;
+	@Column(name = "token")
+	private String token;
 
-  @Column(name = "email")
-  private String email;
+	@Column(name = "email")
+	private String email;
 
-  @Column(name = "date")
-  private Date date;
+	@Column(name = "date")
+	private Date date;
 
 }

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class CountriesQueryRepository {
 
-  private final CountriesJpaRepository jpaRepository;
-  private final CountryConverter converter;
+	private final CountriesJpaRepository jpaRepository;
+	private final CountryConverter converter;
 
-  public List<CountryName> getAll() {
-    return jpaRepository.findAll()
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<CountryName> getAll() {
+		return jpaRepository.findAll()
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

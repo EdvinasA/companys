@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class WishlistItem {
 
-  private UUID id;
-  private UUID itemId;
-  private String itemName;
-  private String itemCode;
-  private String itemPicture;
-  private double itemPrice;
-  private UUID wishListProfileId;
+	private UUID id;
+	private UUID itemId;
+	private String itemName;
+	private String itemCode;
+	private String itemPicture;
+	private double itemPrice;
+	private UUID wishListProfileId;
 }

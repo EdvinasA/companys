@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DiscountedItemEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-  @Column(name = "item_id")
-  private UUID itemId;
+	@Column(name = "item_id")
+	private UUID itemId;
 
-  @Column(name = "discount_id")
-  private UUID discountId;
+	@Column(name = "discount_id")
+	private UUID discountId;
 }

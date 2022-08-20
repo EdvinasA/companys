@@ -13,26 +13,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompanyData {
 
-  @Id
-  private UUID id;
+	@Id
+	private UUID id;
 
-  private String code;
+	private String code;
 
-  private String name;
+	private String name;
 
-  private String address;
+	private String address;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate registeredDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate registeredDate;
 
-  private String companyForm;
+	private String companyForm;
 
-  private String statusName;
+	private String statusName;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate statusSinceDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate statusSinceDate;
 
-  @JsonFormat(pattern="yyyy-MM-dd")
-  private LocalDate formattedInformationDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate formattedInformationDate;
 
 }

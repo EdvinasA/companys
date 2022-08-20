@@ -14,19 +14,19 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class CompanyQueryRepository {
 
-  private final CompanyRepository companyRepository;
-  private final CompanyDataConverter companyDataConverter;
+	private final CompanyRepository companyRepository;
+	private final CompanyDataConverter companyDataConverter;
 
-  public List<CompanyData> findByCode(String code) {
-    return companyRepository.findByCode(code)
-        .stream()
-        .map(companyDataConverter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<CompanyData> findByCode(String code) {
+		return companyRepository.findByCode(code)
+				.stream()
+				.map(companyDataConverter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 
-  public Page<CompanyData> findByNameLike(String name, Pageable pageable) {
-    return companyRepository.findByNameContains(name, pageable)
-        .map(companyDataConverter::convertFromEntity);
-  }
+	public Page<CompanyData> findByNameLike(String name, Pageable pageable) {
+		return companyRepository.findByNameContains(name, pageable)
+				.map(companyDataConverter::convertFromEntity);
+	}
 
 }

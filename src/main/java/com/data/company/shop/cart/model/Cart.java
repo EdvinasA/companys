@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class Cart {
 
-  private UUID id;
-  private List<CartItem> cartItems;
-  private LocalDateTime purchaseDate;
-  private UUID userId;
-  private CartStatus status;
+	private UUID id;
+	private List<CartItem> cartItems;
+	private LocalDateTime purchaseDate;
+	private UUID userId;
+	private CartStatus status;
 
 }

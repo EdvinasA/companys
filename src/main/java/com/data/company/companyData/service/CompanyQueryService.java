@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class CompanyQueryService {
 
-  private final CompanyQueryRepository companyQueryRepository;
+	private final CompanyQueryRepository companyQueryRepository;
 
-  public List<CompanyData> getByCode(String code) {
-    return companyQueryRepository.findByCode(code);
-  }
+	public List<CompanyData> getByCode(String code) {
+		return companyQueryRepository.findByCode(code);
+	}
 
-  public Page<CompanyData> findByName(String name, Pageable pageable) {
-    return companyQueryRepository.findByNameLike(name, pageable);
-  }
+	public Page<CompanyData> findByName(String name, Pageable pageable) {
+		return companyQueryRepository.findByNameLike(name, pageable);
+	}
 
 }

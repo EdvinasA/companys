@@ -14,15 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class DiscountedItemCommandRepository {
 
-  private final DiscountedItemJpaRepository jpaRepository;
-  private final DiscountedItemConverter converter;
+	private final DiscountedItemJpaRepository jpaRepository;
+	private final DiscountedItemConverter converter;
 
-  @Transactional
-  public void create(List<DiscountedItem> input) {
-    List<DiscountedItemEntity> entities = input.stream()
-        .map(converter::convertToEntity)
-        .collect(Collectors.toList());
+	@Transactional
+	public void create(List<DiscountedItem> input) {
+		List<DiscountedItemEntity> entities = input.stream()
+				.map(converter::convertToEntity)
+				.collect(Collectors.toList());
 
-    jpaRepository.saveAll(entities);
-  }
+		jpaRepository.saveAll(entities);
+	}
 }

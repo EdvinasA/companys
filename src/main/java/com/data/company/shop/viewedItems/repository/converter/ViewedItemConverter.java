@@ -7,29 +7,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class ViewedItemConverter {
 
-  public ViewedItemEntity convertToEntity(ViewedItem input) {
-    return new ViewedItemEntity()
-        .setId(input.getId())
-        .setItemId(input.getItemId())
-        .setItemName(input.getItemName())
-        .setItemPicture(input.getItemPicture())
-        .setItemPrice(input.getItemPrice())
-        .setDelivery(input.isDelivery())
-        .setWithdrawal(input.isWithdrawal())
-        .setUserId(input.getUserId())
-        .setItemCode(input.getItemCode());
-  }
+	public ViewedItemEntity convertToEntity(ViewedItem input) {
+		return new ViewedItemEntity()
+				.setId(input.getId())
+				.setItemId(input.getItemId())
+				.setItemName(input.getItemName())
+				.setItemPicture(input.getItemPicture())
+				.setItemPrice(input.getItemPrice())
+				.setDelivery(input.isDelivery())
+				.setWithdrawal(input.isWithdrawal())
+				.setUserId(input.getUserId())
+				.setItemCode(input.getItemCode());
+	}
 
-  public ViewedItem convertFromEntity(ViewedItemEntity entity) {
-    return new ViewedItem()
-        .setId(entity.getId())
-        .setItemId(entity.getItemId())
-        .setItemName(entity.getItemName())
-        .setItemPicture(entity.getItemPicture())
-        .setItemPrice(entity.getItemPrice())
-        .setDelivery(entity.isDelivery())
-        .setWithdrawal(entity.isWithdrawal())
-        .setUserId(entity.getUserId())
-        .setItemCode(entity.getItemCode());
-  }
+	public ViewedItem convertFromEntity(ViewedItemEntity entity) {
+		return new ViewedItem()
+				.setId(entity.getId())
+				.setItemId(entity.getItemId())
+				.setItemName(entity.getItemName())
+				.setItemPicture(entity.getItemPicture())
+				.setItemPrice(entity.getItemPrice())
+				.setDelivery(entity.isDelivery())
+				.setWithdrawal(entity.isWithdrawal())
+				.setUserId(entity.getUserId())
+				.setItemCode(entity.getItemCode());
+	}
 }

@@ -7,17 +7,17 @@ import lombok.Data;
 @Data
 public class UserUpdateInput {
 
-  private UUID id;
+	private UUID id;
 
-  private String name;
+	private String name;
 
-  private String lastName;
+	private String lastName;
 
-  private String password;
+	private String password;
 
-  private SubscriptionDetails subscriptionDetails;
+	private SubscriptionDetails subscriptionDetails;
 
-  private List<String> roles;
+	private List<String> roles;
 
-  private List<DeliveryInformation> deliveryInformation;
+	private List<DeliveryInformation> deliveryInformation;
 }

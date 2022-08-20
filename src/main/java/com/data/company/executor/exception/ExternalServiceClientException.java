@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ExternalServiceClientException extends RuntimeException {
 
-  private ExternalServiceError errorMessage;
+	private ExternalServiceError errorMessage;
 
-  public ExternalServiceClientException(ExternalServiceError errorMessage) {
-    super(errorMessage.getMessage());
-    this.errorMessage = errorMessage;
-  }
+	public ExternalServiceClientException(ExternalServiceError errorMessage) {
+		super(errorMessage.getMessage());
+		this.errorMessage = errorMessage;
+	}
 }

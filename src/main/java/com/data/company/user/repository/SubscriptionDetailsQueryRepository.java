@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SubscriptionDetailsQueryRepository {
 
-  private final SubscriptionDetailsJpaRepository jpaRepository;
-  private final SubscriptionDetailsConverter converter;
+	private final SubscriptionDetailsJpaRepository jpaRepository;
+	private final SubscriptionDetailsConverter converter;
 
-  public SubscriptionDetails findByUserId(UUID userId) {
-    return jpaRepository.findByUserId(userId)
-        .map(converter::convertFromEntity)
-        .orElseThrow(EntityNotFoundException::new);
-  }
+	public SubscriptionDetails findByUserId(UUID userId) {
+		return jpaRepository.findByUserId(userId)
+				.map(converter::convertFromEntity)
+				.orElseThrow(EntityNotFoundException::new);
+	}
 }

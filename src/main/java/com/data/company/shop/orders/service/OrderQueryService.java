@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class OrderQueryService {
 
-  private final OrderQueryRepository queryRepository;
+	private final OrderQueryRepository queryRepository;
 
-  public Integer getCountOfOrdersInDatabase() {
-    return queryRepository.getCountOfOrdersInDatabase();
-  }
+	public Integer getCountOfOrdersInDatabase() {
+		return queryRepository.getCountOfOrdersInDatabase();
+	}
 
-  public List<Order> findAllByUserId(UUID userId) {
-    return queryRepository.findAllByUserId(userId);
-  }
+	public List<Order> findAllByUserId(UUID userId) {
+		return queryRepository.findAllByUserId(userId);
+	}
 }

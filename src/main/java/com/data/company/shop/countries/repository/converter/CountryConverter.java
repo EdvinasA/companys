@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CountryConverter {
 
-  public CountryName convertFromEntity(CountryEntity entity) {
-    return new CountryName()
-        .setCommon(entity.getName());
-  }
+	public CountryName convertFromEntity(CountryEntity entity) {
+		return new CountryName()
+				.setCommon(entity.getName());
+	}
 }

@@ -13,13 +13,13 @@ import org.springframework.stereotype.Repository;
 @AllArgsConstructor
 public class WishlistItemQueryRepository {
 
-  private final WishlistItemJpaRepository jpaRepository;
-  private final WishlistItemConverter converter;
+	private final WishlistItemJpaRepository jpaRepository;
+	private final WishlistItemConverter converter;
 
-  public List<WishlistItem> getWishlistItems(UUID wishlistProfileId) {
-    return jpaRepository.findByWishListProfileId(wishlistProfileId)
-        .stream()
-        .map(converter::convertFromEntity)
-        .collect(Collectors.toList());
-  }
+	public List<WishlistItem> getWishlistItems(UUID wishlistProfileId) {
+		return jpaRepository.findByWishListProfileId(wishlistProfileId)
+				.stream()
+				.map(converter::convertFromEntity)
+				.collect(Collectors.toList());
+	}
 }

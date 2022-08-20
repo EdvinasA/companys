@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class ViewedItemValidator {
 
-  private final ViewedItemQueryRepository queryRepository;
+	private final ViewedItemQueryRepository queryRepository;
 
-  public boolean validate(ViewedItem item) {
-    Optional<ViewedItem> optionalItem = queryRepository.findViewedItem(item.getItemId(), item.getUserId());
+	public boolean validate(ViewedItem item) {
+		Optional<ViewedItem> optionalItem = queryRepository.findViewedItem(item.getItemId(), item.getUserId());
 
-    return optionalItem.isPresent();
-  }
+		return optionalItem.isPresent();
+	}
 }

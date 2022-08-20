@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ShopQueryService {
 
-  public Categories getCategories() {
-    List<String> categories = Stream.of(Category.values())
-        .map(Category::getCategory)
-        .collect(Collectors.toList());
+	public Categories getCategories() {
+		List<String> categories = Stream.of(Category.values())
+				.map(Category::getCategory)
+				.collect(Collectors.toList());
 
-    Categories object = new Categories();
-    object.setMainCategories(categories);
+		Categories object = new Categories();
+		object.setMainCategories(categories);
 
-    return object;
-  }
+		return object;
+	}
 }

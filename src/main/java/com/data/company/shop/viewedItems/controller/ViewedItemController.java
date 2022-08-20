@@ -22,33 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ViewedItemController {
 
-  private final ViewedItemCommandService commandService;
-  private final ViewedItemQueryService queryService;
-  private final ViewedItemValidator validator;
+	private final ViewedItemCommandService commandService;
+	private final ViewedItemQueryService queryService;
+	private final ViewedItemValidator validator;
 
-  @PostMapping
-  public ResponseEntity<Void> createViewedItemForUser(@RequestBody ViewedItem input,
-                                                      @PathVariable UUID userId) {
+	@PostMapping
+	public ResponseEntity<Void> createViewedItemForUser(@RequestBody ViewedItem input,
+			@PathVariable UUID userId) {
 
-    boolean isTrue = validator.validate(input);
+		boolean isTrue = validator.validate(input);
 
-    if (isTrue) {
-      return ResponseEntity.ok(null);
-    }
+		if (isTrue) {
+			return ResponseEntity.ok(null);
+		}
 
-    log.info("Creating viewed item for user with ID: {}", userId);
-    commandService.saveViewedItem(input);
+		log.info("Creating viewed item for user with ID: {}", userId);
+		commandService.saveViewedItem(input);
 
-    return ResponseEntity.ok(null);
-  }
+		return ResponseEntity.ok(null);
+	}
 
-  @GetMapping
-  public ResponseEntity<List<ViewedItem>> getAllViewedItemsForUser(@PathVariable UUID userId) {
-    log.info("Retrieving list of all viewed items for user with ID: {}", userId);
+	@GetMapping
+	public ResponseEntity<List<ViewedItem>> getAllViewedItemsForUser(@PathVariable UUID userId) {
+		log.info("Retrieving list of all viewed items for user with ID: {}", userId);
 
-    List<ViewedItem> result = queryService.getViewedItemsByUserId(userId);
-    log.info("Retrieved list of viewed items: [Size: {}]", result.size());
+		List<ViewedItem> result = queryService.getViewedItemsByUserId(userId);
+		log.info("Retrieved list of viewed items: [Size: {}]", result.size());
 
-    return ResponseEntity.ok(result);
-  }
+		return ResponseEntity.ok(result);
+	}
 }

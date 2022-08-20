@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Token {
 
-  private UUID id;
+	private UUID id;
 
-  private String token;
+	private String token;
 
-  private String email;
+	private String email;
 
-  private Date date;
+	private Date date;
 }

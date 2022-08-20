@@ -11,32 +11,32 @@ import lombok.Data;
 @Entity(name = "company_data")
 public class CompanyDataEntity {
 
-  @Id
-  @Column(name = "id")
-  private UUID id;
+	@Id
+	@Column(name = "id")
+	private UUID id;
 
-  @Column(name = "code")
-  private String code;
+	@Column(name = "code")
+	private String code;
 
-  @Column(name = "name")
-  private String name;
+	@Column(name = "name")
+	private String name;
 
-  @Column(name = "address")
-  private String address;
+	@Column(name = "address")
+	private String address;
 
-  @Column(name = "registered_date")
-  private LocalDate registeredDate;
+	@Column(name = "registered_date")
+	private LocalDate registeredDate;
 
-  @Column(name = "company_form")
-  private String companyForm;
+	@Column(name = "company_form")
+	private String companyForm;
 
-  @Column(name = "status_name")
-  private String statusName;
+	@Column(name = "status_name")
+	private String statusName;
 
-  @Column(name = "status_since_date")
-  private LocalDate statusSinceDate;
+	@Column(name = "status_since_date")
+	private LocalDate statusSinceDate;
 
-  @Column(name = "formatted_information_date")
-  private LocalDate formattedInformationDate;
+	@Column(name = "formatted_information_date")
+	private LocalDate formattedInformationDate;
 
 }

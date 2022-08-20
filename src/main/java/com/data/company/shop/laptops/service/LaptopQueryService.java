@@ -14,18 +14,18 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class LaptopQueryService {
 
-  private final LaptopQueryRepository laptopQueryRepository;
-  private final LaptopCommandService laptopCommandService;
-  private final StripeService stripeService;
+	private final LaptopQueryRepository laptopQueryRepository;
+	private final LaptopCommandService laptopCommandService;
+	private final StripeService stripeService;
 
-  public Page<Laptop> findAll(Pageable pageable) {
-    laptopCommandService.updateLaptop();
-    return laptopQueryRepository.findAll(pageable);
-  }
+	public Page<Laptop> findAll(Pageable pageable) {
+		laptopCommandService.updateLaptop();
+		return laptopQueryRepository.findAll(pageable);
+	}
 
-  public Laptop findById(UUID id) throws NotFoundException {
-    return laptopQueryRepository.findById(id);
-  }
+	public Laptop findById(UUID id) throws NotFoundException {
+		return laptopQueryRepository.findById(id);
+	}
 
-//  public
+	//  public
 }

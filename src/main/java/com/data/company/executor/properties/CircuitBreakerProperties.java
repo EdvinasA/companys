@@ -9,9 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CircuitBreakerProperties {
 
-  private int failureRateThreshold;
-  private int secondsInOpenState;
-  private int permittedNumberOfCallsInHalfOpenState;
-  private int slidingWindowSize;
+	private int failureRateThreshold;
+	private int secondsInOpenState;
+	private int permittedNumberOfCallsInHalfOpenState;
+	private int slidingWindowSize;
 
 }

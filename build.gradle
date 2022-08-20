@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'org.unbroken-dome.test-sets' version '4.0.0'
 	id 'java'
+	id "com.diffplug.spotless" version "6.9.1"
 }
 
 group = 'com.data'
@@ -22,6 +23,23 @@ repositories {
 }
 
 apply plugin: 'java'
+apply plugin: 'com.diffplug.spotless'
+
+spotless {
+	format 'misc', {
+		target '*.gradle', '*.md', '.gitignore', '*.bat'
+
+		trimTrailingWhitespace()
+		indentWithTabs()
+		endWithNewline()
+	}
+
+	java {
+		removeUnusedImports()
+
+		eclipse().configFile("$rootDir/analysis/code-style.xml")
+	}
+}
 
 dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3'

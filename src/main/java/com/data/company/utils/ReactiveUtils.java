@@ -16,96 +16,95 @@ import reactor.util.context.Context;
 @UtilityClass
 public class ReactiveUtils {
 
-  private static final String CONTEXT_MAP = "context-map";
+	private static final String CONTEXT_MAP = "context-map";
 
-  public static Function<Context, Context> put(Map<String, String> mdcContextMap) {
-    return context -> {
-      Optional<Map<String, String>> optionalContextMap = context.getOrEmpty(CONTEXT_MAP);
+	public static Function<Context, Context> put(Map<String, String> mdcContextMap) {
+		return context -> {
+			Optional<Map<String, String>> optionalContextMap = context.getOrEmpty(CONTEXT_MAP);
 
-      if (optionalContextMap.isPresent()) {
-        optionalContextMap.get().putAll(mdcContextMap);
-        return context;
-      }
-      if (Objects.nonNull(mdcContextMap)) {
-        return context.put(CONTEXT_MAP, mdcContextMap);
-      }
+			if (optionalContextMap.isPresent()) {
+				optionalContextMap.get().putAll(mdcContextMap);
+				return context;
+			}
+			if (Objects.nonNull(mdcContextMap)) {
+				return context.put(CONTEXT_MAP, mdcContextMap);
+			}
 
-      return context;
-    };
-  }
+			return context;
+		};
+	}
 
-  public static <T> Consumer<Signal<T>> consumeOnNext(Consumer<T> consumer) {
-    return signal -> {
-      if (signal.getType() != SignalType.ON_NEXT) {
-        return;
-      }
+	public static <T> Consumer<Signal<T>> consumeOnNext(Consumer<T> consumer) {
+		return signal -> {
+			if (signal.getType() != SignalType.ON_NEXT) {
+				return;
+			}
 
-      Optional<Map<String, String>> optionalContextMap = signal.getContextView()
-          .getOrEmpty(CONTEXT_MAP);
+			Optional<Map<String, String>> optionalContextMap = signal.getContextView()
+					.getOrEmpty(CONTEXT_MAP);
 
-      if (optionalContextMap.isEmpty()) {
-        consumer.accept(signal.get());
-      } else {
-        MDC.setContextMap(optionalContextMap.get());
+			if (optionalContextMap.isEmpty()) {
+				consumer.accept(signal.get());
+			} else {
+				MDC.setContextMap(optionalContextMap.get());
 
-        try {
-          consumer.accept(signal.get());
-        } finally {
-          MDC.clear();
-        }
-      }
-    };
-  }
+				try {
+					consumer.accept(signal.get());
+				} finally {
+					MDC.clear();
+				}
+			}
+		};
+	}
 
-  public static <T> Consumer<Signal<T>> consumeOnError(Consumer<Throwable> consumer) {
-    return signal -> {
-      if (!signal.isOnError()) {
-        return;
-      }
+	public static <T> Consumer<Signal<T>> consumeOnError(Consumer<Throwable> consumer) {
+		return signal -> {
+			if (!signal.isOnError()) {
+				return;
+			}
 
-      Optional<Map<String, String>> optionalContextMap = signal.getContextView()
-          .getOrEmpty(CONTEXT_MAP);
+			Optional<Map<String, String>> optionalContextMap = signal.getContextView()
+					.getOrEmpty(CONTEXT_MAP);
 
-      if (optionalContextMap.isEmpty()) {
-        consumer.accept(signal.getThrowable());
-      } else {
-        MDC.setContextMap(optionalContextMap.get());
+			if (optionalContextMap.isEmpty()) {
+				consumer.accept(signal.getThrowable());
+			} else {
+				MDC.setContextMap(optionalContextMap.get());
 
-        try {
-          consumer.accept(signal.getThrowable());
-        } finally {
-          MDC.clear();
-        }
-      }
-    };
-  }
+				try {
+					consumer.accept(signal.getThrowable());
+				} finally {
+					MDC.clear();
+				}
+			}
+		};
+	}
 
-  public static void registerScheduleHook() {
-    Schedulers.onScheduleHook("mdc", runnable -> {
-      Map<String, String> mdcContextMap = MDC.getCopyOfContextMap();
+	public static void registerScheduleHook() {
+		Schedulers.onScheduleHook("mdc", runnable -> {
+			Map<String, String> mdcContextMap = MDC.getCopyOfContextMap();
 
-      return () -> {
-        if (Objects.nonNull(mdcContextMap)) {
-          MDC.setContextMap(mdcContextMap);
-        }
-        try {
-          runnable.run();
+			return () -> {
+				if (Objects.nonNull(mdcContextMap)) {
+					MDC.setContextMap(mdcContextMap);
+				}
+				try {
+					runnable.run();
 
-        } finally {
-        }
-      };
-    });
-  }
+				} finally {}
+			};
+		});
+	}
 
-  public static <T> Function<? super Throwable, ? extends Mono<? extends T>> withMdcContext(
-      Map<String, String> mdcContextMap,
-      Function<? super Throwable, ? extends Mono<? extends T>> function) {
-    return arg -> {
-      if (Objects.nonNull(mdcContextMap)) {
-        MDC.setContextMap(mdcContextMap);
-      }
+	public static <T> Function<? super Throwable, ? extends Mono<? extends T>> withMdcContext(
+			Map<String, String> mdcContextMap,
+			Function<? super Throwable, ? extends Mono<? extends T>> function) {
+		return arg -> {
+			if (Objects.nonNull(mdcContextMap)) {
+				MDC.setContextMap(mdcContextMap);
+			}
 
-      return function.apply(arg);
-    };
-  }
+			return function.apply(arg);
+		};
+	}
 }

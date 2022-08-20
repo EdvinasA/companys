@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class CountriesCommandRepository {
 
-  private final CountriesJpaRepository jpaRepository;
+	private final CountriesJpaRepository jpaRepository;
 
-  @Transactional
-  public void create(String name) {
-    CountryEntity entity = new CountryEntity()
-        .setName(name);
+	@Transactional
+	public void create(String name) {
+		CountryEntity entity = new CountryEntity()
+				.setName(name);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 }

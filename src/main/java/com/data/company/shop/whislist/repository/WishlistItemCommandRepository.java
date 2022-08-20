@@ -4,7 +4,6 @@ import com.data.company.shop.whislist.model.WishlistItem;
 import com.data.company.shop.whislist.repository.converter.WishlistItemConverter;
 import com.data.company.shop.whislist.repository.entity.WishlistItemEntity;
 import com.data.company.shop.whislist.repository.jpa.WishlistItemJpaRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -16,27 +15,27 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class WishlistItemCommandRepository {
 
-  private final WishlistItemJpaRepository jpaRepository;
-  private final WishlistItemConverter converter;
+	private final WishlistItemJpaRepository jpaRepository;
+	private final WishlistItemConverter converter;
 
-  @Transactional
-  public void create(WishlistItem input) {
-    WishlistItemEntity entity = converter.convertToEntity(input);
+	@Transactional
+	public void create(WishlistItem input) {
+		WishlistItemEntity entity = converter.convertToEntity(input);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 
-  @Transactional
-  public void deleteAllByProfileId(List<WishlistItem> input) {
-    List<WishlistItemEntity> entities = input.stream()
-        .map(converter::convertToEntity)
-        .collect(Collectors.toList());
+	@Transactional
+	public void deleteAllByProfileId(List<WishlistItem> input) {
+		List<WishlistItemEntity> entities = input.stream()
+				.map(converter::convertToEntity)
+				.collect(Collectors.toList());
 
-    jpaRepository.deleteAll(entities);
-  }
+		jpaRepository.deleteAll(entities);
+	}
 
-  @Transactional
-  public void delete(UUID itemId) {
-    jpaRepository.deleteById(itemId);
-  }
+	@Transactional
+	public void delete(UUID itemId) {
+		jpaRepository.deleteById(itemId);
+	}
 }

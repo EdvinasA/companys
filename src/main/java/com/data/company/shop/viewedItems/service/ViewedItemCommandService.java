@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ViewedItemCommandService {
 
-  private final ViewedItemCommandRepository commandRepository;
+	private final ViewedItemCommandRepository commandRepository;
 
-  public void saveViewedItem(ViewedItem input) {
-    input.setId(UUID.randomUUID());
+	public void saveViewedItem(ViewedItem input) {
+		input.setId(UUID.randomUUID());
 
-    commandRepository.create(input);
-  }
+		commandRepository.create(input);
+	}
 }

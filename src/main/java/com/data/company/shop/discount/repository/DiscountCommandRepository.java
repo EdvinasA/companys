@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class DiscountCommandRepository {
 
-  private final DiscountJpaRepository jpaRepository;
-  private final DiscountConverter converter;
+	private final DiscountJpaRepository jpaRepository;
+	private final DiscountConverter converter;
 
-  @Transactional
-  public void create(Discount input) {
-    DiscountEntity entity = converter.convertToEntity(input);
+	@Transactional
+	public void create(Discount input) {
+		DiscountEntity entity = converter.convertToEntity(input);
 
-    jpaRepository.save(entity);
-  }
+		jpaRepository.save(entity);
+	}
 }

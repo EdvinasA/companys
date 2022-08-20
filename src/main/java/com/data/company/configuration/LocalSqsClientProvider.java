@@ -8,13 +8,13 @@ import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
 public class LocalSqsClientProvider {
 
-  public static AmazonSQS getSqsClient() {
-    return AmazonSQSClientBuilder
-        .standard()
-        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:9324", "elasticmq"))
-        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
-        .withRegion("eu-west-1")
-        .build();
-  }
+	public static AmazonSQS getSqsClient() {
+		return AmazonSQSClientBuilder
+				.standard()
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:9324", "elasticmq"))
+				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
+				.withRegion("eu-west-1")
+				.build();
+	}
 
 }

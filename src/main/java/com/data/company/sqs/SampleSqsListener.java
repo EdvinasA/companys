@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SampleSqsListener {
 
-  @SqsListener(value = "sample-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
-  public void handle(String message) {
-    log.info("Message = {}", message);
-  }
+	@SqsListener(value = "sample-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+	public void handle(String message) {
+		log.info("Message = {}", message);
+	}
 }

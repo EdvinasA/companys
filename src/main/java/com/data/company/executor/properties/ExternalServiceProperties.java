@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ExternalServiceProperties {
 
-  private String baseUrl;
-  private String basicAuthenticationUsername;
-  private String basicAuthenticationPassword;
-  private ResilienceProperties resilience;
+	private String baseUrl;
+	private String basicAuthenticationUsername;
+	private String basicAuthenticationPassword;
+	private ResilienceProperties resilience;
 }

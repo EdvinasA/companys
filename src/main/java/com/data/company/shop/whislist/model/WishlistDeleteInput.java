@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class WishlistDeleteInput {
 
-  private UUID id;
+	private UUID id;
 }

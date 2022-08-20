@@ -4,18 +4,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Authority {
 
-  USER("USER"),
-  ADMIN("ADMIN");
+	USER("USER"), ADMIN("ADMIN");
 
-  private final String authority;
+	private final String authority;
 
-  Authority(String authority) {
-    this.authority = authority;
-  }
+	Authority(String authority) {
+		this.authority = authority;
+	}
 
-  @JsonValue
-  public String getAuthority() {
-    return authority;
-  }
+	@JsonValue
+	public String getAuthority() {
+		return authority;
+	}
 }
-

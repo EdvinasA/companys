@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TokenJpaRepository extends JpaRepository<TokenEntity, UUID> {
 
-  @Query(value = "SELECT * FROM token t WHERE t.token = :token"
-      , nativeQuery = true)
-  Optional<TokenEntity> findDistinctByToken(@Param("token") String token);
+	@Query(value = "SELECT * FROM token t WHERE t.token = :token", nativeQuery = true)
+	Optional<TokenEntity> findDistinctByToken(@Param("token") String token);
 }

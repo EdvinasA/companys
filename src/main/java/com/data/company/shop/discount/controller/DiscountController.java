@@ -20,26 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class DiscountController {
 
-  private final DiscountCommandService commandService;
-  private final DiscountQueryService queryService;
+	private final DiscountCommandService commandService;
+	private final DiscountQueryService queryService;
 
-  @PostMapping
-  public ResponseEntity<Void> createDiscount(@RequestBody Discount input) {
-    log.info("Received request for creating discount with input: {}", input);
+	@PostMapping
+	public ResponseEntity<Void> createDiscount(@RequestBody Discount input) {
+		log.info("Received request for creating discount with input: {}", input);
 
-    commandService.createDiscount(input);
+		commandService.createDiscount(input);
 
-    log.info("Discount created");
-    return ResponseEntity.ok(null);
-  }
+		log.info("Discount created");
+		return ResponseEntity.ok(null);
+	}
 
-  @GetMapping("{discountCode}")
-  public ResponseEntity<DiscountResponse> checkIfDiscountValid(@PathVariable String discountCode) {
-    log.info("Received discount code: {}, checking if valid.", discountCode);
+	@GetMapping("{discountCode}")
+	public ResponseEntity<DiscountResponse> checkIfDiscountValid(@PathVariable String discountCode) {
+		log.info("Received discount code: {}, checking if valid.", discountCode);
 
-    DiscountResponse result = queryService.checkDiscount(discountCode);
-    log.info("Checked discount code and returning result: {}", result);
+		DiscountResponse result = queryService.checkDiscount(discountCode);
+		log.info("Checked discount code and returning result: {}", result);
 
-    return ResponseEntity.ok(result);
-  }
+		return ResponseEntity.ok(result);
+	}
 }

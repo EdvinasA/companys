@@ -5,9 +5,6 @@ import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.data.company.jwt.model.Token;
 import com.data.company.jwt.repository.TokenCommandRepository;
-import com.data.company.jwt.repository.TokenQueryRepository;
-import com.data.company.jwt.repository.entity.TokenEntity;
-import com.data.company.jwt.repository.jpa.TokenJpaRepository;
 import com.data.company.jwt.service.TokenQueryService;
 import java.time.Instant;
 import java.util.Date;
@@ -22,45 +19,45 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JwtTokenGenerator {
 
-  private final TokenCommandRepository commandRepository;
-  private final TokenQueryService queryService;
-  private static final long expirationDate = 9000000L;
+	private final TokenCommandRepository commandRepository;
+	private final TokenQueryService queryService;
+	private static final long expirationDate = 9000000L;
 
-  public String generateToken(String email) {
-    try {
-      Algorithm algorithm = Algorithm.HMAC256("Secret");
-      Date expiration = Date.from(Instant.now().plusSeconds(expirationDate));
+	public String generateToken(String email) {
+		try {
+			Algorithm algorithm = Algorithm.HMAC256("Secret");
+			Date expiration = Date.from(Instant.now().plusSeconds(expirationDate));
 
-      String token = buildToken(email, algorithm, expiration);
-      log.info("Generated token with expiration date: {}", expiration);
+			String token = buildToken(email, algorithm, expiration);
+			log.info("Generated token with expiration date: {}", expiration);
 
-      commandRepository.create(new Token(UUID.randomUUID(), token, email, expiration));
+			commandRepository.create(new Token(UUID.randomUUID(), token, email, expiration));
 
-      return token;
-    } catch (Exception e) {
-      log.error("Failed to generate token for email: {}", email);
-      throw new RuntimeException(e);
-    }
-  }
+			return token;
+		} catch (Exception e) {
+			log.error("Failed to generate token for email: {}", email);
+			throw new RuntimeException(e);
+		}
+	}
 
-  public boolean validateToken(String tokenForValidation) {
-    Optional<Token> token = queryService.findByToken(tokenForValidation);
+	public boolean validateToken(String tokenForValidation) {
+		Optional<Token> token = queryService.findByToken(tokenForValidation);
 
-    if (token.isPresent() && token.get().getDate().compareTo(Date.from(Instant.now())) > 0) {
-      return tokenForValidation.equals(token.get().getToken());
-    }
-    return false;
-  }
+		if (token.isPresent() && token.get().getDate().compareTo(Date.from(Instant.now())) > 0) {
+			return tokenForValidation.equals(token.get().getToken());
+		}
+		return false;
+	}
 
-  public Optional<Token> getTokenObject(String token) {
-    return queryService.findByToken(token);
-  }
+	public Optional<Token> getTokenObject(String token) {
+		return queryService.findByToken(token);
+	}
 
-  private String buildToken(String email, Algorithm algorithm, Date expiration) {
-    JWTCreator.Builder jwtBuilder = JWT.create();
-    return jwtBuilder
-        .withIssuer(email)
-        .withExpiresAt(expiration)
-        .sign(algorithm);
-  }
+	private String buildToken(String email, Algorithm algorithm, Date expiration) {
+		JWTCreator.Builder jwtBuilder = JWT.create();
+		return jwtBuilder
+				.withIssuer(email)
+				.withExpiresAt(expiration)
+				.sign(algorithm);
+	}
 }

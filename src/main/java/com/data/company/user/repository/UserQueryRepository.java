@@ -8,8 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 import javax.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,28 +15,28 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class UserQueryRepository {
 
-  private final UserJpaRepository userJpaRepository;
-  private final UserConverter converter;
+	private final UserJpaRepository userJpaRepository;
+	private final UserConverter converter;
 
-  @Transactional
-  public User getUserByEmail(String email) {
-    Optional<UserEntity> user = userJpaRepository.findByEmail(email);
-      return user
-          .map(converter::convertFromEntity)
-          .orElseThrow(EntityNotFoundException::new);
-  }
+	@Transactional
+	public User getUserByEmail(String email) {
+		Optional<UserEntity> user = userJpaRepository.findByEmail(email);
+		return user
+				.map(converter::convertFromEntity)
+				.orElseThrow(EntityNotFoundException::new);
+	}
 
-  @Transactional
-  public User findUserByEmail(String email) {
-    return userJpaRepository.findByEmail(email)
-        .map(converter::convertFromEntity)
-        .orElse(new User());
-  }
+	@Transactional
+	public User findUserByEmail(String email) {
+		return userJpaRepository.findByEmail(email)
+				.map(converter::convertFromEntity)
+				.orElse(new User());
+	}
 
-  @Transactional
-  public User findById(UUID userId) {
-    return userJpaRepository.findById(userId)
-        .map(converter::convertFromEntity)
-        .orElseThrow(EntityNotFoundException::new);
-  }
+	@Transactional
+	public User findById(UUID userId) {
+		return userJpaRepository.findById(userId)
+				.map(converter::convertFromEntity)
+				.orElseThrow(EntityNotFoundException::new);
+	}
 }

@@ -7,11 +7,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileExtractor {
 
-  public static XSSFWorkbook readExcelFile(String fileName) throws IOException {
-    IOUtils.setByteArrayMaxOverride(1000000000);
-    FileInputStream file = new FileInputStream(fileName);
+	public static XSSFWorkbook readExcelFile(String fileName) throws IOException {
+		IOUtils.setByteArrayMaxOverride(1000000000);
+		FileInputStream file = new FileInputStream(fileName);
 
-    return new XSSFWorkbook(file);
-  }
+		return new XSSFWorkbook(file);
+	}
 
 }

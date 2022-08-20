@@ -8,13 +8,12 @@ import lombok.Getter;
 @Getter
 public class GeneralErrorMessage implements ErrorMessage {
 
-  protected Enum<?> code;
-  protected String message;
+	protected Enum<?> code;
+	protected String message;
 
-  public GeneralErrorMessage() {
-  }
+	public GeneralErrorMessage() {}
 
-  public GeneralErrorMessage(String message) {
-    this.message = message;
-  }
+	public GeneralErrorMessage(String message) {
+		this.message = message;
+	}
 }

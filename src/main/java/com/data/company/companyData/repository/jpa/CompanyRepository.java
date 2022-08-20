@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CompanyRepository extends JpaRepository<CompanyDataEntity, UUID> {
 
-  List<CompanyDataEntity> findByCode(String id);
+	List<CompanyDataEntity> findByCode(String id);
 
-  Page<CompanyDataEntity> findByNameContains(String name, Pageable pageable);
+	Page<CompanyDataEntity> findByNameContains(String name, Pageable pageable);
 }

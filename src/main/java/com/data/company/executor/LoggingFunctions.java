@@ -7,11 +7,11 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class LoggingFunctions {
 
-  public static ExchangeFilterFunction logRequest() {
-    return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
-      log.info("Calling endpoint {}", clientRequest.url());
+	public static ExchangeFilterFunction logRequest() {
+		return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
+			log.info("Calling endpoint {}", clientRequest.url());
 
-      return Mono.just(clientRequest);
-    });
-  }
+			return Mono.just(clientRequest);
+		});
+	}
 }

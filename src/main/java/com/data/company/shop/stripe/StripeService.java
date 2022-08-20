@@ -13,27 +13,26 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class StripeService {
 
-  public String createProductWithPrice(String productName, double productPrice) throws StripeException {
-    Product product = createProduct(productName);
-    PriceCreateParams params = getPriceCreateParams(product, productPrice);
-    Price.create(params);
-    return product.getId();
-  }
+	public String createProductWithPrice(String productName, double productPrice) throws StripeException {
+		Product product = createProduct(productName);
+		PriceCreateParams params = getPriceCreateParams(product, productPrice);
+		Price.create(params);
+		return product.getId();
+	}
 
-  private PriceCreateParams getPriceCreateParams(Product product, double productPrice) {
-    return PriceCreateParams
-        .builder()
-        .setProduct(product.getId())
-        .setCurrency("EUR")
-        .setUnitAmountDecimal(BigDecimal.valueOf(productPrice))
-        .build();
-  }
+	private PriceCreateParams getPriceCreateParams(Product product, double productPrice) {
+		return PriceCreateParams
+				.builder()
+				.setProduct(product.getId())
+				.setCurrency("EUR")
+				.setUnitAmountDecimal(BigDecimal.valueOf(productPrice))
+				.build();
+	}
 
-  private Product createProduct(String name) throws StripeException {
-    ProductCreateParams productParams =
-        ProductCreateParams.builder()
-            .setName(name)
-            .build();
-    return Product.create(productParams);
-  }
+	private Product createProduct(String name) throws StripeException {
+		ProductCreateParams productParams = ProductCreateParams.builder()
+				.setName(name)
+				.build();
+		return Product.create(productParams);
+	}
 }
