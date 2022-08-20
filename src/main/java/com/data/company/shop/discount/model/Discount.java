@@ -1,6 +1,6 @@
 package com.data.company.shop.discount.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.Data;
 
@@ -10,6 +10,6 @@ public class Discount {
   private UUID id;
   private String code;
   private int percent;
-  private LocalDateTime validUntil;
+  private LocalDate validUntil;
   private boolean forAllItems;
 }

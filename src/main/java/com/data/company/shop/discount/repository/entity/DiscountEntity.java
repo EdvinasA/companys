@@ -1,7 +1,7 @@
 package com.data.company.shop.discount.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +26,8 @@ public class DiscountEntity {
   private int percent;
 
   @Column(name = "valid_until")
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
-  private LocalDateTime validUntil;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+  private LocalDate validUntil;
 
   @Column(name = "for_all_items")
   private boolean forAllItems;
