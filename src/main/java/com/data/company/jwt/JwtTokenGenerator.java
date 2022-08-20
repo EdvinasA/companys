@@ -8,6 +8,7 @@ import com.data.company.jwt.repository.TokenCommandRepository;
 import com.data.company.jwt.repository.TokenQueryRepository;
 import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.jwt.repository.jpa.TokenJpaRepository;
+import com.data.company.jwt.service.TokenQueryService;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class JwtTokenGenerator {
 
   private final TokenCommandRepository commandRepository;
-  private final TokenQueryRepository queryRepository;
+  private final TokenQueryService queryService;
   private static final long expirationDate = 9000000L;
 
   public String generateToken(String email) {
@@ -43,16 +44,16 @@ public class JwtTokenGenerator {
   }
 
   public boolean validateToken(String tokenForValidation) {
-    Token token = queryRepository.findByToken(tokenForValidation);
+    Optional<Token> token = queryService.findByToken(tokenForValidation);
 
-    if (token.getDate() != null && token.getDate().compareTo(Date.from(Instant.now())) > 0) {
-      return tokenForValidation.equals(token.getToken());
+    if (token.isPresent() && token.get().getDate().compareTo(Date.from(Instant.now())) > 0) {
+      return tokenForValidation.equals(token.get().getToken());
     }
     return false;
   }
 
-  public Token getTokenObject(String token) {
-    return queryRepository.findByToken(token);
+  public Optional<Token> getTokenObject(String token) {
+    return queryService.findByToken(token);
   }
 
   private String buildToken(String email, Algorithm algorithm, Date expiration) {

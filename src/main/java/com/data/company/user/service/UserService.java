@@ -4,12 +4,11 @@ import com.data.company.exceptions.PasswordNotMatchingException;
 import com.data.company.exceptions.RegisteredEmailFoundException;
 import com.data.company.exceptions.TokenNotFoundException;
 import com.data.company.jwt.JwtTokenGenerator;
-import com.data.company.jwt.repository.entity.TokenEntity;
-import com.data.company.jwt.repository.jpa.TokenJpaRepository;
+import com.data.company.jwt.model.Token;
+import com.data.company.jwt.service.TokenQueryService;
 import com.data.company.shop.cart.service.CartCommandService;
 import com.data.company.shop.whislist.model.WishlistProfileInput;
 import com.data.company.shop.whislist.service.WishlistProfileCommandService;
-import com.data.company.user.model.DeliveryInformation;
 import com.data.company.user.model.SubscriptionDetails;
 import com.data.company.user.model.UserLoginInput;
 import com.data.company.user.model.UserRegisterInput;
@@ -20,10 +19,8 @@ import com.data.company.user.repository.UserCommandRepository;
 import com.data.company.user.repository.UserQueryRepository;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
   private final UserQueryRepository queryRepository;
-  private final TokenJpaRepository tokenJpaRepository;
+  private final TokenQueryService tokenQueryService;
   private final SubscriptionDetailsQueryRepository subscriptionDetailsQueryRepository;
   private final UserCommandRepository commandRepository;
 
@@ -93,12 +90,12 @@ public class UserService {
   }
 
   public User validateToken(String token) {
-    Optional<TokenEntity> entityOptional = tokenJpaRepository.findDistinctByToken(token);
-    TokenEntity entity = entityOptional.orElseThrow(TokenNotFoundException::new);
+    Optional<Token> storedTokenOptional = tokenQueryService.findByToken(token);
+    Token storedToken = storedTokenOptional.orElseThrow(TokenNotFoundException::new);
 
-    User user = queryRepository.getUserByEmail(entity.getEmail());
+    User user = queryRepository.getUserByEmail(storedToken.getEmail());
     user.setSubscriptionDetails(subscriptionDetailsQueryRepository.findByUserId(user.getId()));
-    user.setToken(entity.getToken());
+    user.setToken(storedToken.getToken());
 
     return user;
   }

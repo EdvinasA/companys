@@ -4,6 +4,7 @@ import com.data.company.jwt.model.Token;
 import com.data.company.jwt.repository.entity.TokenEntity;
 import com.data.company.user.service.UserDetailsServiceImpl;
 import java.io.IOException;
+import java.util.Optional;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +32,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     String jwt = getJwtFromRequest(request);
 
     if (jwt != null && !jwt.equals("") && jwtProvider.validateToken(jwt)) {
-      Token entity = jwtProvider.getTokenObject(jwt);
-      UserDetails userDetails = userDetailsService.loadUserByUsername(entity.getEmail());
-      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
-          entity, userDetails.getAuthorities());
-      authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+      Optional<Token> storedToken = jwtProvider.getTokenObject(jwt);
+      if (storedToken.isPresent()) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(storedToken.get().getEmail());
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+            userDetails,
+            storedToken.get(), userDetails.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-      SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+      }
     }
     filterChain.doFilter(request, response);
   }
