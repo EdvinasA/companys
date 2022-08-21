@@ -15,6 +15,7 @@ public class OrderInput {
 	private DeliveryOption deliveryOption;
 	private PaymentMethod paymentMethod;
 	private double totalPrice;
+	private Double appliedDiscountAmount;
 	private double deliveryPrice;
 	private List<CartItem> orderedItems;
 	private Status status;
