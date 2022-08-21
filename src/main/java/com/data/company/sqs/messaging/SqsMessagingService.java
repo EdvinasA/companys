@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SqsMessagingService implements MessagingService {
 
-	private final AmazonSQS sqsClient;
+//	private final AmazonSQS sqsClient;
 
 	@Override
 	public void sendMessage(String message) {
