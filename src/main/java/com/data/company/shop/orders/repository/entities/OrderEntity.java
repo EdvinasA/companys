@@ -1,5 +1,6 @@
 package com.data.company.shop.orders.repository.entities;
 
+import com.data.company.shop.orders.model.DeliveryOption;
 import com.data.company.shop.orders.model.PaymentMethod;
 import com.data.company.shop.orders.model.Status;
 import java.io.File;
@@ -38,7 +39,8 @@ public class OrderEntity {
 	private LocalDate orderDate;
 
 	@Column(name = "collect_option")
-	private String collectOption;
+	@Enumerated(value = EnumType.STRING)
+	private DeliveryOption deliveryOption;
 
 	@Column(name = "payment_method")
 	@Enumerated(value = EnumType.STRING)

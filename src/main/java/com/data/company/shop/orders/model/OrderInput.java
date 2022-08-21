@@ -10,10 +10,8 @@ import lombok.Data;
 public class OrderInput {
 
 	private UUID userId;
-	private String orderNumber;
-	private String collectOption;
+	private DeliveryOption deliveryOption;
 	private PaymentMethod paymentMethod;
-	private File invoice;
 	private double totalPrice;
 	private List<CartItem> orderedItems;
 	private Status status;

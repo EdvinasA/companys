@@ -13,8 +13,8 @@ public class Order {
 	private UUID userId;
 	private String orderNumber;
 	private LocalDate orderDate;
-	private String collectOption;
-	private String paymentMethod;
+	private DeliveryOption deliveryOption;
+	private PaymentMethod paymentMethod;
 	private List<OrderedItems> orderedItems;
 	private File invoice;
 	private double totalPrice;
