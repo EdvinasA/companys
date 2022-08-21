@@ -38,6 +38,15 @@ public class OrderEntity {
 	@Column(name = "order_date")
 	private LocalDate orderDate;
 
+	@Column(name = "delivery_address")
+	private String deliveryAddress;
+
+	@Column(name = "withdrawal_location")
+	private String withdrawalLocation;
+
+	@Column(name = "wanted_delivery_time")
+	private String wantedDeliveryTime;
+
 	@Column(name = "collect_option")
 	@Enumerated(value = EnumType.STRING)
 	private DeliveryOption deliveryOption;
@@ -51,6 +60,12 @@ public class OrderEntity {
 
 	@Column(name = "total_price")
 	private double totalPrice;
+
+	@Column(name = "applied_discount_amount")
+	private Double appliedDiscountAmount;
+
+	@Column(name = "delivery_price")
+	private Double deliveryPrice;
 
 	@Column(name = "order_update")
 	private LocalDate orderUpdate;
