@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Status {
 
-	ORDERED("ORDERED"), COMPLETED("COMPLETED");
+	ORDERED("ORDERED"),
+	COMPLETED("COMPLETED");
 
 	private final String status;
 

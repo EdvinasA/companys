@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CartStatus {
 
-	FILLING("FILLING"), MOVED_TO_ORDER("MOVED_TO_ORDER");
+	FILLING("FILLING"),
+	MOVED_TO_ORDER("MOVED_TO_ORDER");
 
 	private final String status;
 

@@ -19,7 +19,6 @@ public class OrderCommandRepository {
 	public void create(Order input) {
 		OrderEntity entity = converter.convertToEntity(input);
 
-		System.out.println(entity);
 		jpaRepository.save(entity);
 	}
 }

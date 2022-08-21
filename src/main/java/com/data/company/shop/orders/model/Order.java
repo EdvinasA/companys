@@ -13,6 +13,9 @@ public class Order {
 	private UUID userId;
 	private String orderNumber;
 	private LocalDate orderDate;
+	private String deliveryAddress;
+	private String withdrawalLocation;
+	private String wantedDeliveryTime;
 	private DeliveryOption deliveryOption;
 	private PaymentMethod paymentMethod;
 	private List<OrderedItems> orderedItems;
