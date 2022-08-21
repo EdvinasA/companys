@@ -1,5 +1,6 @@
 package com.data.company.shop.orders.repository.entities;
 
+import com.data.company.shop.orders.model.PaymentMethod;
 import com.data.company.shop.orders.model.Status;
 import java.io.File;
 import java.time.LocalDate;
@@ -40,7 +41,8 @@ public class OrderEntity {
 	private String collectOption;
 
 	@Column(name = "payment_method")
-	private String paymentMethod;
+	@Enumerated(value = EnumType.STRING)
+	private PaymentMethod paymentMethod;
 
 	@Column(name = "invoice")
 	private File invoice;

@@ -3,6 +3,7 @@ package com.data.company.shop.orders.service;
 import com.data.company.shop.cart.model.CartItem;
 import com.data.company.shop.cart.service.CartCommandService;
 import com.data.company.shop.orders.model.Order;
+import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.model.OrderedItems;
 import com.data.company.shop.orders.model.Status;
 import com.data.company.shop.orders.repository.OrderCommandRepository;
@@ -24,7 +25,7 @@ public class OrderCommandService {
 
 	// Added Transactional if saving order to database fails, then revert changes
 	@Transactional
-	public void createOrder(List<CartItem> input, UUID userId) {
+	public void createOrder(OrderInput input, UUID userId) {
 		LocalDate currentDate = LocalDate.now();
 
 		Order order = new Order();
@@ -34,7 +35,9 @@ public class OrderCommandService {
 				.setOrderDate(currentDate)
 				.setOrderUpdate(currentDate)
 				.setStatus(Status.ORDERED)
-				.setOrderedItems(input
+				.setTotalPrice(input.getTotalPrice())
+//				.setPaymentMethod()
+				.setOrderedItems(input.getOrderedItems()
 						.stream()
 						.map(OrderedItems::from)
 						.collect(Collectors.toList()))
@@ -44,7 +47,6 @@ public class OrderCommandService {
 						currentDate.getDayOfMonth(),
 						queryService.getCountOfOrdersInDatabase()));
 
-		System.out.println(order);
 		commandRepository.create(order);
 
 		cartCommandService.moveCartToOrder(userId);
