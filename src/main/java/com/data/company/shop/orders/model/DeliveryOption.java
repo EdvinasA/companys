@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum DeliveryOption {
 
+	TO_HOME("TO_HOME"),
+	WITHDRAWAL("WITHDRAWAL"),
 	DPD("DPD"),
 	OMNIVA("OMNIVA"),
 	LP_EXPRESS("LP_EXPRESS");
