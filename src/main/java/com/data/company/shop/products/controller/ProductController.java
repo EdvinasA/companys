@@ -1,8 +1,5 @@
 package com.data.company.shop.products.controller;
 
-import com.data.company.shop.laptops.model.Laptop;
-import com.data.company.shop.laptops.service.LaptopCommandService;
-import com.data.company.shop.laptops.service.LaptopQueryService;
 import com.data.company.shop.products.model.Product;
 import com.data.company.shop.products.service.ProductCommandService;
 import com.data.company.shop.products.service.ProductQueryService;

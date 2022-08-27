@@ -45,7 +45,7 @@ public class OrderController {
 		return ResponseEntity.ok(result);
 	}
 
-	@GetMapping ("/order/{orderId}")
+	@GetMapping("/order/{orderId}")
 	public ResponseEntity<Order> findOrderById(@PathVariable UUID orderId) {
 		return ResponseEntity.ok(queryService.findOrderById(orderId));
 	}
