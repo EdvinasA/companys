@@ -2,6 +2,7 @@
 
 --changeset Edvinas:36
 DROP TABLE IF EXISTS laptop;
+DROP TABLE IF EXISTS product;
 
 CREATE TABLE product
 (
