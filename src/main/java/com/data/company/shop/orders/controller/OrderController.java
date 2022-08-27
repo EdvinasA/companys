@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/order/{userId}")
+@RequestMapping("/orders")
 @AllArgsConstructor
 @Slf4j
 public class OrderController {
@@ -25,7 +25,7 @@ public class OrderController {
 	private final OrderQueryService queryService;
 	private final OrderCommandService commandService;
 
-	@PostMapping
+	@PostMapping("/{userId}")
 	public ResponseEntity<Void> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) {
 
 		log.info("Received input for creating order");
@@ -35,7 +35,7 @@ public class OrderController {
 		return ResponseEntity.ok(null);
 	}
 
-	@GetMapping
+	@GetMapping("/{userId}")
 	public ResponseEntity<List<Order>> findAllOrdersByUserId(@PathVariable UUID userId) {
 		log.info("Received request for list of orders for user with id: {}", userId);
 
@@ -43,5 +43,10 @@ public class OrderController {
 		log.info("Retrieved list of orders [Size: {}]", result.size());
 
 		return ResponseEntity.ok(result);
+	}
+
+	@GetMapping ("/order/{orderId}")
+	public ResponseEntity<Order> findOrderById(@PathVariable UUID orderId) {
+		return ResponseEntity.ok(queryService.findOrderById(orderId));
 	}
 }

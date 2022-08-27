@@ -20,4 +20,8 @@ public class OrderQueryService {
 	public List<Order> findAllByUserId(UUID userId) {
 		return queryRepository.findAllByUserId(userId);
 	}
+
+	public Order findOrderById(UUID orderId) {
+		return queryRepository.findByOrderId(orderId);
+	}
 }
