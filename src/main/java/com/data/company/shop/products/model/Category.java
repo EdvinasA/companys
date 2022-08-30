@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Category {
 
 	COMPUTER_EQUIPMENT_OFFICE_SUPPLIES("Computer equipment, office supplies", "COMPUTER_EQUIPMENT_OFFICE_SUPPLIES", 1),
-	COMPUTER_COMPONENTS("Computer components", "COMPUTER_COMPONENTS",  2),
-	TV_AUDIO_VIDEO_GAMES_COMPUTERS("TV, audio, video, games computers", "TV_AUDIO_VIDEO_GAMES_COMPUTERS",  3);
+	COMPUTER_COMPONENTS("Computer components", "COMPUTER_COMPONENTS", 2),
+	TV_AUDIO_VIDEO_GAMES_COMPUTERS("TV, audio, video, games computers", "TV_AUDIO_VIDEO_GAMES_COMPUTERS", 3);
 
 	private final String category;
 	private final String categoryAsEnum;

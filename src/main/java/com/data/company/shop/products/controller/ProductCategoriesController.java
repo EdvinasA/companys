@@ -1,6 +1,5 @@
 package com.data.company.shop.products.controller;
 
-import com.data.company.shop.products.model.Category;
 import com.data.company.shop.products.model.CategoryDisplay;
 import com.data.company.shop.products.service.ProductCategoriesService;
 import java.util.List;
@@ -33,4 +32,4 @@ public class ProductCategoriesController {
 
 		return ResponseEntity.ok(categoriesService.getSubCategoriesByMainCategory(category));
 	}
- }
+}
