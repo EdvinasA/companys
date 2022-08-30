@@ -20,23 +20,6 @@ public class ProductQueryService {
 	private final ProductQueryRepository queryRepository;
 
 	public Page<Product> findAll(Pageable pageable) {
-		List<Integer> categories = Arrays.stream(Category.values()).map(Category::getCategoryNumber)
-				.collect(Collectors.toList());
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
-		System.out.println(categories);
 		return queryRepository.findAll(pageable);
 	}
 
