@@ -1,5 +1,7 @@
 package com.data.company.shop.products.controller;
 
+import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.CategoryDisplay;
 import com.data.company.shop.products.service.ProductCategoriesService;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -19,7 +21,7 @@ public class ProductCategoriesController {
 	private final ProductCategoriesService categoriesService;
 
 	@GetMapping
-	public ResponseEntity<List<String>> getAllMainCategories() {
+	public ResponseEntity<List<CategoryDisplay>> getAllMainCategories() {
 		log.info("Retrieving a list of main categories");
 
 		return ResponseEntity.ok(categoriesService.getAllMainCategories());

@@ -1,6 +1,7 @@
 package com.data.company.shop.products.service;
 
 import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.CategoryDisplay;
 import com.data.company.shop.products.model.SubCategory;
 import java.util.Arrays;
 import java.util.List;
@@ -12,17 +13,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ProductCategoriesService {
 
-	public List<String> getAllMainCategories() {
+	public List<CategoryDisplay> getAllMainCategories() {
 		return Arrays.stream(Category.values())
-				.map(Category::getCategory)
+				.map(category -> new CategoryDisplay(category.getCategory(), category.getCategoryAsEnum()))
 				.collect(Collectors.toList());
 	}
 
 	public List<String> getSubCategoriesByMainCategory(String category) {
-		Category existingCategory = Category.valueOf(category);
-
 		return Arrays.stream(SubCategory.values())
-				.filter(item -> item.getMainCategoryNumber().equals(existingCategory.getCategoryNumber()))
+				.filter(item -> item.getMainCategoryNumber().equals(Category.valueOf(category).getCategoryNumber()))
 				.map(SubCategory::getCategory)
 				.collect(Collectors.toList());
 	}
