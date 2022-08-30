@@ -1,6 +1,7 @@
 package com.data.company.shop.products.controller;
 
 import com.data.company.shop.products.model.CategoryDisplay;
+import com.data.company.shop.products.model.SubCategoryDisplay;
 import com.data.company.shop.products.service.ProductCategoriesService;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class ProductCategoriesController {
 	}
 
 	@GetMapping("{category}")
-	public ResponseEntity<List<CategoryDisplay>> getSubCategoriesByMainCategory(@PathVariable String category) {
+	public ResponseEntity<List<SubCategoryDisplay>> getSubCategoriesByMainCategory(@PathVariable String category) {
 		log.info("Retrieving a list of sub categories by main category");
 
 		return ResponseEntity.ok(categoriesService.getSubCategoriesByMainCategory(category));
