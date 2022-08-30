@@ -1,6 +1,7 @@
 package com.data.company.shop.products.repository.entity;
 
 import com.data.company.shop.shared.Category;
+import com.data.company.shop.shared.SubCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +42,10 @@ public class ProductEntity {
 	@Column(name = "category")
 	@Enumerated(EnumType.STRING)
 	private Category category;
+
+	@Column(name = "sub_category")
+	@Enumerated(EnumType.STRING)
+	private SubCategory subCategory;
 
 	@Column(name = "stripe_product_id")
 	private String stripeProductId;
