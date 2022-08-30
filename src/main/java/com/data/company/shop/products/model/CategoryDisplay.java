@@ -11,4 +11,5 @@ public class CategoryDisplay {
 
 	private String categoryForDisplay;
 	private String categoryForEnum;
+	private String picture;
 }

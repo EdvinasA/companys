@@ -15,14 +15,14 @@ public class ProductCategoriesService {
 
 	public List<CategoryDisplay> getAllMainCategories() {
 		return Arrays.stream(Category.values())
-				.map(category -> new CategoryDisplay(category.getCategory(), category.getCategoryAsEnum()))
+				.map(category -> new CategoryDisplay(category.getCategory(), category.getCategoryAsEnum(), ""))
 				.collect(Collectors.toList());
 	}
 
-	public List<String> getSubCategoriesByMainCategory(String category) {
+	public List<CategoryDisplay> getSubCategoriesByMainCategory(String category) {
 		return Arrays.stream(SubCategory.values())
 				.filter(item -> item.getMainCategoryNumber().equals(Category.valueOf(category).getCategoryNumber()))
-				.map(SubCategory::getCategory)
+				.map(subCategory -> new CategoryDisplay(subCategory.getCategory(), "", subCategory.getPicture()))
 				.collect(Collectors.toList());
 	}
 }

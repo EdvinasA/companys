@@ -27,7 +27,7 @@ public class ProductCategoriesController {
 	}
 
 	@GetMapping("{category}")
-	public ResponseEntity<List<String>> getSubCategoriesByMainCategory(@PathVariable String category) {
+	public ResponseEntity<List<CategoryDisplay>> getSubCategoriesByMainCategory(@PathVariable String category) {
 		log.info("Retrieving a list of sub categories by main category");
 
 		return ResponseEntity.ok(categoriesService.getSubCategoriesByMainCategory(category));
