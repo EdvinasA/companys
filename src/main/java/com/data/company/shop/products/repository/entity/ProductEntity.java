@@ -1,7 +1,7 @@
 package com.data.company.shop.products.repository.entity;
 
-import com.data.company.shop.shared.Category;
-import com.data.company.shop.shared.SubCategory;
+import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;

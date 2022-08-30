@@ -1,7 +1,5 @@
 package com.data.company.shop.products.model;
 
-import com.data.company.shop.shared.Category;
-import com.data.company.shop.shared.SubCategory;
 import java.util.UUID;
 import lombok.Data;
 

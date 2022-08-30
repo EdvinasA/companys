@@ -1,4 +1,4 @@
-package com.data.company.shop.shared;
+package com.data.company.shop.products.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
