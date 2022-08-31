@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class SubCategoryDisplay {
 
 	private String categoryForDisplay;
+	private String categoryForEnum;
 	private String picture;
 }

@@ -23,7 +23,7 @@ public class ProductCategoriesService {
 	public List<SubCategoryDisplay> getSubCategoriesByMainCategory(String category) {
 		return Arrays.stream(SubCategory.values())
 				.filter(item -> item.getMainCategoryNumber().equals(Category.valueOf(category).getCategoryNumber()))
-				.map(subCategory -> new SubCategoryDisplay(subCategory.getCategory(), subCategory.getPicture()))
+				.map(subCategory -> new SubCategoryDisplay(subCategory.getCategory(), subCategory.getEnumValue(), subCategory.getPicture()))
 				.collect(Collectors.toList());
 	}
 }
