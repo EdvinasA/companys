@@ -1,8 +1,11 @@
 package com.data.company.shop.products.repository;
 
 import com.data.company.shop.products.model.Product;
+import com.data.company.shop.products.predicate.ProductPredicateBuilder;
+import com.data.company.shop.products.queries.ProductSearchQuery;
 import com.data.company.shop.products.repository.converter.ProductConverter;
 import com.data.company.shop.products.repository.jpa.ProductJpaRepository;
+import com.querydsl.core.types.Predicate;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -16,9 +19,11 @@ public class ProductQueryRepository {
 
 	private final ProductJpaRepository jpaRepository;
 	private final ProductConverter converter;
+	private final ProductPredicateBuilder predicateBuilder;
 
-	public Page<Product> findAll(Pageable pageable) {
-		return jpaRepository.findAll(pageable)
+	public Page<Product> findAll(Pageable pageable, ProductSearchQuery query) {
+		Predicate searchPredicate = predicateBuilder.buildPredicate(query);
+		return jpaRepository.findAll(searchPredicate, pageable)
 				.map(converter::convertFromEntity);
 	}
 

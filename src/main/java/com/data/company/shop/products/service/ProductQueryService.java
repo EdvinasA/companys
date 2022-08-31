@@ -1,6 +1,7 @@
 package com.data.company.shop.products.service;
 
 import com.data.company.shop.products.model.Product;
+import com.data.company.shop.products.queries.ProductSearchQuery;
 import com.data.company.shop.products.repository.ProductQueryRepository;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -15,8 +16,8 @@ public class ProductQueryService {
 
 	private final ProductQueryRepository queryRepository;
 
-	public Page<Product> findAll(Pageable pageable) {
-		return queryRepository.findAll(pageable);
+	public Page<Product> findAll(Pageable pageable, ProductSearchQuery query) {
+		return queryRepository.findAll(pageable, query);
 	}
 
 	public Product findById(UUID id) throws NotFoundException {

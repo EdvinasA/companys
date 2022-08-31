@@ -1,6 +1,7 @@
 package com.data.company.shop.products.controller;
 
 import com.data.company.shop.products.model.Product;
+import com.data.company.shop.products.queries.ProductSearchQuery;
 import com.data.company.shop.products.service.ProductCommandService;
 import com.data.company.shop.products.service.ProductQueryService;
 import java.util.UUID;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,10 +36,10 @@ public class ProductController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<Product>> getPageListOfProducts(@PageableDefault Pageable pageable) {
+	public ResponseEntity<Page<Product>> getPageListOfProducts(@PageableDefault Pageable pageable, @ModelAttribute ProductSearchQuery query) {
 		log.info("Request for getting list of products with parameters: [Size: {}, Page: {}]", pageable.getPageSize(), pageable.getPageNumber());
 
-		Page<Product> result = queryService.findAll(pageable);
+		Page<Product> result = queryService.findAll(pageable, query);
 		log.info("Retrieved list of products: [Size: {}]", result.getContent().size());
 
 		return ResponseEntity.ok(result);

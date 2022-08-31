@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'org.unbroken-dome.test-sets' version '4.0.0'
 	id 'java'
+	id 'com.ewerk.gradle.plugins.querydsl' version "1.0.10"
 	id "com.diffplug.spotless" version "6.9.1"
 }
 
@@ -23,7 +24,41 @@ repositories {
 }
 
 apply plugin: 'java'
+apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 apply plugin: 'com.diffplug.spotless'
+apply plugin: 'idea'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+querydsl {
+	library = 'com.querydsl:querydsl-apt:5.0.0'
+	jpa = true
+}
+
+configurations {
+	querydsl.extendsFrom implementation, compileClasspath
+}
+
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+project.afterEvaluate {
+	project.tasks.compileQuerydsl.options.compilerArgs = [
+			"-proc:only",
+			"-processor", project.querydsl.processors() +
+					',lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
+	]
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', 'src/querydsl/java']
+		}
+	}
+}
 
 spotless {
 	format 'misc', {
@@ -58,6 +93,8 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.3.RELEASE'
 	implementation 'org.springframework.cloud:spring-cloud-aws-messaging:2.2.3.RELEASE'
 	implementation 'com.stripe:stripe-java:20.120.0'
+
+	implementation 'com.querydsl:querydsl-jpa:5.0.0'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
 
