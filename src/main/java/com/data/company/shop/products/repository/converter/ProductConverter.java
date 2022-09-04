@@ -17,7 +17,9 @@ public class ProductConverter {
 				.setQuantity(input.getQuantity())
 				.setType(input.getType())
 				.setCategory(input.getCategory())
-				.setStripeProductId(input.getStripeProductId());
+				.setStripeProductId(input.getStripeProductId())
+				.setCategory(input.getCategory())
+				.setSubCategory(input.getSubCategory());
 	}
 
 	public Product convertFromEntity(ProductEntity input) {
@@ -30,6 +32,8 @@ public class ProductConverter {
 				.setQuantity(input.getQuantity())
 				.setType(input.getType())
 				.setCategory(input.getCategory())
-				.setStripeProductId(input.getStripeProductId());
+				.setStripeProductId(input.getStripeProductId())
+				.setCategory(input.getCategory())
+				.setSubCategory(input.getSubCategory());
 	}
 }

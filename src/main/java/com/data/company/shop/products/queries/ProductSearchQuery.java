@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class ProductSearchQuery {
 
+	private Double price;
 	private SubCategory subCategory;
 }
