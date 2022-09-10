@@ -4,6 +4,7 @@ import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.service.OrderCommandService;
 import com.data.company.shop.orders.service.OrderQueryService;
+import com.stripe.exception.StripeException;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class OrderController {
 	private final OrderCommandService commandService;
 
 	@PostMapping("/{userId}")
-	public ResponseEntity<Void> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) {
+	public ResponseEntity<Void> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) throws StripeException {
 
 		log.info("Received input for creating order");
 		commandService.createOrder(input, userId);

@@ -6,6 +6,11 @@ import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.model.OrderedItems;
 import com.data.company.shop.orders.model.Status;
 import com.data.company.shop.orders.repository.OrderCommandRepository;
+import com.data.company.shop.stripe.StripeService;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import com.stripe.model.checkout.Session;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -20,10 +25,11 @@ public class OrderCommandService {
 	private final OrderCommandRepository commandRepository;
 	private final OrderQueryService queryService;
 	private final CartCommandService cartCommandService;
+	private final StripeService stripeService;
 
 	// Added Transactional if saving order to database fails, then revert changes
 	@Transactional
-	public void createOrder(OrderInput input, UUID userId) {
+	public void createOrder(OrderInput input, UUID userId) throws StripeException {
 		LocalDate currentDate = LocalDate.now();
 
 		Order order = new Order();
@@ -49,8 +55,14 @@ public class OrderCommandService {
 						currentDate.getDayOfMonth(),
 						queryService.getCountOfOrdersInDatabase()));
 
-		commandRepository.create(order);
+//		for (OrderedItems orderedItem : order.getOrderedItems()) {
+//			stripeService.createProductWithPrice(orderedItem.getItemName(), orderedItem.getItemPrice());
+//		}
 
-		cartCommandService.moveCartToOrder(userId);
+		Session url = stripeService.createOrder();
+		System.out.println(url);
+//		commandRepository.create(order);
+
+//		cartCommandService.moveCartToOrder(userId);
 	}
 }
