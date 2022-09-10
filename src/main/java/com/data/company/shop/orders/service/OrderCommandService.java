@@ -59,7 +59,7 @@ public class OrderCommandService {
 //			stripeService.createProductWithPrice(orderedItem.getItemName(), orderedItem.getItemPrice());
 //		}
 
-		Session url = stripeService.createOrder();
+		Session url = stripeService.createOrder(input.getOrderedItems());
 		System.out.println(url);
 //		commandRepository.create(order);
 
