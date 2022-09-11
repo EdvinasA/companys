@@ -1,6 +1,7 @@
 package com.data.company.shop.orders.service;
 
 import com.data.company.shop.cart.service.CartCommandService;
+import com.data.company.shop.orders.model.CheckoutUrl;
 import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.model.OrderedItems;
@@ -29,7 +30,7 @@ public class OrderCommandService {
 
 	// Added Transactional if saving order to database fails, then revert changes
 	@Transactional
-	public void createOrder(OrderInput input, UUID userId) throws StripeException {
+	public CheckoutUrl createOrder(OrderInput input, UUID userId) throws StripeException {
 		LocalDate currentDate = LocalDate.now();
 
 		Order order = new Order();
@@ -59,8 +60,9 @@ public class OrderCommandService {
 //			stripeService.createProductWithPrice(orderedItem.getItemName(), orderedItem.getItemPrice());
 //		}
 
-		Session url = stripeService.createOrder(input.getOrderedItems());
-		System.out.println(url);
+		Session session = stripeService.createOrder(input.getOrderedItems());
+		System.out.println(session.getUrl());
+		return new CheckoutUrl().setUrl(session.getUrl());
 //		commandRepository.create(order);
 
 //		cartCommandService.moveCartToOrder(userId);

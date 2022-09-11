@@ -1,5 +1,6 @@
 package com.data.company.shop.orders.controller;
 
+import com.data.company.shop.orders.model.CheckoutUrl;
 import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.model.OrderInput;
 import com.data.company.shop.orders.service.OrderCommandService;
@@ -27,13 +28,13 @@ public class OrderController {
 	private final OrderCommandService commandService;
 
 	@PostMapping("/{userId}")
-	public ResponseEntity<Void> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) throws StripeException {
+	public ResponseEntity<CheckoutUrl> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) throws StripeException {
 
 		log.info("Received input for creating order");
-		commandService.createOrder(input, userId);
+		CheckoutUrl url = commandService.createOrder(input, userId);
 
 		log.info("Created order");
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(url);
 	}
 
 	@GetMapping("/{userId}")
