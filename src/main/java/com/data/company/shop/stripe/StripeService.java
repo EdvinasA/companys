@@ -52,7 +52,6 @@ public class StripeService {
 
 			SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
 					.setQuantity((long) item.getItemQuantity())
-					// Provide the exact Price ID (for example, pr_1234) of the product you want to sell
 					.setPrice(product.getStripePriceId())
 					.build();
 			createdLineItems.add(lineItem);

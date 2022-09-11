@@ -57,15 +57,11 @@ public class OrderCommandService {
 						currentDate.getDayOfMonth(),
 						queryService.getCountOfOrdersInDatabase()));
 
-//		for (OrderedItems orderedItem : order.getOrderedItems()) {
-//			stripeService.createProductWithPrice(orderedItem.getItemName(), orderedItem.getItemPrice());
-//		}
+		commandRepository.create(order);
+
+		cartCommandService.moveCartToOrder(userId);
 
 		Session session = stripeService.createOrder(input.getOrderedItems());
-		System.out.println(session.getUrl());
 		return new CheckoutUrl().setUrl(session.getUrl());
-//		commandRepository.create(order);
-
-//		cartCommandService.moveCartToOrder(userId);
 	}
 }
