@@ -2,6 +2,7 @@ package com.data.company.shop.orders.model;
 
 import com.data.company.shop.cart.model.CartItem;
 import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class OrderedItems {
 	private boolean itemInsurance;
 	private boolean itemWarranty;
 	private Category category;
+	private SubCategory subCategory;
 
 	public static OrderedItems from(CartItem cartItem) {
 		return new OrderedItems()

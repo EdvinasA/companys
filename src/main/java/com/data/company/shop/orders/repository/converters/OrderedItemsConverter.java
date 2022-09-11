@@ -14,7 +14,9 @@ public class OrderedItemsConverter {
 				.setItemName(item.getItemName())
 				.setItemPrice(item.getItemPrice())
 				.setItemQuantity(item.getItemQuantity())
-				.setPicture(item.getPicture());
+				.setPicture(item.getPicture())
+				.setCategory(item.getCategory())
+				.setSubCategory(item.getSubCategory());
 	}
 
 	public OrderedItems convertFromEntity(OrderedItemsEntity entity) {
@@ -26,6 +28,8 @@ public class OrderedItemsConverter {
 				.setItemQuantity(entity.getItemQuantity())
 				.setItemInsurance(entity.isItemInsurance())
 				.setItemWarranty(entity.isItemWarranty())
-				.setPicture(entity.getPicture());
+				.setPicture(entity.getPicture())
+				.setCategory(entity.getCategory())
+				.setSubCategory(entity.getSubCategory());
 	}
 }

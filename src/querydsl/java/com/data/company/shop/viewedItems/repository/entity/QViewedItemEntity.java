@@ -35,6 +35,8 @@ public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
 
     public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
+    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+
     public final ComparablePath<java.util.UUID> userId = createComparable("userId", java.util.UUID.class);
 
     public final BooleanPath withdrawal = createBoolean("withdrawal");

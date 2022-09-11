@@ -44,6 +44,8 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
 
     public final StringPath picture = createString("picture");
 
+    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+
     public QOrderedItemsEntity(String variable) {
         this(OrderedItemsEntity.class, forVariable(variable), INITS);
     }

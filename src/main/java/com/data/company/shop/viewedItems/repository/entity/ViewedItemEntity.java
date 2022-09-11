@@ -1,6 +1,7 @@
 package com.data.company.shop.viewedItems.repository.entity;
 
 import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,4 +48,8 @@ public class ViewedItemEntity {
 	@Column(name = "category")
 	@Enumerated(EnumType.STRING)
 	private Category category;
+
+	@Column(name = "sub_category")
+	@Enumerated(EnumType.STRING)
+	private SubCategory subCategory;
 }

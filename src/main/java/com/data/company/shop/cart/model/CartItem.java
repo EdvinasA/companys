@@ -1,6 +1,7 @@
 package com.data.company.shop.cart.model;
 
 import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
 import lombok.Data;
 
@@ -17,4 +18,5 @@ public class CartItem {
 	private boolean itemInsurance;
 	private boolean itemWarranty;
 	private Category category;
+	private SubCategory subCategory;
 }

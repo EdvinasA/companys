@@ -16,7 +16,8 @@ public class WishlistItemConverter {
 				.setItemPrice(item.getItemPrice())
 				.setItemCode(item.getItemCode())
 				.setWishListProfileId(item.getWishListProfileId())
-				.setCategory(item.getCategory());
+				.setCategory(item.getCategory())
+				.setSubCategory(item.getSubCategory());
 	}
 
 	public WishlistItem convertFromEntity(WishlistItemEntity entity) {
@@ -28,6 +29,7 @@ public class WishlistItemConverter {
 				.setItemPrice(entity.getItemPrice())
 				.setItemCode(entity.getItemCode())
 				.setWishListProfileId(entity.getWishListProfileId())
-				.setCategory(entity.getCategory());
+				.setCategory(entity.getCategory())
+				.setSubCategory(entity.getSubCategory());
 	}
 }

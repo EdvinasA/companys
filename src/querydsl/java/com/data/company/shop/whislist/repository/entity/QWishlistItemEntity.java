@@ -33,6 +33,8 @@ public class QWishlistItemEntity extends EntityPathBase<WishlistItemEntity> {
 
     public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
+    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+
     public final ComparablePath<java.util.UUID> wishListProfileId = createComparable("wishListProfileId", java.util.UUID.class);
 
     public QWishlistItemEntity(String variable) {

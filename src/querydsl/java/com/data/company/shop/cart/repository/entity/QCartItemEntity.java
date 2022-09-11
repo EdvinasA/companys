@@ -44,6 +44,8 @@ public class QCartItemEntity extends EntityPathBase<CartItemEntity> {
 
     public final StringPath picture = createString("picture");
 
+    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+
     public QCartItemEntity(String variable) {
         this(CartItemEntity.class, forVariable(variable), INITS);
     }

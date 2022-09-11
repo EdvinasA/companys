@@ -18,7 +18,8 @@ public class ViewedItemConverter {
 				.setWithdrawal(input.isWithdrawal())
 				.setUserId(input.getUserId())
 				.setItemCode(input.getItemCode())
-				.setCategory(input.getCategory());
+				.setCategory(input.getCategory())
+				.setSubCategory(input.getSubCategory());
 	}
 
 	public ViewedItem convertFromEntity(ViewedItemEntity entity) {
@@ -32,6 +33,7 @@ public class ViewedItemConverter {
 				.setWithdrawal(entity.isWithdrawal())
 				.setUserId(entity.getUserId())
 				.setItemCode(entity.getItemCode())
-				.setCategory(entity.getCategory());
+				.setCategory(entity.getCategory())
+				.setSubCategory(entity.getSubCategory());
 	}
 }

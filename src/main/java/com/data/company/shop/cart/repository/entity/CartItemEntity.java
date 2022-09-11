@@ -1,6 +1,7 @@
 package com.data.company.shop.cart.repository.entity;
 
 import com.data.company.shop.products.model.Category;
+import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,6 +52,10 @@ public class CartItemEntity {
 	@Column(name = "category")
 	@Enumerated(EnumType.STRING)
 	private Category category;
+
+	@Column(name = "sub_category")
+	@Enumerated(EnumType.STRING)
+	private SubCategory subCategory;
 
 	@Override
 	public boolean equals(Object o) {
