@@ -5,6 +5,7 @@ import com.data.company.shop.products.repository.ProductCommandRepository;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -16,5 +17,10 @@ public class ProductCommandService {
 		input.setId(UUID.randomUUID());
 
 		commandRepository.create(input);
+	}
+
+	@Transactional
+	public void update(Product input) {
+		commandRepository.update(input);
 	}
 }

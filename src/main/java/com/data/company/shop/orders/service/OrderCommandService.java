@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,7 @@ public class OrderCommandService {
 
 	// Added Transactional if saving order to database fails, then revert changes
 	@Transactional
-	public CheckoutUrl createOrder(OrderInput input, UUID userId) throws StripeException {
+	public CheckoutUrl createOrder(OrderInput input, UUID userId) throws StripeException, NotFoundException {
 		LocalDate currentDate = LocalDate.now();
 
 		Order order = new Order();

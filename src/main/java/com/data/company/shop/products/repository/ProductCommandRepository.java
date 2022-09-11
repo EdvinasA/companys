@@ -21,4 +21,11 @@ public class ProductCommandRepository {
 
 		jpaRepository.save(entity);
 	}
+
+	@Transactional
+	public void update(Product input) {
+		ProductEntity entity = converter.convertToEntity(input);
+
+		jpaRepository.save(entity);
+	}
 }

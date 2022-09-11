@@ -1,7 +1,9 @@
 package com.data.company.shop.stripe;
 
 import com.data.company.shop.cart.model.CartItem;
-import com.data.company.shop.orders.model.OrderedItems;
+import com.data.company.shop.products.service.ProductCommandService;
+import com.data.company.shop.products.service.ProductQueryService;
+import com.data.company.shop.stripe.model.CreatedProduct;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Price;
 import com.stripe.model.Product;
@@ -12,14 +14,19 @@ import com.stripe.param.checkout.SessionCreateParams;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class StripeService {
 
-	public Session createOrder(List<CartItem> items) throws StripeException {
+	private final ProductQueryService productQueryService;
+	private final ProductCommandService productCommandService;
+
+	public Session createOrder(List<CartItem> items) throws StripeException, NotFoundException {
 		SessionCreateParams params =
 				SessionCreateParams.builder()
 						.setMode(SessionCreateParams.Mode.PAYMENT)
@@ -31,24 +38,34 @@ public class StripeService {
 		return Session.create(params);
 	}
 
-	private List<SessionCreateParams.LineItem> createPrice(List<CartItem> items) {
+	private List<SessionCreateParams.LineItem> createPrice(List<CartItem> items) throws NotFoundException, StripeException {
 		List<SessionCreateParams.LineItem> createdLineItems = new ArrayList<>();
 		for (CartItem item : items) {
+
+			com.data.company.shop.products.model.Product product = productQueryService.findById(item.getItemId());
+			if (Objects.isNull(product.getStripePriceId())) {
+				CreatedProduct createdProduct = createProductWithPrice(product.getName(), product.getPrice());
+				product.setStripeProductId(createdProduct.getStripeProductId());
+				product.setStripePriceId(createdProduct.getStripePriceId());
+				productCommandService.update(product);
+			}
+
 			SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
 					.setQuantity((long) item.getItemQuantity())
 					// Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-					.setPrice("price_1LRfMIK7iwO35NMSWnAoOxjJ")
+					.setPrice(product.getStripePriceId())
 					.build();
 			createdLineItems.add(lineItem);
 		}
+
 		return createdLineItems;
 	}
 
-	public String createProductWithPrice(String productName, double productPrice) throws StripeException {
+	public CreatedProduct createProductWithPrice(String productName, double productPrice) throws StripeException {
 		Product product = createProduct(productName);
 		PriceCreateParams params = getPriceCreateParams(product, productPrice);
-		Price.create(params);
-		return product.getId();
+		Price createdPrice = Price.create(params);
+		return new CreatedProduct().setStripeProductId(product.getId()).setStripePriceId(createdPrice.getId());
 	}
 
 	private PriceCreateParams getPriceCreateParams(Product product, double productPrice) {
@@ -56,7 +73,7 @@ public class StripeService {
 				.builder()
 				.setProduct(product.getId())
 				.setCurrency("EUR")
-				.setUnitAmountDecimal(BigDecimal.valueOf(productPrice))
+				.setUnitAmountDecimal(BigDecimal.valueOf(productPrice * 100))
 				.build();
 	}
 

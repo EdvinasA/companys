@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ public class OrderController {
 	private final OrderCommandService commandService;
 
 	@PostMapping("/{userId}")
-	public ResponseEntity<CheckoutUrl> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) throws StripeException {
+	public ResponseEntity<CheckoutUrl> createOrder(@RequestBody OrderInput input, @PathVariable UUID userId) throws StripeException, NotFoundException {
 
 		log.info("Received input for creating order");
 		CheckoutUrl url = commandService.createOrder(input, userId);
