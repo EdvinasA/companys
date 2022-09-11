@@ -33,6 +33,8 @@ public class QProductEntity extends EntityPathBase<ProductEntity> {
 
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
 
+    public final StringPath stripePriceId = createString("stripePriceId");
+
     public final StringPath stripeProductId = createString("stripeProductId");
 
     public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);

@@ -49,4 +49,7 @@ public class ProductEntity {
 
 	@Column(name = "stripe_product_id")
 	private String stripeProductId;
+
+	@Column(name = "stripe_price_id")
+	private String stripePriceId;
 }

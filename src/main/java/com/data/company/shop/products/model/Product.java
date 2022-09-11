@@ -16,4 +16,5 @@ public class Product {
 	private Category category;
 	private SubCategory subCategory;
 	private String stripeProductId;
+	private String stripePriceId;
 }

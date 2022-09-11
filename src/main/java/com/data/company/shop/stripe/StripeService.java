@@ -23,8 +23,8 @@ public class StripeService {
 		SessionCreateParams params =
 				SessionCreateParams.builder()
 						.setMode(SessionCreateParams.Mode.PAYMENT)
-						.setSuccessUrl("http://localhost:4200")
-						.setCancelUrl("http://localhost:4200/category/COMPUTER_EQUIPMENT_OFFICE_SUPPLIES")
+						.setSuccessUrl("http://localhost:4200/checkout/success")
+						.setCancelUrl("http://localhost:4200/checkout/failed")
 						.addAllLineItem(createPrice(items))
 						.build();
 
