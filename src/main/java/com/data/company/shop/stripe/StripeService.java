@@ -27,13 +27,12 @@ public class StripeService {
 	private final ProductCommandService productCommandService;
 
 	public Session createOrder(List<CartItem> items) throws StripeException, NotFoundException {
-		SessionCreateParams params =
-				SessionCreateParams.builder()
-						.setMode(SessionCreateParams.Mode.PAYMENT)
-						.setSuccessUrl("http://localhost:4200/checkout/success")
-						.setCancelUrl("http://localhost:4200/checkout/failed")
-						.addAllLineItem(createPrice(items))
-						.build();
+		SessionCreateParams params = SessionCreateParams.builder()
+				.setMode(SessionCreateParams.Mode.PAYMENT)
+				.setSuccessUrl("http://localhost:4200/checkout/success")
+				.setCancelUrl("http://localhost:4200/checkout/failed")
+				.addAllLineItem(createPrice(items))
+				.build();
 
 		return Session.create(params);
 	}
