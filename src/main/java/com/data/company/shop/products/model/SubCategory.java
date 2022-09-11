@@ -25,11 +25,11 @@ public enum SubCategory {
 		this.picture = picture;
 	}
 
-	@JsonValue
 	public String getCategory() {
 		return category;
 	}
 
+	@JsonValue
 	public String getEnumValue() {
 		return enumValue;
 	}
