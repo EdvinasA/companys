@@ -16,7 +16,8 @@ public class CartItemConverter {
 				.setItemQuantity(input.getItemQuantity())
 				.setItemPrice(input.getItemPrice())
 				.setItemInsurance(input.isItemInsurance())
-				.setItemWarranty(input.isItemWarranty());
+				.setItemWarranty(input.isItemWarranty())
+				.setCategory(input.getCategory());
 	}
 
 	public CartItem convertFromEntity(CartItemEntity input) {
@@ -28,6 +29,7 @@ public class CartItemConverter {
 				.setItemQuantity(input.getItemQuantity())
 				.setItemPrice(input.getItemPrice())
 				.setItemInsurance(input.isItemInsurance())
-				.setItemWarranty(input.isItemWarranty());
+				.setItemWarranty(input.isItemWarranty())
+				.setCategory(input.getCategory());
 	}
 }

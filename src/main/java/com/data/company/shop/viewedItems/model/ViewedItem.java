@@ -1,5 +1,6 @@
 package com.data.company.shop.viewedItems.model;
 
+import com.data.company.shop.products.model.Category;
 import java.util.UUID;
 import lombok.Data;
 
@@ -15,4 +16,5 @@ public class ViewedItem {
 	private boolean delivery;
 	private boolean withdrawal;
 	private UUID userId;
+	private Category category;
 }

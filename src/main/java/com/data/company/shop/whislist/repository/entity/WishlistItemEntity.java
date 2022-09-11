@@ -1,8 +1,11 @@
 package com.data.company.shop.whislist.repository.entity;
 
+import com.data.company.shop.products.model.Category;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,5 +37,9 @@ public class WishlistItemEntity {
 
 	@Column(name = "wishlist_profile_id")
 	private UUID wishListProfileId;
+
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
+	private Category category;
 
 }

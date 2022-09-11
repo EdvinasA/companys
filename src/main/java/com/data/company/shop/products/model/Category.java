@@ -18,11 +18,12 @@ public enum Category {
 		this.categoryNumber = categoryNumber;
 	}
 
-	@JsonValue
+
 	public String getCategory() {
 		return category;
 	}
 
+	@JsonValue
 	public String getCategoryAsEnum() {
 		return categoryAsEnum;
 	}

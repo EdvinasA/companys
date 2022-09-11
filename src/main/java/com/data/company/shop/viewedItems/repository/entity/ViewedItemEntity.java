@@ -1,8 +1,11 @@
 package com.data.company.shop.viewedItems.repository.entity;
 
+import com.data.company.shop.products.model.Category;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +43,8 @@ public class ViewedItemEntity {
 
 	@Column(name = "user_id")
 	private UUID userId;
+
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
+	private Category category;
 }

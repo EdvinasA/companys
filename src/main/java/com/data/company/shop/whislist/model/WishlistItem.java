@@ -1,5 +1,6 @@
 package com.data.company.shop.whislist.model;
 
+import com.data.company.shop.products.model.Category;
 import java.util.UUID;
 import lombok.Data;
 
@@ -13,4 +14,5 @@ public class WishlistItem {
 	private String itemPicture;
 	private double itemPrice;
 	private UUID wishListProfileId;
+	private Category category;
 }

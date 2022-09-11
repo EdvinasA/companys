@@ -1,8 +1,11 @@
 package com.data.company.shop.orders.repository.entities;
 
+import com.data.company.shop.products.model.Category;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,6 +51,10 @@ public class OrderedItemsEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private OrderEntity order;
+
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
+	private Category category;
 
 	@Override
 	public boolean equals(Object o) {

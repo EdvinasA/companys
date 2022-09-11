@@ -9,57 +9,61 @@ import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 
+
 /**
  * QOrderedItemsEntity is a Querydsl query type for OrderedItemsEntity
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
 
-	private static final long serialVersionUID = -303955080L;
+    private static final long serialVersionUID = -303955080L;
 
-	private static final PathInits INITS = PathInits.DIRECT2;
+    private static final PathInits INITS = PathInits.DIRECT2;
 
-	public static final QOrderedItemsEntity orderedItemsEntity = new QOrderedItemsEntity("orderedItemsEntity");
+    public static final QOrderedItemsEntity orderedItemsEntity = new QOrderedItemsEntity("orderedItemsEntity");
 
-	public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
 
-	public final StringPath itemCode = createString("itemCode");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
-	public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
+    public final StringPath itemCode = createString("itemCode");
 
-	public final BooleanPath itemInsurance = createBoolean("itemInsurance");
+    public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
 
-	public final StringPath itemName = createString("itemName");
+    public final BooleanPath itemInsurance = createBoolean("itemInsurance");
 
-	public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
+    public final StringPath itemName = createString("itemName");
 
-	public final NumberPath<Integer> itemQuantity = createNumber("itemQuantity", Integer.class);
+    public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
-	public final BooleanPath itemWarranty = createBoolean("itemWarranty");
+    public final NumberPath<Integer> itemQuantity = createNumber("itemQuantity", Integer.class);
 
-	public final QOrderEntity order;
+    public final BooleanPath itemWarranty = createBoolean("itemWarranty");
 
-	public final StringPath picture = createString("picture");
+    public final QOrderEntity order;
 
-	public QOrderedItemsEntity(String variable) {
-		this(OrderedItemsEntity.class, forVariable(variable), INITS);
-	}
+    public final StringPath picture = createString("picture");
 
-	public QOrderedItemsEntity(Path<? extends OrderedItemsEntity> path) {
-		this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
-	}
+    public QOrderedItemsEntity(String variable) {
+        this(OrderedItemsEntity.class, forVariable(variable), INITS);
+    }
 
-	public QOrderedItemsEntity(PathMetadata metadata) {
-		this(metadata, PathInits.getFor(metadata, INITS));
-	}
+    public QOrderedItemsEntity(Path<? extends OrderedItemsEntity> path) {
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+    }
 
-	public QOrderedItemsEntity(PathMetadata metadata, PathInits inits) {
-		this(OrderedItemsEntity.class, metadata, inits);
-	}
+    public QOrderedItemsEntity(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
 
-	public QOrderedItemsEntity(Class<? extends OrderedItemsEntity> type, PathMetadata metadata, PathInits inits) {
-		super(type, metadata, inits);
-		this.order = inits.isInitialized("order") ? new QOrderEntity(forProperty("order")) : null;
-	}
+    public QOrderedItemsEntity(PathMetadata metadata, PathInits inits) {
+        this(OrderedItemsEntity.class, metadata, inits);
+    }
+
+    public QOrderedItemsEntity(Class<? extends OrderedItemsEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.order = inits.isInitialized("order") ? new QOrderEntity(forProperty("order")) : null;
+    }
 
 }
+
