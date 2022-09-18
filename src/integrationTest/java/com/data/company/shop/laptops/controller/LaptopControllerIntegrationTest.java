@@ -16,14 +16,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @ExtendWith(WiremockExtension.class)
 public class LaptopControllerIntegrationTest extends MvcTest {
 
-	@Test
-	@SneakyThrows
-	void getPageListOfLaptopsShouldReturnEmptyPageWhenNoLaptopExist() {
-		mvc.perform(MockMvcRequestBuilders
-				.get("/shop/laptop")
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect((ResultMatcher) jsonPath("$.pageable.pageSize", is(10)));
-	}
+//	@Test
+//	@SneakyThrows
+//	void getPageListOfLaptopsShouldReturnEmptyPageWhenNoLaptopExist() {
+//		mvc.perform(MockMvcRequestBuilders
+//				.get("/shop/laptop")
+//				.contentType(MediaType.APPLICATION_JSON)
+//				.accept(MediaType.APPLICATION_JSON))
+//				.andExpect(status().isOk())
+//				.andExpect((ResultMatcher) jsonPath("$.pageable.pageSize", is(10)));
+//	}
 }
