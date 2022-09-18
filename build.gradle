@@ -37,7 +37,7 @@ querydsl {
 }
 
 configurations {
-	querydsl.extendsFrom implementation, compileClasspath
+	querydsl.extendsFrom compileClasspath
 }
 
 compileQuerydsl {
@@ -50,14 +50,6 @@ project.afterEvaluate {
 			"-processor", project.querydsl.processors() +
 					',lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
 	]
-}
-
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', 'src/querydsl/java']
-		}
-	}
 }
 
 spotless {
@@ -93,6 +85,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-aws-messaging:2.2.3.RELEASE'
 	implementation 'com.stripe:stripe-java:20.120.0'
 
+	implementation 'com.querydsl:querydsl-core:5.0.0'
 	implementation 'com.querydsl:querydsl-jpa:5.0.0'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
