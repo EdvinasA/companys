@@ -62,7 +62,7 @@ sourceSets {
 
 spotless {
 	format 'misc', {
-		target '*.gradle', '*.md', '.gitignore', '*.bat'
+		target '*.gradle', '*.md', '.gitignore', 'querydsl/**/*.java'
 
 		trimTrailingWhitespace()
 		indentWithTabs()
@@ -71,7 +71,6 @@ spotless {
 
 	java {
 		removeUnusedImports()
-
 		eclipse().configFile("$rootDir/analysis/code-style.xml")
 	}
 }

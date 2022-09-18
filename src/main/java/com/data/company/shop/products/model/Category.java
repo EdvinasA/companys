@@ -18,7 +18,6 @@ public enum Category {
 		this.categoryNumber = categoryNumber;
 	}
 
-
 	public String getCategory() {
 		return category;
 	}
