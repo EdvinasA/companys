@@ -20,6 +20,7 @@ public class OrderedItems {
 	private boolean itemWarranty;
 	private Category category;
 	private SubCategory subCategory;
+	private UUID productId;
 
 	public static OrderedItems from(CartItem cartItem) {
 		return new OrderedItems()
@@ -30,6 +31,7 @@ public class OrderedItems {
 				.setItemPrice(cartItem.getItemPrice())
 				.setItemQuantity(cartItem.getItemQuantity())
 				.setItemInsurance(cartItem.isItemInsurance())
-				.setItemWarranty(cartItem.isItemWarranty());
+				.setItemWarranty(cartItem.isItemWarranty())
+				.setProductId(cartItem.getItemId());
 	}
 }

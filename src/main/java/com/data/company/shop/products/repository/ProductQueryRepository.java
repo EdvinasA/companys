@@ -6,6 +6,7 @@ import com.data.company.shop.products.queries.ProductSearchQuery;
 import com.data.company.shop.products.repository.converter.ProductConverter;
 import com.data.company.shop.products.repository.jpa.ProductJpaRepository;
 import com.querydsl.core.types.Predicate;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -27,10 +28,9 @@ public class ProductQueryRepository {
 				.map(converter::convertFromEntity);
 	}
 
-	public Product findById(UUID id) throws NotFoundException {
+	public Optional<Product> findById(UUID id) {
 		return jpaRepository.findById(id)
-				.map(converter::convertFromEntity)
-				.orElseThrow(NotFoundException::new);
+				.map(converter::convertFromEntity);
 	}
 
 }

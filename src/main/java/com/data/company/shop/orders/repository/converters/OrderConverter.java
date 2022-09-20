@@ -2,6 +2,9 @@ package com.data.company.shop.orders.repository.converters;
 
 import com.data.company.shop.orders.model.Order;
 import com.data.company.shop.orders.repository.entities.OrderEntity;
+import com.data.company.shop.products.repository.ProductQueryRepository;
+import com.data.company.shop.products.repository.converter.ProductConverter;
+import com.data.company.shop.products.service.ProductQueryService;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
