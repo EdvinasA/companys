@@ -1,13 +1,17 @@
 package com.data.company.shop.products.repository.entity;
 
+import com.data.company.shop.orders.repository.entities.OrderedItemsEntity;
 import com.data.company.shop.products.model.Category;
 import com.data.company.shop.products.model.SubCategory;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,4 +56,8 @@ public class ProductEntity {
 
 	@Column(name = "stripe_price_id")
 	private String stripePriceId;
+
+	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY, optional = false)
+	private OrderedItemsEntity orderedItems;
 }

@@ -44,6 +44,8 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
 
     public final StringPath picture = createString("picture");
 
+    public final com.data.company.shop.products.repository.entity.QProductEntity product;
+
     public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
 
     public QOrderedItemsEntity(String variable) {
@@ -65,6 +67,7 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
     public QOrderedItemsEntity(Class<? extends OrderedItemsEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.order = inits.isInitialized("order") ? new QOrderEntity(forProperty("order")) : null;
+        this.product = inits.isInitialized("product") ? new com.data.company.shop.products.repository.entity.QProductEntity(forProperty("product"), inits.get("product")) : null;
     }
 
 }
