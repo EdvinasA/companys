@@ -19,6 +19,10 @@ jobs:
 
     working_directory: ~/repo
 
+    dependencies:
+      pre:
+        - wget "https://services.gradle.org/distributions/gradle-7.4.1-bin.zip"; unzip gradle-7.4.1-bin.zip
+
     environment:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
