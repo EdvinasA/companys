@@ -6,7 +6,6 @@ import com.data.company.shop.products.repository.converter.ProductConverter;
 import com.data.company.shop.products.repository.entity.ProductEntity;
 import com.data.company.shop.products.service.ProductQueryService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor

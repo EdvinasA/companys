@@ -9,7 +9,6 @@ import com.querydsl.core.types.Predicate;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
