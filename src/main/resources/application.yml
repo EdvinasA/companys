@@ -14,7 +14,7 @@ spring:
     init:
       platform: postgres
   jpa:
-    show-sql: true
+    show-sql: false
 cloud:
   aws:
     region:
