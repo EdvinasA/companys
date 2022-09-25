@@ -17,6 +17,8 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.14
       - run:
           name: Install OpenJDK 11
           command: |
@@ -35,12 +37,12 @@ jobs:
           command: docker run -d --name db company/proprietary-db:1.2.3
           # build the application image
       - run:
-            name: Docker Image
-            command: docker build -t company/app:$CIRCLE_BRANCH .
+          name: Docker Image
+          command: docker build -t company/app:$CIRCLE_BRANCH .
           # deploy the image
       - run:
-            name: Deploy docker image
-            command: docker push company/app:$CIRCLE_BRANCH
+          name: Deploy docker image
+          command: docker push company/app:$CIRCLE_BRANCH
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
