@@ -69,8 +69,6 @@ workflows:
           cluster: '${MY_APP_PREFIX}-cluster'
           container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
           family: '${MY_APP_PREFIX}-service'
-          requires:
-            - aws-ecr/build_and_push_image
           post-steps:
             - run:
                 name: Test the deployment
