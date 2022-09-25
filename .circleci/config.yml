@@ -15,7 +15,7 @@ jobs:
       - image: cimg/base:stable
         auth:
           username: edvinas98
-          password: L4iZUYE3Pxtg4WP
+          password: $DOCKERHUB_PASSWORD
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
