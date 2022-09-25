@@ -34,7 +34,7 @@ jobs:
           command: ./gradlew build -x spotlessJavaCheck
       - run:
           name: Docker
-          command: docker run -d --name db company/proprietary-db:1.2.3
+          command: docker run
           # build the application image
       - run:
           name: Docker Image
