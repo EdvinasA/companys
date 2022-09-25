@@ -32,7 +32,7 @@ jobs:
           command: ./gradlew build -x spotlessJavaCheck
       - run:
           name: Docker
-          command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin docker run -d --name db company/proprietary-db:1.2.3
+          command: docker run -d --name db company/proprietary-db:1.2.3
           # build the application image
       - run:
             name: Docker Image
