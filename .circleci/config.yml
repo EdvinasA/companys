@@ -24,8 +24,3 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-  checkout-build-test:
-    jobs:
-      - gradle/test:
-          test_command: -x test
-          executor: java1_8
