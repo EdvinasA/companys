@@ -26,6 +26,3 @@ workflows:
   checkout-build-test:
     jobs:
       - gradle/test
-  say-hello-workflow:
-    jobs:
-      - say-hello
