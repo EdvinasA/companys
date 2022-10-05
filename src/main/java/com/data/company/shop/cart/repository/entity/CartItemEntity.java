@@ -1,17 +1,15 @@
 package com.data.company.shop.cart.repository.entity;
 
-import com.data.company.shop.products.model.Category;
-import com.data.company.shop.products.model.SubCategory;
-import java.util.UUID;
+import com.data.company.shop.products.repository.entity.ProductEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.Data;
 
 @Entity(name = "cart_items")
@@ -25,37 +23,18 @@ public class CartItemEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CartEntity cart;
 
-	@Column(name = "item_id")
-	private UUID itemId;
-
-	@Column(name = "picture")
-	private String picture;
-
-	@Column(name = "item_name")
-	private String itemName;
-
-	@Column(name = "item_code")
-	private String itemCode;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_id")
+	private ProductEntity product;
 
 	@Column(name = "item_quantity")
 	private int itemQuantity;
-
-	@Column(name = "item_price")
-	private double itemPrice;
 
 	@Column(name = "item_insurance")
 	private boolean itemInsurance;
 
 	@Column(name = "item_warranty")
 	private boolean itemWarranty;
-
-	@Column(name = "category")
-	@Enumerated(EnumType.STRING)
-	private Category category;
-
-	@Column(name = "sub_category")
-	@Enumerated(EnumType.STRING)
-	private SubCategory subCategory;
 
 	@Override
 	public boolean equals(Object o) {

@@ -24,27 +24,15 @@ public class QCartItemEntity extends EntityPathBase<CartItemEntity> {
 
     public final QCartEntity cart;
 
-    public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath itemCode = createString("itemCode");
-
-    public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
-
     public final BooleanPath itemInsurance = createBoolean("itemInsurance");
-
-    public final StringPath itemName = createString("itemName");
-
-    public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
     public final NumberPath<Integer> itemQuantity = createNumber("itemQuantity", Integer.class);
 
     public final BooleanPath itemWarranty = createBoolean("itemWarranty");
 
-    public final StringPath picture = createString("picture");
-
-    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+    public final com.data.company.shop.products.repository.entity.QProductEntity product;
 
     public QCartItemEntity(String variable) {
         this(CartItemEntity.class, forVariable(variable), INITS);
@@ -65,6 +53,7 @@ public class QCartItemEntity extends EntityPathBase<CartItemEntity> {
     public QCartItemEntity(Class<? extends CartItemEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.cart = inits.isInitialized("cart") ? new QCartEntity(forProperty("cart")) : null;
+        this.product = inits.isInitialized("product") ? new com.data.company.shop.products.repository.entity.QProductEntity(forProperty("product")) : null;
     }
 
 }
