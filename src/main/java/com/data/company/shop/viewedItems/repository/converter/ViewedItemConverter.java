@@ -16,13 +16,20 @@ public class ViewedItemConverter {
 	private final ProductConverter productConverter;
 
 	public ViewedItemEntity convertToEntity(ViewedItem input) {
-		ProductEntity productEntity = productConverter.convertToEntity(productQueryService.findById(item.getProductId()));		return new ViewedItemEntity()
+		ProductEntity productEntity = productConverter.convertToEntity(productQueryService.findById(input.getItemId()));
+		return new ViewedItemEntity()
 				.setId(input.getId())
 				.setProduct(productEntity);
 	}
 
 	public ViewedItem convertFromEntity(ViewedItemEntity entity) {
 		return new ViewedItem()
-				.setId(entity.getId());
+				.setId(entity.getId())
+				.setItemId(entity.getId())
+				.setItemCode(entity.getProduct().getCode())
+				.setItemPrice(entity.getProduct().getPrice())
+				.setItemName(entity.getProduct().getName())
+				.setSubCategory(entity.getProduct().getSubCategory())
+				.setCategory(entity.getProduct().getCategory());
 	}
 }
