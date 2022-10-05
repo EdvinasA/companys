@@ -25,7 +25,7 @@ public class ViewedItemQueryRepository {
 	}
 
 	public Optional<ViewedItem> findViewedItem(UUID itemId, UUID userId) {
-		return jpaRepository.findByItemIdAndUserId(itemId, userId)
+		return jpaRepository.findByUserIdAndProduct_Id(itemId, userId)
 				.map(converter::convertFromEntity);
 	}
 }

@@ -10,5 +10,7 @@ public interface ViewedItemJpaRepository extends JpaRepository<ViewedItemEntity,
 
 	List<ViewedItemEntity> findByUserId(UUID userId);
 
-	Optional<ViewedItemEntity> findByItemIdAndUserId(UUID itemId, UUID userId);
+	Optional<ViewedItemEntity> findByUserIdAndProduct_Id(UUID itemId, UUID userId);
+
+//	Optional<ViewedItemEntity> findByAndProductAndUserId(UUID itemId, UUID userId);
 }
