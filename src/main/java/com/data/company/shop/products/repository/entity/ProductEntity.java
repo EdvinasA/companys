@@ -56,7 +56,4 @@ public class ProductEntity {
 
 	@Column(name = "stripe_price_id")
 	private String stripePriceId;
-
-	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	private OrderedItemsEntity orderedItems;
 }

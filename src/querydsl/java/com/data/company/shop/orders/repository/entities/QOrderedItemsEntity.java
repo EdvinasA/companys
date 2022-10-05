@@ -22,19 +22,9 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
 
     public static final QOrderedItemsEntity orderedItemsEntity = new QOrderedItemsEntity("orderedItemsEntity");
 
-    public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath itemCode = createString("itemCode");
-
-    public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
-
     public final BooleanPath itemInsurance = createBoolean("itemInsurance");
-
-    public final StringPath itemName = createString("itemName");
-
-    public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
     public final NumberPath<Integer> itemQuantity = createNumber("itemQuantity", Integer.class);
 
@@ -42,11 +32,7 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
 
     public final QOrderEntity order;
 
-    public final StringPath picture = createString("picture");
-
     public final com.data.company.shop.products.repository.entity.QProductEntity product;
-
-    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
 
     public QOrderedItemsEntity(String variable) {
         this(OrderedItemsEntity.class, forVariable(variable), INITS);
@@ -67,7 +53,7 @@ public class QOrderedItemsEntity extends EntityPathBase<OrderedItemsEntity> {
     public QOrderedItemsEntity(Class<? extends OrderedItemsEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.order = inits.isInitialized("order") ? new QOrderEntity(forProperty("order")) : null;
-        this.product = inits.isInitialized("product") ? new com.data.company.shop.products.repository.entity.QProductEntity(forProperty("product"), inits.get("product")) : null;
+        this.product = inits.isInitialized("product") ? new com.data.company.shop.products.repository.entity.QProductEntity(forProperty("product")) : null;
     }
 
 }

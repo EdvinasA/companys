@@ -18,19 +18,13 @@ public class OrderedItemsConverter {
 	public OrderedItemsEntity convertToEntity(OrderedItems item) {
 		ProductEntity productEntity = productConverter.convertToEntity(productQueryService.findById(item.getProductId()));
 		return new OrderedItemsEntity()
-				.setItemCode(item.getItemCode())
-				.setItemId(item.getItemId())
-				.setItemName(item.getItemName())
-				.setItemPrice(item.getItemPrice())
 				.setItemQuantity(item.getItemQuantity())
-				.setPicture(item.getPicture())
-				.setCategory(item.getCategory())
-				.setSubCategory(item.getSubCategory())
+				.setItemWarranty(item.isItemWarranty())
+				.setItemInsurance(item.isItemInsurance())
 				.setProduct(productEntity);
 	}
 
 	public OrderedItems convertFromEntity(OrderedItemsEntity entity) {
-		System.out.println(entity);
 		return new OrderedItems()
 				.setItemCode(entity.getProduct().getCode())
 				.setItemId(entity.getProduct().getId())

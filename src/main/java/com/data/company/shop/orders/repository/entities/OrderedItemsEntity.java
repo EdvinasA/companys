@@ -1,13 +1,8 @@
 package com.data.company.shop.orders.repository.entities;
 
-import com.data.company.shop.products.model.Category;
-import com.data.company.shop.products.model.SubCategory;
 import com.data.company.shop.products.repository.entity.ProductEntity;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,24 +24,7 @@ public class OrderedItemsEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	//
-	@Column(name = "item_id")
-	private UUID itemId;
-
-	@Column(name = "picture")
-	private String picture;
-
-	@Column(name = "item_name")
-	private String itemName;
-
-	@Column(name = "item_code")
-	private String itemCode;
-
-	@Column(name = "item_price")
-	private double itemPrice;
-	//
-
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private ProductEntity product;
 
@@ -61,16 +39,6 @@ public class OrderedItemsEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private OrderEntity order;
-
-	//
-	@Column(name = "category")
-	@Enumerated(EnumType.STRING)
-	private Category category;
-
-	@Column(name = "sub_category")
-	@Enumerated(EnumType.STRING)
-	private SubCategory subCategory;
-	//
 
 	@Override
 	public boolean equals(Object o) {
