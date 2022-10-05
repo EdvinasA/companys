@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,9 @@ public class ProductController {
 	@PostMapping
 	public void createNewProduct(@RequestBody Product input) {
 		log.info("Creating new product: {}", input);
+
 		commandService.createNew(input);
+		log.info("Product successfully created");
 	}
 
 	@GetMapping
@@ -53,5 +56,13 @@ public class ProductController {
 		log.info("Found result: {}", result);
 
 		return ResponseEntity.ok(result);
+	}
+
+	@PutMapping
+	public void updateProduct(@RequestBody Product input) {
+		log.info("Updating product with ID: {}", input.getId());
+
+		commandService.update(input);
+		log.info("Product updated");
 	}
 }

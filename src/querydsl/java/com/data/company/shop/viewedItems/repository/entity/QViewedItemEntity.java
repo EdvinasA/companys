@@ -8,48 +8,50 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 
+
 /**
  * QViewedItemEntity is a Querydsl query type for ViewedItemEntity
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
 
-	private static final long serialVersionUID = 720453315L;
+    private static final long serialVersionUID = 720453315L;
 
-	public static final QViewedItemEntity viewedItemEntity = new QViewedItemEntity("viewedItemEntity");
+    public static final QViewedItemEntity viewedItemEntity = new QViewedItemEntity("viewedItemEntity");
 
-	public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
+    public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
 
-	public final BooleanPath delivery = createBoolean("delivery");
+    public final BooleanPath delivery = createBoolean("delivery");
 
-	public final ComparablePath<java.util.UUID> id = createComparable("id", java.util.UUID.class);
+    public final ComparablePath<java.util.UUID> id = createComparable("id", java.util.UUID.class);
 
-	public final StringPath itemCode = createString("itemCode");
+    public final StringPath itemCode = createString("itemCode");
 
-	public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
+    public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
 
-	public final StringPath itemName = createString("itemName");
+    public final StringPath itemName = createString("itemName");
 
-	public final StringPath itemPicture = createString("itemPicture");
+    public final StringPath itemPicture = createString("itemPicture");
 
-	public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
+    public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
-	public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
+    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
 
-	public final ComparablePath<java.util.UUID> userId = createComparable("userId", java.util.UUID.class);
+    public final ComparablePath<java.util.UUID> userId = createComparable("userId", java.util.UUID.class);
 
-	public final BooleanPath withdrawal = createBoolean("withdrawal");
+    public final BooleanPath withdrawal = createBoolean("withdrawal");
 
-	public QViewedItemEntity(String variable) {
-		super(ViewedItemEntity.class, forVariable(variable));
-	}
+    public QViewedItemEntity(String variable) {
+        super(ViewedItemEntity.class, forVariable(variable));
+    }
 
-	public QViewedItemEntity(Path<? extends ViewedItemEntity> path) {
-		super(path.getType(), path.getMetadata());
-	}
+    public QViewedItemEntity(Path<? extends ViewedItemEntity> path) {
+        super(path.getType(), path.getMetadata());
+    }
 
-	public QViewedItemEntity(PathMetadata metadata) {
-		super(ViewedItemEntity.class, metadata);
-	}
+    public QViewedItemEntity(PathMetadata metadata) {
+        super(ViewedItemEntity.class, metadata);
+    }
 
 }
+
