@@ -22,29 +22,11 @@ public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
 
     public static final QViewedItemEntity viewedItemEntity = new QViewedItemEntity("viewedItemEntity");
 
-    public final EnumPath<com.data.company.shop.products.model.Category> category = createEnum("category", com.data.company.shop.products.model.Category.class);
-
-    public final BooleanPath delivery = createBoolean("delivery");
-
     public final ComparablePath<java.util.UUID> id = createComparable("id", java.util.UUID.class);
-
-    public final StringPath itemCode = createString("itemCode");
-
-    public final ComparablePath<java.util.UUID> itemId = createComparable("itemId", java.util.UUID.class);
-
-    public final StringPath itemName = createString("itemName");
-
-    public final StringPath itemPicture = createString("itemPicture");
-
-    public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
     public final com.data.company.shop.products.repository.entity.QProductEntity product;
 
-    public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
-
     public final ComparablePath<java.util.UUID> userId = createComparable("userId", java.util.UUID.class);
-
-    public final BooleanPath withdrawal = createBoolean("withdrawal");
 
     public QViewedItemEntity(String variable) {
         this(ViewedItemEntity.class, forVariable(variable), INITS);

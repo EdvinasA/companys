@@ -8,8 +8,8 @@ import com.data.company.shop.viewedItems.repository.entity.ViewedItemEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
 @AllArgsConstructor
+@Component
 public class ViewedItemConverter {
 
 	private final ProductQueryService productQueryService;
