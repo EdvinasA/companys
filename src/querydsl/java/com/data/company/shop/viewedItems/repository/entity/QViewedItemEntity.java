@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -16,6 +17,8 @@ import com.querydsl.core.types.Path;
 public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
 
     private static final long serialVersionUID = 720453315L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QViewedItemEntity viewedItemEntity = new QViewedItemEntity("viewedItemEntity");
 
@@ -35,6 +38,8 @@ public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
 
     public final NumberPath<Double> itemPrice = createNumber("itemPrice", Double.class);
 
+    public final com.data.company.shop.products.repository.entity.QProductEntity product;
+
     public final EnumPath<com.data.company.shop.products.model.SubCategory> subCategory = createEnum("subCategory", com.data.company.shop.products.model.SubCategory.class);
 
     public final ComparablePath<java.util.UUID> userId = createComparable("userId", java.util.UUID.class);
@@ -42,15 +47,24 @@ public class QViewedItemEntity extends EntityPathBase<ViewedItemEntity> {
     public final BooleanPath withdrawal = createBoolean("withdrawal");
 
     public QViewedItemEntity(String variable) {
-        super(ViewedItemEntity.class, forVariable(variable));
+        this(ViewedItemEntity.class, forVariable(variable), INITS);
     }
 
     public QViewedItemEntity(Path<? extends ViewedItemEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QViewedItemEntity(PathMetadata metadata) {
-        super(ViewedItemEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QViewedItemEntity(PathMetadata metadata, PathInits inits) {
+        this(ViewedItemEntity.class, metadata, inits);
+    }
+
+    public QViewedItemEntity(Class<? extends ViewedItemEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.product = inits.isInitialized("product") ? new com.data.company.shop.products.repository.entity.QProductEntity(forProperty("product")) : null;
     }
 
 }

@@ -1,13 +1,12 @@
 package com.data.company.shop.viewedItems.repository.entity;
 
-import com.data.company.shop.products.model.Category;
-import com.data.company.shop.products.model.SubCategory;
+import com.data.company.shop.products.repository.entity.ProductEntity;
 import java.util.UUID;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,35 +20,7 @@ public class ViewedItemEntity {
 	@Id
 	private UUID id;
 
-	@Column(name = "item_id")
-	private UUID itemId;
-
-	@Column(name = "item_picture")
-	private String itemPicture;
-
-	@Column(name = "item_name")
-	private String itemName;
-
-	@Column(name = "item_code")
-	private String itemCode;
-
-	@Column(name = "item_price")
-	private double itemPrice;
-
-	@Column(name = "delivery")
-	private boolean delivery;
-
-	@Column(name = "withdrawal")
-	private boolean withdrawal;
-
-	@Column(name = "user_id")
-	private UUID userId;
-
-	@Column(name = "category")
-	@Enumerated(EnumType.STRING)
-	private Category category;
-
-	@Column(name = "sub_category")
-	@Enumerated(EnumType.STRING)
-	private SubCategory subCategory;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_id")
+	private ProductEntity product;
 }
