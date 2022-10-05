@@ -19,13 +19,15 @@ public class ViewedItemConverter {
 		ProductEntity productEntity = productConverter.convertToEntity(productQueryService.findById(input.getItemId()));
 		return new ViewedItemEntity()
 				.setId(input.getId())
-				.setProduct(productEntity);
+				.setProduct(productEntity)
+				.setUserId(input.getUserId());
 	}
 
 	public ViewedItem convertFromEntity(ViewedItemEntity entity) {
 		return new ViewedItem()
 				.setId(entity.getId())
 				.setItemId(entity.getId())
+				.setItemPicture(entity.getProduct().getPicture())
 				.setItemCode(entity.getProduct().getCode())
 				.setItemPrice(entity.getProduct().getPrice())
 				.setItemName(entity.getProduct().getName())
