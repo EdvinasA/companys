@@ -26,7 +26,7 @@ public class ViewedItemConverter {
 	public ViewedItem convertFromEntity(ViewedItemEntity entity) {
 		return new ViewedItem()
 				.setId(entity.getId())
-				.setItemId(entity.getId())
+				.setItemId(entity.getProduct().getId())
 				.setItemPicture(entity.getProduct().getPicture())
 				.setItemCode(entity.getProduct().getCode())
 				.setItemPrice(entity.getProduct().getPrice())
